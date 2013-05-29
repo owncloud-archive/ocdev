@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <info>
-	<id>{{ appName.id }}</id>
-	<name>{{ appName.full }}</name>
+	<id>{{ app.id }}</id>
+	<name>{{ app.full }}</name>
 	<description></description>
 	<licence>{{ license.type }}</licence>
 	<author>{% for author in authors %}{{ author.name }}{% if not loop.last %}, {% endif %}{% endfor %}</author>
