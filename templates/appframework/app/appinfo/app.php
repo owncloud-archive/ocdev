@@ -1,6 +1,4 @@
 <?php
-{{ licenseHeader }}
-
 
 namespace OCA\{{ appName.namespace }};
 

@@ -46,7 +46,7 @@ def main():
     # get the scaffolder which can handle the input
     for scaffolder in scaffolders:
         if scaffolder.canHandle(args):
-            scaffolder.scaffold(args, os.getcwd(), args.templates)
+            scaffolder.scaffold(args, args.templates, os.getcwd())
     
 
 

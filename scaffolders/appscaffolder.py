@@ -19,13 +19,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import os
 
-from jinja2 import Template
+from scaffolders.scaffolder import Scaffolder
 
 
-class AppFrameworkScaffolder:
+class AppFrameworkScaffolder(Scaffolder):
 
     def __init__(self):
-        self._templateDirectory = 'appframework/app/' # must end with /
+        super().__init__('createapp', 'appframework/app/')
 
 
     def addParserTo(self, mainParser):
@@ -40,7 +40,7 @@ class AppFrameworkScaffolder:
         parser.add_argument(
             '--license',
             help='The used license',
-            default='agpl3'
+            default='AGPLv3'
         )
         parser.add_argument(
             'app_name',
@@ -48,14 +48,7 @@ class AppFrameworkScaffolder:
         )
 
 
-    def canHandle(self, args):
-        if args.which == 'createapp':
-            return True
-        else:
-            return False
-
-
-    def scaffold(self, args, currentDirectory, templatesDirectory):
+    def scaffold(self, args, inDirectory, outDirectory):
         authors = []
         moreAuthors = True
         while moreAuthors:
@@ -67,33 +60,18 @@ class AppFrameworkScaffolder:
 
         # loop through all files in the templates folder and write them compiled
         # to the current directory
-        appFolder = os.path.join(currentDirectory, args.app_name)
+        appFolder = os.path.join(outDirectory, args.app_name)
         os.mkdir(appFolder)
 
-        scaffoldDirectory = os.path.join(templatesDirectory, self._templateDirectory)
-        for root, dirs, files in os.walk(scaffoldDirectory):
-            
-            # first create all the directories on that level
-            for folder in dirs:
-                absPath = os.path.join(root, folder)
-                createPath = self._getAppDirectory(absPath, scaffoldDirectory, appFolder)
-                os.mkdir(createPath)
+        params = {
+            'authors': authors,
+            'appName': self._getAppNameDict(args),
+            'license': {
+                type: args.license
+            }
+        }
 
-            # then read the templates and create the parsed files
-            for template in files:
-                absPath = os.path.join(root, template)
-                createPath = self._getAppDirectory(absPath, scaffoldDirectory, appFolder)
-
-                with open(absPath, 'r') as f:
-                    content = f.read()
-                    tpl = Template(content)
-                    rendered = tpl.render({
-                        'authors': authors,
-                        'appName': self._getAppNameDict(args)
-                    })
-
-                    with open(createPath, 'w+') as target:
-                        target.write(rendered)
+        self.build(inDirectory, appFolder, params)
 
 
     def _getAppNameDict(self, args):
@@ -109,6 +87,4 @@ class AppFrameworkScaffolder:
         }
 
 
-    def _getAppDirectory(self, path, templatesDirectory, appFolder):
-        relativePath = path.replace(templatesDirectory, '', 1)
-        return os.path.join(appFolder, relativePath)
+

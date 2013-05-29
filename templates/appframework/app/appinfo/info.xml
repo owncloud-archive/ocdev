@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<info>
+	<id>{{ appName.id }}</id>
+	<name>{{ appName.full }}</name>
+	<description></description>
+	<licence>{{ license.type }}</licence>
+	<author>{% for author in authors %}{{ author.name }}{% if not loop.last %}, {% endif %}{% endfor %}</author>
+	<version>0.001</version>
+	<require>5.0.0</require>
+</info>
