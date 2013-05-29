@@ -18,10 +18,34 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """
+import os
 
 from distutils.core import setup
 
 # Taken from django
+EXCLUDE_FROM_PACKAGES = []
+
+def is_package(package_name):
+    for pkg in EXCLUDE_FROM_PACKAGES:
+        if package_name.startswith(pkg):
+            return False
+    return True
+
+
+def fullsplit(path, result=None):
+    """
+    Split a pathname into components (the opposite of os.path.join)
+    in a platform-neutral way.
+    """
+    if result is None:
+        result = []
+    head, tail = os.path.split(path)
+    if head == '':
+        return [tail] + result
+    if head == path:
+        return result
+    return fullsplit(head, [tail] + result)
+
 # Compile the list of packages available, because distutils doesn't have
 # an easy way to do this.
 packages, package_data = [], {}
@@ -29,7 +53,7 @@ packages, package_data = [], {}
 root_dir = os.path.dirname(__file__)
 if root_dir != '':
     os.chdir(root_dir)
-owncloud_dir = 'owncloud-scaffolding'
+owncloud_dir = 'owncloud_scaffolding'
 
 for dirpath, dirnames, filenames in os.walk(owncloud_dir):
     # Ignore PEP 3147 cache dirs and those whose names start with '.'
@@ -61,5 +85,5 @@ setup (
     requires={
         'jinja': ['jinja']
     },
-    scripts:['owncloud.py']
+    scripts=['owncloud.py']
 )

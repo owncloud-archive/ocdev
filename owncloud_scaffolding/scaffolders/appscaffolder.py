@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import os
 
-from scaffolders.scaffolder import Scaffolder
+from owncloud_scaffolding.scaffolders.scaffolder import Scaffolder
 
 
 class AppFrameworkScaffolder(Scaffolder):

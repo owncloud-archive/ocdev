@@ -25,7 +25,7 @@ import os
 
 from os.path import dirname, join, realpath
 
-from scaffolders.appscaffolder import AppFrameworkScaffolder
+from owncloud_scaffolding.scaffolders.appscaffolder import AppFrameworkScaffolder
 
 def main():
     parser = argparse.ArgumentParser()
