@@ -32,7 +32,7 @@ class AppFrameworkScaffolder(Scaffolder):
 
         self._scaffoldingDirectories = {
             'appframework': 'appframework/app/',
-            'app': 'app/app'
+            'classic': 'app/app/'
         }
 
 
