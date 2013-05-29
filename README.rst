@@ -4,6 +4,10 @@ To install it run::
 
 	sudo python setup.py install
 
+You can also install it from pypi by running::
+
+	sudo pip install owncloud_scaffolding
+
 Usage
 -----
 To create an app in the current directory::
