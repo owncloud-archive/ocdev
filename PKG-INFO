@@ -1,0 +1,34 @@
+Metadata-Version: 1.1
+Name: owncloud_scaffolding
+Version: 0.1
+Author: Bernhard Posselt
+Author-email: nukeawhale at gmail com
+Maintainer: Bernhard Posselt
+Maintainer-email: nukeawhale at gmail com
+Home-page: https://github.com/Raydiation/owncloud_scaffolding
+Summary: Scaffolding tool for creating apps easily
+License: GPLv3
+Description: ownCloud scaffolder
+        ===================
+        To install it run::
+        
+        	sudo python setup.py install
+        
+        Usage
+        -----
+        
+        To create an app in the current directory::
+        
+        	owncloud.py startapp my_app_name
+        
+        
+        It will prompt for more information on metadata.
+Keywords: owncloud scaffolding
+Platform: Linux
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Topic :: Utilities
+

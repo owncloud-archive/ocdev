@@ -73,7 +73,7 @@ for dirpath, dirnames, filenames in os.walk(owncloud_dir):
 
 
 setup (
-    name='ownCloud Scaffolding',
+    name='owncloud_scaffolding',
     version='0.1',
     description='owncloud development scaffolding tool',
     author='Bernhard Posselt',
