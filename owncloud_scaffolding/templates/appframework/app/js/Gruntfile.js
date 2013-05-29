@@ -7,7 +7,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-wrap');
-	grunt.loadNpmTasks('gruntacular');
+	grunt.loadNpmTasks('grunt-karma');
+	grunt.loadNpmTasks('grunt-phpunit');
 
 
 	grunt.initConfig({
