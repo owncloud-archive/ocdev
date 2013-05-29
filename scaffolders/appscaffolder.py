@@ -43,12 +43,17 @@ class AppFrameworkScaffolder(Scaffolder):
             default='AGPLv3'
         )
         parser.add_argument(
+            '--headers',
+            help='If license headers should be included in every file',
+            default=True
+        )
+        parser.add_argument(
             'app_name',
             help='Name of the app in lower case seperate with underscores'
         )
 
 
-    def scaffold(self, args, inDirectory, outDirectory):
+    def scaffold(self, args, templateDirectory, outDirectory):
         authors = []
         moreAuthors = True
         while moreAuthors:
@@ -73,7 +78,8 @@ class AppFrameworkScaffolder(Scaffolder):
                 'fullName': fullName,
                 'namespace': namespace,
                 'license': {
-                    'type': args.license
+                    'type': args.license,
+                    'headers': args.headers
                 },
                 'description': description
             }
@@ -82,7 +88,7 @@ class AppFrameworkScaffolder(Scaffolder):
         appFolder = os.path.join(outDirectory, args.app_name)
 
         os.mkdir(appFolder)
-        self.build(inDirectory, appFolder, params)
+        self.build(templateDirectory, appFolder, params)
 
 
 

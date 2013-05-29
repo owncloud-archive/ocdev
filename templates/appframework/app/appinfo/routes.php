@@ -1,4 +1,5 @@
 <?php
+{% include 'licenses/licenses.php' %}
 
 namespace OCA\{{ app.namespace }};
 

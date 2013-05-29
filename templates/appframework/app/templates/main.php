@@ -1,7 +1,6 @@
-<?php
-\OCP\Util::addScript('public/script');
-\OCP\Util::addScript('css/style');
-
-?>
+{% raw %}
+    {{ addScript('public/app') }}
+    {{ addStyle('style') }}
+{% endraw %}
 
 <div>Hello World</div>

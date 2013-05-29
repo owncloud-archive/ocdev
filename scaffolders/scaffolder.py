@@ -18,51 +18,57 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """
 import os
+import datetime
 
-from jinja2 import Template
+from jinja2 import Environment, FileSystemLoader
+
 
 class Scaffolder:
 
-    def __init__(self, cmd, templateDirectory):
+    def __init__(self, cmd, scaffolderDirectory):
         self._cmd = cmd
-        self._templateDirectory = templateDirectory
-    
+        self._scaffolderDirectory = scaffolderDirectory
 
+    
     def canHandle(self, args):
         if args.which == self._cmd:
             return True
         else:
             return False
 
+    def _bindCustomContext(self, params):
+        params['now'] = datetime.datetime.utcnow()
+        return params
+        
 
-    def build(self, inDirectory, outDirectory, params={}):
+    def build(self, templateDirectory, outDirectory, params={}):
+        params = self._bindCustomContext(params)
+
+        env = Environment(loader=FileSystemLoader(templateDirectory))
+
         # loop through all files in the templates folder and write them compiled
         # to the current directory
-        scaffoldDirectory = os.path.join(inDirectory, self._templateDirectory)
+        scaffoldDirectory = os.path.join(templateDirectory, self._scaffolderDirectory)
 
         for root, dirs, files in os.walk(scaffoldDirectory):
             
             # first create all the directories on that level
             for folder in dirs:
+                # construct the paths for reading and writing
                 absPath = os.path.join(root, folder)
-                createPath = self._getAppDirectory(absPath, scaffoldDirectory, outDirectory)
-                os.mkdir(createPath)
+                relativeScaffoldPath = absPath.replace(scaffoldDirectory, '', 1)
+                outPath = os.path.join(outDirectory, relativeScaffoldPath)
+                os.mkdir(outPath)
 
             # then read the templates and create the parsed files
             for template in files:
+                # construct the paths for reading and writing
                 absPath = os.path.join(root, template)
-                createPath = self._getAppDirectory(absPath, scaffoldDirectory, outDirectory)
+                relativeTemplatePath = absPath.replace(templateDirectory, '', 1)
+                relativeScaffoldPath = absPath.replace(scaffoldDirectory, '', 1)
+                outPath = os.path.join(outDirectory, relativeScaffoldPath)
 
-                with open(absPath, 'r') as f:
-                    content = f.read()
-                    tpl = Template(content)
-                    rendered = tpl.render(params)
+                rendered = env.get_template(relativeTemplatePath).render(params)
 
-                    with open(createPath, 'w+') as target:
-                        target.write(rendered)
-
-
-    def _getAppDirectory(self, path, templatesDirectory, appFolder):
-        relativePath = path.replace(templatesDirectory, '', 1)
-        return os.path.join(appFolder, relativePath)
-
+                with open(outPath, 'w+') as target:
+                    target.write(rendered)
