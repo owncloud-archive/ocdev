@@ -13,7 +13,7 @@ if(\OCP\App::isEnabled('appframework')){
 	$api->addNavigationEntry(array(
 
 		// the string under which your app will be referenced in owncloud
-		'id' => $api->getAppName(),
+		'id' => $api->getAppName({{ appName.id }}),
 
 		// sorting weight for the navigation. The higher the number, the higher
 		// will it be listed in the navigation

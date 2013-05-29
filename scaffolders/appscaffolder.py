@@ -78,7 +78,7 @@ class AppFrameworkScaffolder(Scaffolder):
         name = args.app_name
 
         words = name.split('_')
-        map(lambda word: word.title(), words) # uppercase first letter of all words
+        words = map(lambda word: word.title(), words) # uppercase first letter of all words
 
         return {
             'id': name,
