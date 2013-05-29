@@ -1,0 +1,5 @@
+Authors:
+
+{% for author in app.authors %}
+{{ author.name }} <{{ author.email }}>
+{% endfor %}
