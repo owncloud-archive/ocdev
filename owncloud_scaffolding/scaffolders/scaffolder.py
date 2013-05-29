@@ -19,15 +19,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import os
 import datetime
+import fnmatch
 
 from jinja2 import Environment, FileSystemLoader
 
 
 class Scaffolder:
 
-    def __init__(self, cmd, scaffolderDirectory):
+    def __init__(self, cmd, scaffolderDirectory, ignoredPatterns):
         self._cmd = cmd
         self._scaffolderDirectory = scaffolderDirectory
+        self._ignoredPatterns = ignoredPatterns
 
     
     def canHandle(self, args):
@@ -35,6 +37,7 @@ class Scaffolder:
             return True
         else:
             return False
+
 
     def _bindCustomContext(self, params):
         params['now'] = datetime.datetime.utcnow()
@@ -68,7 +71,16 @@ class Scaffolder:
                 relativeScaffoldPath = absPath.replace(scaffoldDirectory, '', 1)
                 outPath = os.path.join(outDirectory, relativeScaffoldPath)
 
-                rendered = env.get_template(relativeTemplatePath).render(params)
+                ignore = False
+                for pattern in self._ignoredPatterns:
+                    if fnmatch.fnmatch(relativeScaffoldPath, pattern):
+                        ignore = True
+
+                if ignore:
+                    with open(absPath, 'r') as f:
+                        rendered = f.read()
+                else:
+                    rendered = env.get_template(relativeTemplatePath).render(params)
 
                 with open(outPath, 'w+') as target:
                     target.write(rendered)

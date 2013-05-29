@@ -25,7 +25,10 @@ from owncloud_scaffolding.scaffolders.scaffolder import Scaffolder
 class AppFrameworkScaffolder(Scaffolder):
 
     def __init__(self):
-        super().__init__('createapp', 'appframework/app/')
+        super().__init__('createapp', 'appframework/app/', [
+            '*vendor*',
+            '*3rdparty*'
+        ])
 
 
     def addParserTo(self, mainParser):
