@@ -16,7 +16,6 @@ files = [
 	'tests/vendor/angular/angular.js',
 	'tests/vendor/angular/angular-mocks.js',
 	'tests/stubs/app.js',
-	'config/routes.js',
 	'app/directives/*.js',
 	'app/filters/*.js',
 	'app/services/**/*.js',

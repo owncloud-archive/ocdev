@@ -27,7 +27,6 @@ module.exports = function(grunt) {
 			dist: {
 				src: [
 					'config/app.js',
-					'config/routes.js',
 					'app/controllers/**/*.js',
 					'app/directives/**/*.js',
 					'app/filters/**/*.js',
