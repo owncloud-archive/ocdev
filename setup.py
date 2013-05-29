@@ -83,7 +83,7 @@ setup (
     package_data=package_data,
     license='GPLv3',
     requires={
-        'jinja': ['jinja']
+        'jinja': ['jinja2']
     },
     scripts=['owncloud.py']
 )

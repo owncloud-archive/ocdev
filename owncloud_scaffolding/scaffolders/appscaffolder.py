@@ -25,10 +25,15 @@ from owncloud_scaffolding.scaffolders.scaffolder import Scaffolder
 class AppFrameworkScaffolder(Scaffolder):
 
     def __init__(self):
-        super().__init__('startapp', 'appframework/app/', [
+        super().__init__('startapp', [
             '*vendor*',
             '*3rdparty*'
         ])
+
+        self._scaffoldingDirectories = {
+            'appframework': 'appframework/app/',
+            'app': 'app/app'
+        }
 
 
     def addParserTo(self, mainParser):
@@ -91,7 +96,12 @@ class AppFrameworkScaffolder(Scaffolder):
         appFolder = os.path.join(outDirectory, args.app_name)
 
         os.mkdir(appFolder)
-        self.build(templateDirectory, appFolder, params)
+        self.build(
+            templateDirectory, 
+            self._scaffoldingDirectories[args.type],
+            appFolder, 
+            params
+        )
 
 
 

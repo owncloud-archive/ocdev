@@ -26,9 +26,8 @@ from jinja2 import Environment, FileSystemLoader
 
 class Scaffolder:
 
-    def __init__(self, cmd, scaffolderDirectory, ignoredPatterns):
+    def __init__(self, cmd, ignoredPatterns):
         self._cmd = cmd
-        self._scaffolderDirectory = scaffolderDirectory
         self._ignoredPatterns = ignoredPatterns
 
     
@@ -44,14 +43,14 @@ class Scaffolder:
         return params
         
 
-    def build(self, templateDirectory, outDirectory, params={}):
+    def build(self, templateDirectory, scaffolderDirectory, outDirectory, params={}):
         params = self._bindCustomContext(params)
 
         env = Environment(loader=FileSystemLoader(templateDirectory))
 
         # loop through all files in the templates folder and write them compiled
         # to the current directory
-        scaffoldDirectory = os.path.join(templateDirectory, self._scaffolderDirectory)
+        scaffoldDirectory = os.path.join(templateDirectory, scaffolderDirectory)
 
         for root, dirs, files in os.walk(scaffoldDirectory):
             
