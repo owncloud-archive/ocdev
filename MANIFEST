@@ -5,6 +5,17 @@ owncloud_scaffolding/__init__.py
 owncloud_scaffolding/scaffolders/__init__.py
 owncloud_scaffolding/scaffolders/appscaffolder.py
 owncloud_scaffolding/scaffolders/scaffolder.py
+owncloud_scaffolding/templates/app/app/index.php
+owncloud_scaffolding/templates/app/app/settings.php
+owncloud_scaffolding/templates/app/app/ajax/seturl.php
+owncloud_scaffolding/templates/app/app/appinfo/app.php
+owncloud_scaffolding/templates/app/app/appinfo/database.xml
+owncloud_scaffolding/templates/app/app/appinfo/info.xml
+owncloud_scaffolding/templates/app/app/appinfo/version
+owncloud_scaffolding/templates/app/app/img/icon.svg
+owncloud_scaffolding/templates/app/app/js/admin.js
+owncloud_scaffolding/templates/app/app/templates/main.php
+owncloud_scaffolding/templates/app/app/templates/settings.php
 owncloud_scaffolding/templates/appframework/app/.gitignore
 owncloud_scaffolding/templates/appframework/app/AUTHORS
 owncloud_scaffolding/templates/appframework/app/CHANGELOG

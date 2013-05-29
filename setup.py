@@ -82,8 +82,8 @@ setup (
     packages=packages,
     package_data=package_data,
     license='GPLv3',
-    requires={
-        'jinja': ['jinja2']
-    },
+    install_requires=[
+        'jinja2'
+    ],
     scripts=['owncloud.py']
 )
