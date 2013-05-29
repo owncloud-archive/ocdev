@@ -17,7 +17,9 @@ class PageController extends Controller {
 
 
 	/**
-	 * IMPORTANT: these comments turn off security checks, see the dev manual
+	 * ATTENTION!!!
+	 * The following comment turns off security checks
+	 * Please look up their meaning in the documentation!
 	 *
 	 * @IsAdminExemption
 	 * @IsSubAdminExemption
@@ -25,6 +27,24 @@ class PageController extends Controller {
 	 */
 	public function index() {
 		return $this->render('main');
+	}
+
+
+	/**
+	 * ATTENTION!!!
+	 * The following comment turns off security checks
+	 * Please look up their meaning in the documentation!
+	 *
+	 * @IsAdminExemption
+	 * @IsSubAdminExemption
+	 */
+	public function partial() {
+		$partial = $this->params('fileName');
+
+		// prevent directory traversal
+		$templateName = str_replace(array('/', '\\'), '',  $partial);
+
+		return $this->render('partials/' . $templateName);
 	}
 
 

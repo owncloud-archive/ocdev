@@ -15,3 +15,9 @@ $this->create('{{ app.id }}_index', '/')->get()->action(
 		App::main('PageController', 'index', $params, new DIContainer());
 	}
 );
+
+$this->create('{{ app.id }}_index', '/partials/{fileName}')->get()->action(
+	function($params){
+		App::main('PageController', 'partial', $params, new DIContainer());
+	}
+);

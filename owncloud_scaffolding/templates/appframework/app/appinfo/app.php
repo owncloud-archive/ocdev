@@ -11,6 +11,10 @@ if(\OCP\App::isEnabled('appframework')){
 
 	$api = new API('{{ app.id }}');
 
+	// uncomment the next line to activate the admin interface
+	//$api->registerAdmin('admin/settings');
+
+
 	$api->addNavigationEntry(array(
 
 		// the string under which your app will be referenced in owncloud
