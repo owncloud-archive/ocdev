@@ -18,3 +18,11 @@ To create an app in the current directory::
 
 It will prompt for more information on metadata.
 
+
+TODO
+----
+
+Before it becomes really usable, this needs to be done
+
+* Complete appframework template by integrating twig templates and angularjs and tests
+* Create a setup.py so its easily redistributable
