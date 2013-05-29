@@ -1,12 +1,8 @@
 ownCloud scaffolder
 ===================
+To install it run::
 
-Dependencies
-------------
-
-* python-jinja
-* python3
-
+	sudo python setup.py install
 
 Usage
 -----
