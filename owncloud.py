@@ -22,15 +22,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import argparse
 import os
-
 from os.path import dirname, join, realpath
 
+from owncloud_scaffolding import TEMPLATE_DIRECTORY
 from owncloud_scaffolding.scaffolders.appscaffolder import AppFrameworkScaffolder
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--templates', help='Path to the template directory',
-        default=join(dirname(realpath(__file__)), 'templates/'))
+        default=TEMPLATE_DIRECTORY)
     parsers = parser.add_subparsers(help='sub-command help')
 
     # list active scaffolders
