@@ -4,7 +4,7 @@
 namespace OCA\{{ app.namespace }};
 
 use \OCA\AppFramework\App;
-use \OCA\News\DependencyInjection\DIContainer;
+use \OCA\{{ app.namespace }}\DependencyInjection\DIContainer;
 
 
 /**

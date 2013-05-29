@@ -1,8 +1,8 @@
 {% raw %}
-    {{ addScript('public/app', 'appframework') }}
-    {{ addScript('vendor/angular/angular', 'appframework') }}
-    {{ addScript('public/app') }}
-    {{ addStyle('style') }}
+{{ script('public/app', 'appframework') }}
+{{ script('vendor/angular/angular', 'appframework') }}
+{{ script('public/app') }}
+{{ style('style') }}
 {% endraw %}
 
 <div id="app" ng-app="{{ app.namespace }}" ng-cloak>
