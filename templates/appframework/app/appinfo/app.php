@@ -13,7 +13,7 @@ if(\OCP\App::isEnabled('appframework')){
 	$api->addNavigationEntry(array(
 
 		// the string under which your app will be referenced in owncloud
-		'id' => $api->getAppName({{ app.id }}),
+		'id' => $api->getAppName('{{ app.id }}'),
 
 		// sorting weight for the navigation. The higher the number, the higher
 		// will it be listed in the navigation
@@ -24,11 +24,11 @@ if(\OCP\App::isEnabled('appframework')){
 
 		// the icon that will be shown in the navigation
 		// this file needs to exist in img/example.png
-		'icon' => $api->imagePath('{{ app.id }}.svg'),
+		'icon' => $api->imagePath('icon.svg'),
 
 		// the title of your application. This will be used in the
 		// navigation or on the settings page of your app
-		'name' => $api->getTrans()->t('{{ app.full }}')
+		'name' => $api->getTrans()->t('{{ app.fullName }}')
 
 	));
 

@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <info>
 	<id>{{ app.id }}</id>
-	<name>{{ app.full }}</name>
-	<description></description>
-	<licence>{{ license.type }}</licence>
-	<author>{% for author in authors %}{{ author.name }}{% if not loop.last %}, {% endif %}{% endfor %}</author>
+	<name>{{ app.fullName }}</name>
+	<description>{{ app.description }}</description>
+	<licence>{{ app.license.type }}</licence>
+	<author>{% for author in app.authors %}{{ author.name }}{% if not loop.last %}, {% endif %}{% endfor %}</author>
 	<version>0.001</version>
 	<require>5.0.0</require>
 </info>

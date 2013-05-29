@@ -54,37 +54,37 @@ class AppFrameworkScaffolder(Scaffolder):
         while moreAuthors:
             authors.append({
                 'name': input('Please enter the author of the app: '),
-                'email': input('Please enter teh author\'s e-mail: ')
+                'email': input('Please enter the author\'s e-mail: ')
             })
-            moreAuthors = input('Do you wish to add another author? [y/N]') == 'y'
+            moreAuthors = input('Do you wish to add another author? [y/N]: ') == 'y'
 
-        # loop through all files in the templates folder and write them compiled
-        # to the current directory
-        appFolder = os.path.join(outDirectory, args.app_name)
-        os.mkdir(appFolder)
+        description = input('Please enter a short description of the app: ')
+
+        # build the namespace and name from the app id
+        words = args.app_name.split('_')
+        upperCaseWords = map(lambda word: word.title(), words)
+        fullName = ' '.join(upperCaseWords)
+        namespace = fullName.replace(' ', '')
 
         params = {
-            'authors': authors,
-            'appName': self._getAppNameDict(args),
-            'license': {
-                type: args.license
+            'app': {
+                'id': args.app_name,
+                'authors': authors,
+                'fullName': fullName,
+                'namespace': namespace,
+                'license': {
+                    'type': args.license
+                },
+                'description': description
             }
         }
 
+        appFolder = os.path.join(outDirectory, args.app_name)
+
+        os.mkdir(appFolder)
         self.build(inDirectory, appFolder, params)
 
 
-    def _getAppNameDict(self, args):
-        name = args.app_name
-
-        words = name.split('_')
-        words = map(lambda word: word.title(), words) # uppercase first letter of all words
-
-        return {
-            'id': name,
-            'full': ' '.join(words),
-            'namespace': ''.join(words)
-        }
 
 
 

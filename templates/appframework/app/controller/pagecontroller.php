@@ -16,7 +16,8 @@ class PageController extends Controller {
 
 
 	/**
-	 * Important: these comments turn off security checks, see the dev manual
+	 * IMPORTANT: these comments turn off security checks, see the dev manual
+	 *
 	 * @IsAdminExemption
 	 * @IsSubAdminExemption
 	 * @CSRFExemption

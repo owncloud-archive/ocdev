@@ -36,6 +36,8 @@ class Scaffolder:
 
 
     def build(self, inDirectory, outDirectory, params={}):
+        # loop through all files in the templates folder and write them compiled
+        # to the current directory
         scaffoldDirectory = os.path.join(inDirectory, self._templateDirectory)
 
         for root, dirs, files in os.walk(scaffoldDirectory):
