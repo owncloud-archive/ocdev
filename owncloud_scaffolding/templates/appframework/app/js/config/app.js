@@ -1,3 +1,3 @@
 {% include 'licenses/licenses.php' %}
 
-angular.module('{{ app.namespace }}', []);
+angular.module('{{ app.namespace }}', ['OC']);

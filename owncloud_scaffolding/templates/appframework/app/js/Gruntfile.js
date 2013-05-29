@@ -100,7 +100,7 @@ module.exports = function(grunt) {
 	// make tasks available under simpler commands
 	grunt.registerTask('build', ['jshint', 'concat', 'wrap']);
 	grunt.registerTask('watchjs', ['watch:concat']);
-	grunt.registerTask('ci', ['testacular:continuous']);
-	grunt.registerTask('testjs', ['testacular:unit']);
+	grunt.registerTask('ci', ['karma:continuous']);
+	grunt.registerTask('testjs', ['karma:unit']);
 
 };
