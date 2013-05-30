@@ -10,5 +10,5 @@
 </div>
 
 <div id="app-settings-content">
-
+	here are your settings
 </div>

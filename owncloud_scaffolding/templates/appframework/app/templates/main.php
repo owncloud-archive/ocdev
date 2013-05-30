@@ -14,7 +14,7 @@
 
 	<div id="app-navigation">
 
-		<ul class="with-icon" data-id="0" droppable>
+		<ul class="with-icon">
 			{% include 'nav.php' %}
 		</ul>
 
