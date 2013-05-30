@@ -4,14 +4,14 @@
 namespace OCA\{{ app.namespace }}\Controller;
 
 use \OCA\AppFramework\Http\Request;
-use \OCA\AppFramework\Http\TemplateResponse;
+use \OCA\AppFramework\Http\JSONResponse;
 use \OCA\AppFramework\Utility\ControllerTestUtility;
 
 
 require_once(__DIR__ . "/../../classloader.php");
 
 
-class PageControllerTest extends ControllerTestUtility {
+class {{ controller.name }}Test extends ControllerTestUtility {
 
 	private $api;
 	private $request;
@@ -27,16 +27,14 @@ class PageControllerTest extends ControllerTestUtility {
 	}
 
 
-	public function testIndexAnnotations(){
-		$annotations = array('IsAdminExemption', 'IsSubAdminExemption', 
-			'CSRFExemption');
-		$this->assertAnnotations($this->controller, 'index', $annotations);
+	public function test{{ controller.methodName.title() }}Annotations(){
+		$annotations = array('IsAdminExemption', 'IsSubAdminExemption');
+		$this->assertAnnotations($this->controller, '{{ controller.methodName }}', $annotations);
 	}
 
 	public function testIndex(){
-		$response = $this->controller->index();
-		$this->assertEquals('main', $response->getTemplateName());
-		$this->assertTrue($response instanceof TemplateResponse);
+		$response = $this->controller->{{ controller.methodName }}();
+		$this->assertTrue($response instanceof JSONResponse);
 	}
 
 

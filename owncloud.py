@@ -25,7 +25,8 @@ import os
 from os.path import dirname, join, realpath
 
 from owncloud_scaffolding import TEMPLATE_DIRECTORY
-from owncloud_scaffolding.scaffolders.appscaffolder import AppFrameworkScaffolder
+from owncloud_scaffolding.scaffolders.appscaffolder import AppScaffolder
+from owncloud_scaffolding.scaffolders.controllerscaffolder import ControllerScaffolder
 
 def main():
     parser = argparse.ArgumentParser()
@@ -35,7 +36,8 @@ def main():
 
     # list active scaffolders
     scaffolders = [
-        AppFrameworkScaffolder()
+        AppScaffolder(),
+        ControllerScaffolder()
     ]
 
     for scaffolder in scaffolders:

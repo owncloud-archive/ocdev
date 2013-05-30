@@ -11,7 +11,7 @@ use \OCA\AppFramework\Utility\ControllerTestUtility;
 require_once(__DIR__ . "/../../classloader.php");
 
 
-class PageControllerTest extends ControllerTestUtility {
+class SettingsControllerTest extends ControllerTestUtility {
 
 	private $api;
 	private $request;
@@ -23,19 +23,18 @@ class PageControllerTest extends ControllerTestUtility {
 	public function setUp(){
 		$this->api = $this->getAPIMock();
 		$this->request = new Request();
-		$this->controller = new PageController($this->api, $this->request);
+		$this->controller = new SettingsController($this->api, $this->request);
 	}
 
 
 	public function testIndexAnnotations(){
-		$annotations = array('IsAdminExemption', 'IsSubAdminExemption', 
-			'CSRFExemption');
+		$annotations = array('CSRFExemption');
 		$this->assertAnnotations($this->controller, 'index', $annotations);
 	}
 
 	public function testIndex(){
 		$response = $this->controller->index();
-		$this->assertEquals('main', $response->getTemplateName());
+		$this->assertEquals('admin/settings', $response->getTemplateName());
 		$this->assertTrue($response instanceof TemplateResponse);
 	}
 

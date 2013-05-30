@@ -18,17 +18,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """
 import os
+import sys
 
 from owncloud_scaffolding.scaffolders.scaffolder import Scaffolder
 
 
-class AppScaffolder(Scaffolder):
+class AppFrameworkScaffolder(Scaffolder):
 
     def __init__(self):
-        super().__init__('startapp', [
-            '*vendor*',
-            '*3rdparty*'
-        ])
+        super().__init__('controller')
 
         self._scaffoldingDirectories = {
             'appframework': 'appframework/app/',
@@ -37,14 +35,8 @@ class AppScaffolder(Scaffolder):
 
 
     def addParserTo(self, mainParser):
-        parser = mainParser.add_parser('startapp', help='Create an app')
-        parser.set_defaults(which='startapp')
-
-        parser.add_argument(
-            '--type',
-            help='Decides which template folder should be taken in the templates folder',
-            default='appframework'
-        )
+        parser = mainParser.add_parser('controller', help='Create a controller')
+        parser.set_defaults(which='controller')
         parser.add_argument(
             '--license',
             help='The used license',
@@ -56,53 +48,65 @@ class AppScaffolder(Scaffolder):
             default=True
         )
         parser.add_argument(
-            'app_name',
-            help='Name of the app in lower case seperate with underscores'
+            'controllerName',
+            help='Name of the controller in CamelCase'
+        )
+        parser.add_argument(
+            'controllerMethodName',
+            help='Name of the controller method in pascalCase'
         )
 
 
-    def scaffold(self, args, templateDirectory, outDirectory):
-        authors = []
-        moreAuthors = True
-        while moreAuthors:
-            authors.append({
-                'name': input('Please enter the author of the app: '),
-                'email': input('Please enter the author\'s e-mail: ')
-            })
-            moreAuthors = input('Do you wish to add another author? [y/N]: ') == 'y'
 
-        description = input('Please enter a short description of the app: ')
+    def scaffold(self, args, templateDirectory, currentDirectory):
+        # get directory 
+        try:
+            directory = self.findAppDirectory(currentDirectory)
+        except OSError:
+            print('Error: App directory not found!')
+            sys.exit(1)
+
+        appName = os.path.basename(directory)
 
         # build the namespace and name from the app id
-        words = args.app_name.split('_')
+        words = directory.split('_')
         upperCaseWords = map(lambda word: word.title(), words)
         fullName = ' '.join(upperCaseWords)
         namespace = fullName.replace(' ', '')
 
         params = {
             'app': {
-                'id': args.app_name,
+                'id': args.name,
                 'authors': authors,
                 'fullName': fullName,
                 'namespace': namespace,
                 'license': {
                     'type': args.license,
                     'headers': args.headers
-                },
-                'description': description
+                }
+            },
+            'controller': {
+                'name': args.controllerName,
+                'methodName': args.controllerMethodName
             }
         }
 
-        appFolder = os.path.join(outDirectory, args.app_name)
-
-        os.mkdir(appFolder)
-        self.buildDirectory(
-            templateDirectory, 
-            self._scaffoldingDirectories[args.type],
-            appFolder, 
+                
+        # build controller
+        self.buildFile(
+            templateDirectory,
+            'appframework/controller/controller.php',
+            os.path.join(directory, 'controller/%s.php' % args.controllerName.lower()),
             params
         )
 
+        # build testcase
+        self.buildFile(
+            templateDirectory,
+            'appframework/controller/tests.php',
+            os.path.join(directory, 'tests/unit/controller/%sTest.php' % args.controllerName),
+            params
+        )
 
 
 

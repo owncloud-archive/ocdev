@@ -8,8 +8,8 @@ You can also install it from pypi by running::
 
 	sudo pip install owncloud_scaffolding
 
-Usage
------
+Creating apps
+-------------
 To create an app in the current directory::
 
 	owncloud.py startapp my_app_name
@@ -27,3 +27,10 @@ It's also possible to omit the license headers by using::
 If you wish to create a classic app without the App Framework use::
 
 	owncloud.py startapp --type classic my_app_name
+
+
+Creating controllers
+--------------------
+To create a controller and test in the current directory::
+
+	owncloud.py controller ControllerClassName controllerMethod

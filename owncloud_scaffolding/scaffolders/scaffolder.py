@@ -20,13 +20,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import os
 import datetime
 import fnmatch
+import re
 
 from jinja2 import Environment, FileSystemLoader
 
 
 class Scaffolder:
 
-    def __init__(self, cmd, ignoredPatterns):
+    def __init__(self, cmd, ignoredPatterns=[]):
         self._cmd = cmd
         self._ignoredPatterns = ignoredPatterns
 
@@ -43,7 +44,7 @@ class Scaffolder:
         return params
         
 
-    def build(self, templateDirectory, scaffolderDirectory, outDirectory, params={}):
+    def buildDirectory(self, templateDirectory, scaffolderDirectory, outDirectory, params={}):
         params = self._bindCustomContext(params)
 
         env = Environment(loader=FileSystemLoader(templateDirectory))
@@ -83,3 +84,30 @@ class Scaffolder:
 
                 with open(outPath, 'w+') as target:
                     target.write(rendered)
+
+
+    def buildFile(self, templateDirectory, fileIn, fileOut, params={}):
+        params = self._bindCustomContext(params)
+        env = Environment(loader=FileSystemLoader(templateDirectory))
+        
+        # construct the paths for reading and writing
+        absPath = os.path.join(templateDirectory, fileIn)
+
+        rendered = env.get_template(relativeTemplatePath).render(params)
+
+        with open(fileOut, 'w+') as target:
+            target.write(rendered)
+
+
+    def findAppDirectory(self, currentPath):
+        regex = re.compile('(.+)appinfo/info.xml')
+        appDirectory = None
+        for root, files, dirs in os.walk(currentPath):
+            for file in files:
+                absPath = os.path.join(root, file)
+                search = re.search(regex, absPath)
+                if search:
+                    return search.group(1)
+
+        # go up one directory if the directory was not found
+        self.findAppDirectory(os.path.join(currentPath, '..'))
