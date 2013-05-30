@@ -28,6 +28,7 @@ from owncloud_scaffolding import TEMPLATE_DIRECTORY
 from owncloud_scaffolding.scaffolders.appscaffolder import AppScaffolder
 from owncloud_scaffolding.scaffolders.controllerscaffolder import ControllerScaffolder
 
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--templates', help='Path to the template directory',
@@ -49,7 +50,6 @@ def main():
     for scaffolder in scaffolders:
         if scaffolder.canHandle(args):
             scaffolder.scaffold(args, args.templates, os.getcwd())
-    
 
 
 if __name__ == '__main__':

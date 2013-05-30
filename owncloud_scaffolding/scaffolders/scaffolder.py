@@ -89,11 +89,8 @@ class Scaffolder:
     def buildFile(self, templateDirectory, fileIn, fileOut, params={}):
         params = self._bindCustomContext(params)
         env = Environment(loader=FileSystemLoader(templateDirectory))
-        
-        # construct the paths for reading and writing
-        absPath = os.path.join(templateDirectory, fileIn)
 
-        rendered = env.get_template(relativeTemplatePath).render(params)
+        rendered = env.get_template(fileIn).render(params)
 
         with open(fileOut, 'w+') as target:
             target.write(rendered)
@@ -102,7 +99,7 @@ class Scaffolder:
     def findAppDirectory(self, currentPath):
         regex = re.compile('(.+)appinfo/info.xml')
         appDirectory = None
-        for root, files, dirs in os.walk(currentPath):
+        for root, dirs, files in os.walk(currentPath):
             for file in files:
                 absPath = os.path.join(root, file)
                 search = re.search(regex, absPath)
@@ -110,4 +107,8 @@ class Scaffolder:
                     return search.group(1)
 
         # go up one directory if the directory was not found
-        self.findAppDirectory(os.path.join(currentPath, '..'))
+        folderHigher = os.path.realpath(os.path.join(currentPath, '..'))
+        if os.path.exists(folderHigher) and folderHigher != '/':
+            return self.findAppDirectory(folderHigher)
+        else:
+            raise OSError()

@@ -19,19 +19,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import os
 import sys
+import re
 
 from owncloud_scaffolding.scaffolders.scaffolder import Scaffolder
 
 
-class AppFrameworkScaffolder(Scaffolder):
+class ControllerScaffolder(Scaffolder):
 
     def __init__(self):
         super().__init__('controller')
-
-        self._scaffoldingDirectories = {
-            'appframework': 'appframework/app/',
-            'classic': 'app/app/'
-        }
 
 
     def addParserTo(self, mainParser):
@@ -66,17 +62,30 @@ class AppFrameworkScaffolder(Scaffolder):
             print('Error: App directory not found!')
             sys.exit(1)
 
-        appName = os.path.basename(directory)
+
+        appName = os.path.basename(os.path.dirname(directory))
+
+        # get authors from authors file
+        authors = []
+        with open(os.path.join(directory, 'AUTHORS'), 'r') as f:
+            regex = re.compile('(.+) <(.+)>')
+            for line in f:
+                search = re.search(regex, line)
+                if search:
+                    authors.append({
+                        'name': search.group(1),
+                        'email': search.group(2)
+                    })
 
         # build the namespace and name from the app id
-        words = directory.split('_')
+        words = appName.split('_')
         upperCaseWords = map(lambda word: word.title(), words)
         fullName = ' '.join(upperCaseWords)
         namespace = fullName.replace(' ', '')
 
         params = {
             'app': {
-                'id': args.name,
+                'id': appName,
                 'authors': authors,
                 'fullName': fullName,
                 'namespace': namespace,
@@ -91,7 +100,7 @@ class AppFrameworkScaffolder(Scaffolder):
             }
         }
 
-                
+
         # build controller
         self.buildFile(
             templateDirectory,
@@ -103,7 +112,7 @@ class AppFrameworkScaffolder(Scaffolder):
         # build testcase
         self.buildFile(
             templateDirectory,
-            'appframework/controller/tests.php',
+            'appframework/controller/test.php',
             os.path.join(directory, 'tests/unit/controller/%sTest.php' % args.controllerName),
             params
         )
