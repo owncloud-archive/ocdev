@@ -142,7 +142,7 @@ class ResourceScaffolder(Scaffolder):
         self.buildFile(
             templateDirectory,
             'appframework/resource/entity.php',
-            os.path.join(directory, 'db/%sentity.php' % args.name),
+            os.path.join(directory, 'db/%s.php' % args.name),
             params
         )
 
