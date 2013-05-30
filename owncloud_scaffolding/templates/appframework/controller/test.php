@@ -11,7 +11,7 @@ use \OCA\AppFramework\Utility\ControllerTestUtility;
 require_once(__DIR__ . "/../../classloader.php");
 
 
-class {{ controller.name }}Test extends ControllerTestUtility {
+class {{ controller.name }}ControllerTest extends ControllerTestUtility {
 
 	private $api;
 	private $request;
@@ -23,12 +23,12 @@ class {{ controller.name }}Test extends ControllerTestUtility {
 	public function setUp(){
 		$this->api = $this->getAPIMock();
 		$this->request = new Request();
-		$this->controller = new PageController($this->api, $this->request);
+		$this->controller = new {{ controller.name }}Controller($this->api, $this->request);
 	}
 
 
 	public function test{{ controller.methodName.title() }}Annotations(){
-		$annotations = array('IsAdminExemption', 'IsSubAdminExemption');
+		$annotations = array('IsAdminExemption', 'IsSubAdminExemption', 'Ajax');
 		$this->assertAnnotations($this->controller, '{{ controller.methodName }}', $annotations);
 	}
 

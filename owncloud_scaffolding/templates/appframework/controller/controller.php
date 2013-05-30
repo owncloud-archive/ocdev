@@ -8,7 +8,7 @@ use \OCA\AppFramework\Core\API;
 use \OCA\AppFramework\Http\Request;
 
 
-class {{ controller.name }} extends Controller {
+class {{ controller.name }}Controller extends Controller {
 
 
 	public function __construct(API $api, Request $request){
@@ -21,6 +21,7 @@ class {{ controller.name }} extends Controller {
 	 * The following comment turns off security checks
 	 * Please look up their meaning in the documentation!
 	 *
+	 * @Ajax
 	 * @IsAdminExemption
 	 * @IsSubAdminExemption
 	 */
