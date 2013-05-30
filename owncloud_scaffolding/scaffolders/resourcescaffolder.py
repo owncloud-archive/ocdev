@@ -21,7 +21,7 @@ import os
 import sys
 import re
 
-from owncloud_scaffolding.scaffolders.scaffolder import Scaffolder
+from owncloud_scaffolding.scaffolders.scaffolder import Scaffolder, RegexValidator
 
 
 class ResourceScaffolder(Scaffolder):
@@ -36,7 +36,8 @@ class ResourceScaffolder(Scaffolder):
         parser.add_argument(
             '--license',
             help='The used license',
-            default='AGPLv3'
+            default='AGPLv3',
+            type=RegexValidator('^[0-9a-zA-Z_-]+$')
         )
         parser.add_argument(
             '--headers',
@@ -45,7 +46,8 @@ class ResourceScaffolder(Scaffolder):
         )
         parser.add_argument(
             'name',
-            help='Name of the resource'
+            help='Name of the resource',
+            type=RegexValidator('^[a-zA-Z_]+$')
         )
 
 

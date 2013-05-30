@@ -21,8 +21,24 @@ import os
 import datetime
 import fnmatch
 import re
+import argparse
 
 from jinja2 import Environment, FileSystemLoader
+
+
+class RegexValidator:
+
+    def __init__(self, regex, errorMsg=None): 
+        self.regex = re.compile(regex) 
+        self.errorMsg = errorMsg 
+        if not self.errorMsg: 
+            self.errorMsg = "must match regex %s" % regex 
+
+    def __call__(self, string): 
+        match = re.match(self.regex, string)
+        if not match:
+            raise argparse.ArgumentError(None, self.errorMsg)
+        return string 
 
 
 class Scaffolder:
@@ -37,6 +53,15 @@ class Scaffolder:
             return True
         else:
             return False
+
+    def ask(self, question, validate='.*', errorMsg=''):
+        regex = re.compile(validate)
+        result = input(question)
+        if not re.match(regex, result):
+            print(errorMsg)
+            self.ask(question, validate, errorMsg)
+        else:
+            return result
 
 
     def _bindCustomContext(self, params):

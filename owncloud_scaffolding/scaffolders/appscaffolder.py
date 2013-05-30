@@ -18,8 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """
 import os
+import re
 
-from owncloud_scaffolding.scaffolders.scaffolder import Scaffolder
+from owncloud_scaffolding.scaffolders.scaffolder import Scaffolder, RegexValidator
 
 
 class AppScaffolder(Scaffolder):
@@ -43,12 +44,14 @@ class AppScaffolder(Scaffolder):
         parser.add_argument(
             '--type',
             help='Decides which template folder should be taken in the templates folder',
-            default='appframework'
+            default='appframework',
+            type=RegexValidator('^[a-z_]+$')
         )
         parser.add_argument(
             '--license',
             help='The used license',
-            default='AGPLv3'
+            default='AGPLv3',
+            type=RegexValidator('^[0-9a-zA-Z_-]+$')
         )
         parser.add_argument(
             '--headers',
@@ -57,7 +60,8 @@ class AppScaffolder(Scaffolder):
         )
         parser.add_argument(
             'app_name',
-            help='Name of the app in lower case seperate with underscores'
+            help='Name of the app in lower case seperate with underscores',
+            type=RegexValidator('^[a-z_]+$')
         )
 
 
@@ -66,12 +70,14 @@ class AppScaffolder(Scaffolder):
         moreAuthors = True
         while moreAuthors:
             authors.append({
-                'name': input('Please enter the author of the app: '),
-                'email': input('Please enter the author\'s e-mail: ')
+                'name': self.ask('Please enter the author of the app: ', '.+', 
+                    'Please enter a name'),
+                'email': self.ask('Please enter the author\'s e-mail: ', '.+', 
+                    'Please enter a mail address')
             })
-            moreAuthors = input('Do you wish to add another author? [y/N]: ') == 'y'
+            moreAuthors = self.ask('Do you wish to add another author? [y/N]: ') == 'y'
 
-        description = input('Please enter a short description of the app: ')
+        description = self.ask('Please enter a short description of the app: ')
 
         # build the namespace and name from the app id
         words = args.app_name.split('_')
