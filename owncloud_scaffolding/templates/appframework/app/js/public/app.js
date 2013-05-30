@@ -19,7 +19,7 @@ angular.module('Test', ['OC']).
 		redirectTo: '/'
 	});
 
-	// because twig already uses {{}}
+	// because twig already uses {% raw %}{{}}{% endraw %}
 	$interpolateProvider.startSymbol('[[');
 	$interpolateProvider.endSymbol(']]');
 }]);
