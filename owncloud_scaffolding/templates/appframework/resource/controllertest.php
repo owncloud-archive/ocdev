@@ -27,6 +27,27 @@ class {{ resource.name.title() }}ControllerTest extends ControllerTestUtility {
 	}
 
 
+	public function testGetAllAnnotations(){
+		$annotations = array('IsAdminExemption', 'IsSubAdminExemption', 'Ajax');
+		$this->assertAnnotations($this->controller, 'getAll', $annotations);
+	}
+
+	public function testGetAll(){
+		$response = $this->controller->getAll();
+		$this->assertTrue($response instanceof JSONResponse);
+	}
+
+
+	public function testGetAnnotations(){
+		$annotations = array('IsAdminExemption', 'IsSubAdminExemption', 'Ajax');
+		$this->assertAnnotations($this->controller, 'get', $annotations);
+	}
+
+	public function testGet(){
+		$response = $this->controller->get();
+		$this->assertTrue($response instanceof JSONResponse);
+	}
+
 	public function testGETAnnotations(){
 		$annotations = array('IsAdminExemption', 'IsSubAdminExemption', 'Ajax');
 		$this->assertAnnotations($this->controller, 'get', $annotations);

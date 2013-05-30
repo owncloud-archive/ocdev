@@ -63,6 +63,8 @@ owncloud_scaffolding/templates/appframework/resource/controllertest.php
 owncloud_scaffolding/templates/appframework/resource/diconfig.php
 owncloud_scaffolding/templates/appframework/resource/entity.php
 owncloud_scaffolding/templates/appframework/resource/mapper.php
+owncloud_scaffolding/templates/appframework/resource/mappertest.php
 owncloud_scaffolding/templates/appframework/resource/routes.php
 owncloud_scaffolding/templates/appframework/resource/service.php
+owncloud_scaffolding/templates/appframework/resource/servicetest.php
 owncloud_scaffolding/templates/licenses/licenses.php

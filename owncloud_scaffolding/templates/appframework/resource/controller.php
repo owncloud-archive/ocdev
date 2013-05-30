@@ -29,7 +29,24 @@ class {{ resource.name.title() }}Controller extends Controller {
 	 * @IsAdminExemption
 	 * @IsSubAdminExemption
 	 */
+	public function getAll() {
+		return $this->renderJSON();
+	}
+
+
+	/**
+	 * ATTENTION!!!
+	 * The following comment turns off security checks
+	 * Please look up their meaning in the documentation!
+	 *
+	 * @Ajax
+	 * @IsAdminExemption
+	 * @IsSubAdminExemption
+	 */
 	public function get() {
+		$id = (int) $this->params('id');
+
+
 		return $this->renderJSON();
 	}
 
@@ -58,6 +75,8 @@ class {{ resource.name.title() }}Controller extends Controller {
 	 * @IsSubAdminExemption
 	 */
 	public function update() {
+		$id = (int) $this->params('id');
+
 		return $this->renderJSON();
 	}
 
@@ -72,6 +91,8 @@ class {{ resource.name.title() }}Controller extends Controller {
 	 * @IsSubAdminExemption
 	 */
 	public function delete() {
+		$id = (int) $this->params('id');
+		
 		return $this->renderJSON();
 	}
 
