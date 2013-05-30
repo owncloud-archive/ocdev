@@ -42,7 +42,7 @@ module.exports = function(grunt) {
 				dest: '',
 				wrapper: [
 					'(function(angular, $, undefined){\n\n\'use strict\';\n\n',
-					'\n})(window.angular, jQuery);'
+					'\n})(angular, jQuery);'
 				]
 			}
 		},
