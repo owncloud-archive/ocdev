@@ -24,15 +24,15 @@ import re
 from owncloud_scaffolding.scaffolders.scaffolder import Scaffolder
 
 
-class ControllerScaffolder(Scaffolder):
+class ResourceScaffolder(Scaffolder):
 
     def __init__(self):
-        super().__init__('controller')
+        super().__init__('resource')
 
 
     def addParserTo(self, mainParser):
-        parser = mainParser.add_parser('controller', help='Create a controller')
-        parser.set_defaults(which='controller')
+        parser = mainParser.add_parser('resource', help='Create a resource')
+        parser.set_defaults(which='resource')
         parser.add_argument(
             '--license',
             help='The used license',
@@ -44,14 +44,9 @@ class ControllerScaffolder(Scaffolder):
             default=True
         )
         parser.add_argument(
-            'controllerName',
-            help='Name of the controller in CamelCase'
+            'name',
+            help='Name of the resource'
         )
-        parser.add_argument(
-            'controllerMethodName',
-            help='Name of the controller method in pascalCase'
-        )
-
 
 
     def scaffold(self, args, templateDirectory, currentDirectory):
@@ -94,9 +89,8 @@ class ControllerScaffolder(Scaffolder):
                     'headers': args.headers
                 }
             },
-            'controller': {
-                'name': args.controllerName,
-                'methodName': args.controllerMethodName
+            'resource': {
+                'name': args.name
             }
         }
 
@@ -104,19 +98,50 @@ class ControllerScaffolder(Scaffolder):
         # build controller
         self.buildFile(
             templateDirectory,
-            'appframework/controller/controller.php',
-            os.path.join(directory, 'controller/%s.php' % args.controllerName.lower()),
+            'appframework/resource/controller.php',
+            os.path.join(directory, 'controller/%scontroller.php' % args.name),
             params
         )
 
         # build testcase
         self.buildFile(
             templateDirectory,
-            'appframework/controller/test.php',
-            os.path.join(directory, 'tests/unit/controller/%sTest.php' % args.controllerName),
+            'appframework/resource/controllertest.php',
+            os.path.join(directory, 'tests/unit/controller/%sTest.php' % args.name),
             params
         )
 
+        self.buildFile(
+            templateDirectory,
+            'appframework/resource/service.php',
+            os.path.join(directory, 'service/%sservice.php' % args.name),
+            params
+        )
 
+        self.buildFile(
+            templateDirectory,
+            'appframework/resource/mapper.php',
+            os.path.join(directory, 'db/%smapper.php' % args.name),
+            params
+        )
 
+        self.buildFile(
+            templateDirectory,
+            'appframework/resource/entity.php',
+            os.path.join(directory, 'db/%sentity.php' % args.name),
+            params
+        )
 
+        self.appendFile(
+            templateDirectory,
+            'appframework/resource/routes.php',
+            os.path.join(directory, 'appinfo/routes.php'),
+            params
+        )
+
+        self.appendFile(
+            templateDirectory,
+            'appframework/resource/diconfig.php',
+            os.path.join(directory, 'dependencyinjection/diconfig.php'),
+            params
+        )

@@ -96,6 +96,16 @@ class Scaffolder:
             target.write(rendered)
 
 
+    def appendFile(self, templateDirectory, fileIn, fileOut, params={}):
+        params = self._bindCustomContext(params)
+        env = Environment(loader=FileSystemLoader(templateDirectory))
+
+        rendered = env.get_template(fileIn).render(params)
+
+        with open(fileOut, 'a') as target:
+            target.write(rendered)            
+
+
     def findAppDirectory(self, currentPath):
         regex = re.compile('(.+)appinfo/info.xml')
         appDirectory = None

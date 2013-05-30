@@ -29,8 +29,10 @@ If you wish to create a classic app without the App Framework use::
 	owncloud.py startapp --type classic my_app_name
 
 
-Creating controllers
+Creating resources
 --------------------
-To create a controller and test in the current directory::
+A resource consists of an entity, a mapper, a service layer and a controller
 
-	owncloud.py controller ControllerClassName controllerMethod
+To create a resource and test in the current directory::
+
+	owncloud.py resource name

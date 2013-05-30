@@ -26,7 +26,7 @@ from os.path import dirname, join, realpath
 
 from owncloud_scaffolding import TEMPLATE_DIRECTORY
 from owncloud_scaffolding.scaffolders.appscaffolder import AppScaffolder
-from owncloud_scaffolding.scaffolders.controllerscaffolder import ControllerScaffolder
+from owncloud_scaffolding.scaffolders.resourcescaffolder import ResourceScaffolder
 
 
 def main():
@@ -38,7 +38,7 @@ def main():
     # list active scaffolders
     scaffolders = [
         AppScaffolder(),
-        ControllerScaffolder()
+        ResourceScaffolder()
     ]
 
     for scaffolder in scaffolders:
