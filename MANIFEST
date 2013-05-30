@@ -4,6 +4,7 @@ setup.py
 owncloud_scaffolding/__init__.py
 owncloud_scaffolding/scaffolders/__init__.py
 owncloud_scaffolding/scaffolders/appscaffolder.py
+owncloud_scaffolding/scaffolders/resourcescaffolder.py
 owncloud_scaffolding/scaffolders/scaffolder.py
 owncloud_scaffolding/templates/app/app/index.php
 owncloud_scaffolding/templates/app/app/settings.php
@@ -29,6 +30,8 @@ owncloud_scaffolding/templates/appframework/app/appinfo/version
 owncloud_scaffolding/templates/appframework/app/controller/pagecontroller.php
 owncloud_scaffolding/templates/appframework/app/controller/settingscontroller.php
 owncloud_scaffolding/templates/appframework/app/css/style.css
+owncloud_scaffolding/templates/appframework/app/db/.gitignore
+owncloud_scaffolding/templates/appframework/app/dependencyinjection/diconfig.php
 owncloud_scaffolding/templates/appframework/app/dependencyinjection/dicontainer.php
 owncloud_scaffolding/templates/appframework/app/img/icon.svg
 owncloud_scaffolding/templates/appframework/app/js/Gruntfile.js
@@ -44,6 +47,7 @@ owncloud_scaffolding/templates/appframework/app/js/tests/unit/controllers/mainco
 owncloud_scaffolding/templates/appframework/app/js/tests/vendor/angular/angular-mocks.js
 owncloud_scaffolding/templates/appframework/app/js/tests/vendor/angular/angular.js
 owncloud_scaffolding/templates/appframework/app/js/tests/vendor/jquery/jquery.js
+owncloud_scaffolding/templates/appframework/app/service/.gitignore
 owncloud_scaffolding/templates/appframework/app/templates/main.php
 owncloud_scaffolding/templates/appframework/app/templates/nav.php
 owncloud_scaffolding/templates/appframework/app/templates/settings.php
@@ -51,4 +55,14 @@ owncloud_scaffolding/templates/appframework/app/templates/admin/settings.php
 owncloud_scaffolding/templates/appframework/app/templates/partials/main.php
 owncloud_scaffolding/templates/appframework/app/tests/classloader.php
 owncloud_scaffolding/templates/appframework/app/tests/unit/controller/PageControllerTest.php
+owncloud_scaffolding/templates/appframework/app/tests/unit/controller/SettingsControllerTest.php
+owncloud_scaffolding/templates/appframework/app/tests/unit/db/.gitignore
+owncloud_scaffolding/templates/appframework/app/tests/unit/service/.gitignore
+owncloud_scaffolding/templates/appframework/resource/controller.php
+owncloud_scaffolding/templates/appframework/resource/controllertest.php
+owncloud_scaffolding/templates/appframework/resource/diconfig.php
+owncloud_scaffolding/templates/appframework/resource/entity.php
+owncloud_scaffolding/templates/appframework/resource/mapper.php
+owncloud_scaffolding/templates/appframework/resource/routes.php
+owncloud_scaffolding/templates/appframework/resource/service.php
 owncloud_scaffolding/templates/licenses/licenses.php

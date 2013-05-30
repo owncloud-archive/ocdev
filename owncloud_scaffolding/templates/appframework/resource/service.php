@@ -7,7 +7,7 @@ use \OCA\AppFramework\Core\API;
 use \OCA\AppFramework\Db\Mapper;
 use \OCA\AppFramework\Db\Entity;
 
-use \OCA\{{ app.namespace }}\Db\{{ resource.name.title() }}Mapper $mapper;
+use \OCA\{{ app.namespace }}\Db\{{ resource.name.title() }}Mapper;
 
 
 class {{ resource.name.title() }}Service {

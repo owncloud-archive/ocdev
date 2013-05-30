@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: owncloud_scaffolding
-Version: 0.1.4
+Version: 0.1.5
 Author: Bernhard Posselt
 Author-email: nukeawhale@gmail.com
 Maintainer: Bernhard Posselt
@@ -8,43 +8,7 @@ Maintainer-email: nukeawhale@gmail.com
 Home-page: https://github.com/Raydiation/owncloud_scaffolding
 Summary: Scaffolding tool for creating apps easily
 License: GPLv3
-Description: ownCloud scaffolder
-        ===================
-        To install it run::
-
-            sudo python setup.py install
-
-        You can also install it from pypi by running::
-
-            sudo pip install owncloud_scaffolding
-
-        Creating apps
-        -------------
-        To create an app in the current directory::
-
-            owncloud.py startapp my_app_name
-
-        It will prompt for more information on metadata.
-
-        To change the template directory use::
-
-            owncloud.py --templates PATH/TO/DIRECTORY startapp my_app_name
-
-        It's also possible to omit the license headers by using::
-            
-            owncloud.py startapp --headers False my_app_name
-
-        If you wish to create a classic app without the App Framework use::
-
-            owncloud.py startapp --type classic my_app_name
-
-
-        Creating controllers
-        --------------------
-        To create a controller and test in the current directory::
-
-            owncloud.py controller ControllerClassName controllerMethod
-
+Description: See the readme for instructions
 Keywords: owncloud scaffolding
 Classifier: Development Status :: 3 - Alpha
 Classifier: Environment :: Console

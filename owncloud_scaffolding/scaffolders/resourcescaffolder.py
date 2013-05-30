@@ -107,7 +107,7 @@ class ResourceScaffolder(Scaffolder):
         self.buildFile(
             templateDirectory,
             'appframework/resource/controllertest.php',
-            os.path.join(directory, 'tests/unit/controller/%sTest.php' % args.name),
+            os.path.join(directory, 'tests/unit/controller/%sControllerTest.php' % args.name.title()),
             params
         )
 
@@ -120,8 +120,22 @@ class ResourceScaffolder(Scaffolder):
 
         self.buildFile(
             templateDirectory,
+            'appframework/resource/servicetest.php',
+            os.path.join(directory, 'tests/unit/service/%sServiceTest.php' % args.name.title()),
+            params
+        )
+
+        self.buildFile(
+            templateDirectory,
             'appframework/resource/mapper.php',
             os.path.join(directory, 'db/%smapper.php' % args.name),
+            params
+        )
+
+        self.buildFile(
+            templateDirectory,
+            'appframework/resource/mappertest.php',
+            os.path.join(directory, 'tests/unit/db/%sMapperTest.php' % args.name.title()),
             params
         )
 
