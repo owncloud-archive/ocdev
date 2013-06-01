@@ -51,7 +51,7 @@ def main():
     try:
         args.which
     except AttributeError:
-        print("Missing arguments\nType owncloud.py --help for usage.")
+        parser.print_help()
         exit(1)
 
     # get the scaffolder which can handle the input
