@@ -17,8 +17,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-import os
-import sys
+import os.path
+from sys import exit
 import re
 
 from owncloud_scaffolding.scaffolders.scaffolder import Scaffolder, RegexValidator
@@ -57,7 +57,7 @@ class ResourceScaffolder(Scaffolder):
             directory = self.findAppDirectory(currentDirectory)
         except OSError:
             print('Error: App directory not found!')
-            sys.exit(1)
+            exit(1)
 
 
         appName = os.path.basename(os.path.dirname(directory))

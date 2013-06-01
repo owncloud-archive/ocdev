@@ -18,10 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """
 import os
-import datetime
-import fnmatch
 import re
-import argparse
+from argparse import ArgumentError
+from datetime import datetime
+from fnmatch import fnmatch
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -37,7 +37,7 @@ class RegexValidator:
     def __call__(self, string): 
         match = re.match(self.regex, string)
         if not match:
-            raise argparse.ArgumentError(None, self.errorMsg)
+            raise ArgumentError(None, self.errorMsg)
         return string 
 
 
@@ -65,7 +65,7 @@ class Scaffolder:
 
 
     def _bindCustomContext(self, params):
-        params['now'] = datetime.datetime.utcnow()
+        params['now'] = datetime.utcnow()
         return params
         
 
@@ -98,7 +98,7 @@ class Scaffolder:
 
                 ignore = False
                 for pattern in self._ignoredPatterns:
-                    if fnmatch.fnmatch(relativeScaffoldPath, pattern):
+                    if fnmatch(relativeScaffoldPath, pattern):
                         ignore = True
 
                 if ignore:
