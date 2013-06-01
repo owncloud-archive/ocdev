@@ -100,7 +100,11 @@ class AppScaffolder(Scaffolder):
 
         appFolder = os.path.join(outDirectory, args.app_name)
 
-        os.mkdir(appFolder)
+        try:
+            os.mkdir(appFolder)
+        except FileExistsError:
+            print("Error:", appFolder, "already exists!")
+            exit(1)
         self.buildDirectory(
             templateDirectory, 
             self._scaffoldingDirectories[args.type],
