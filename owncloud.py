@@ -32,6 +32,8 @@ from owncloud_scaffolding.scaffolders.resourcescaffolder import ResourceScaffold
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument('--headers', help='Whether license headers should be included in every file', default=True)
+    parser.add_argument('--license', help='The used license', default='AGPLv3', choices=['AGPLv3', 'MIT'])
     parser.add_argument('--templates', help='Path to the template directory',
         default=TEMPLATE_DIRECTORY)
     parsers = parser.add_subparsers(help='sub-command help')

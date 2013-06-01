@@ -34,17 +34,6 @@ class ResourceScaffolder(Scaffolder):
         parser = mainParser.add_parser('resource', help='Create a resource')
         parser.set_defaults(which='resource')
         parser.add_argument(
-            '--license',
-            help='The used license',
-            default='AGPLv3',
-            type=RegexValidator('^[0-9a-zA-Z_-]+$')
-        )
-        parser.add_argument(
-            '--headers',
-            help='If license headers should be included in every file',
-            default=True
-        )
-        parser.add_argument(
             'name',
             help='Name of the resource',
             type=RegexValidator('^[a-zA-Z_]+$')
