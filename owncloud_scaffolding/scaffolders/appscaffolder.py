@@ -47,17 +47,6 @@ class AppScaffolder(Scaffolder):
             type=RegexValidator('^[a-z_]+$')
         )
         parser.add_argument(
-            '--license',
-            help='The used license',
-            default='AGPLv3',
-            type=RegexValidator('^[0-9a-zA-Z_-]+$')
-        )
-        parser.add_argument(
-            '--headers',
-            help='If license headers should be included in every file',
-            default=True
-        )
-        parser.add_argument(
             'app_name',
             help='Name of the app in lower case seperate with underscores',
             type=RegexValidator('^[a-z_]+$')
