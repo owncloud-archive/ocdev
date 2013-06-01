@@ -2,7 +2,7 @@ ownCloud scaffolder
 ===================
 To install it run::
 
-	sudo python setup.py install
+	sudo python3 setup.py install
 
 You can also install it from pypi by running::
 
