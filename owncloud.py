@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 import argparse
-import os
+from os import getcwd
 from sys import exit
 from os.path import dirname, join, realpath
 
@@ -57,7 +57,7 @@ def main():
     # get the scaffolder which can handle the input
     for scaffolder in scaffolders:
         if scaffolder.canHandle(args):
-            scaffolder.scaffold(args, args.templates, os.getcwd())
+            scaffolder.scaffold(args, args.templates, getcwd())
 
 
 if __name__ == '__main__':
