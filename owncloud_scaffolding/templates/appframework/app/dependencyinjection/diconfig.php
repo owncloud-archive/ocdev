@@ -14,7 +14,7 @@ use \OCA\{{ app.namespace }}\Controller\SettingsController;
 $this['TwigTemplateDirectory'] = __DIR__ . '/../templates';
 
 
-/** 
+/**
  * CONTROLLERS
  */
 $this['PageController'] = $this->share(function($c){

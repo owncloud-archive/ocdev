@@ -49,12 +49,12 @@ module.exports = function(grunt) {
 
 		jshint: {
 			files: [
-				'Gruntfile.js', 
+				'Gruntfile.js',
 				'app/controllers/**/*.js',
 				'app/directives/**/*.js',
 				'app/filters/**/*.js',
 				'app/services/**/*.js',
-				'app/tests/**/*.js', 
+				'app/tests/**/*.js',
 				'config/*.js'],
 			options: {
 				// options here to override JSHint defaults
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
 		},
 
 		watch: {
-			// this watches for changes in the app directory and runs the concat 
+			// this watches for changes in the app directory and runs the concat
 			// and wrap tasks if something changed
 			concat: {
 				files: [

@@ -16,4 +16,4 @@ App::main('SettingsController', 'index', array(), new DIContainer());
 $content = ob_get_contents();
 ob_clean();
 
-return $content; 
+return $content;

@@ -11,7 +11,7 @@ class {{ resource.name.title() }}ServiceTest extends \OCA\AppFramework\Utility\T
 	private $service;
 	private $api;
 	private $mapper;
-	
+
 	protected function setUp(){
 		$this->api = $this->getMockBuilder('\OCA\AppFramework\Core\API')
 			->disableOriginalConstructor()

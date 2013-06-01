@@ -28,7 +28,7 @@ class PageControllerTest extends ControllerTestUtility {
 
 
 	public function testIndexAnnotations(){
-		$annotations = array('IsAdminExemption', 'IsSubAdminExemption', 
+		$annotations = array('IsAdminExemption', 'IsSubAdminExemption',
 			'CSRFExemption');
 		$this->assertAnnotations($this->controller, 'index', $annotations);
 	}

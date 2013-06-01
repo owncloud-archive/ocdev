@@ -11,7 +11,7 @@ class {{ resource.name.title() }}MapperTest extends \OCA\AppFramework\Utility\Ma
 	private $mapper;
 	private $api;
 
-	
+
 	protected function setUp(){
 		$this->api = $this->getMockBuilder('\OCA\AppFramework\Core\API')
 			->disableOriginalConstructor()

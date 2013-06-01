@@ -92,7 +92,7 @@ class {{ resource.name.title() }}Controller extends Controller {
 	 */
 	public function delete() {
 		$id = (int) $this->params('id');
-		
+
 		return $this->renderJSON();
 	}
 

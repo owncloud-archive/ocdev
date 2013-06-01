@@ -21,7 +21,7 @@ To change the template directory use::
 	owncloud.py --templates PATH/TO/DIRECTORY startapp my_app_name
 
 It's also possible to omit the license headers by using::
-	
+
 	owncloud.py startapp --headers False my_app_name
 
 If you wish to create a classic app without the App Framework use::
