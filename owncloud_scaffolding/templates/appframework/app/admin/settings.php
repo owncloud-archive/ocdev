@@ -5,7 +5,7 @@ namespace OCA\{{ app.namespace }}\Admin;
 
 use OCA\AppFramework\App;
 
-use OCA\AppTemplateAdvanced\DependencyInjection\DIContainer;
+use OCA\{{ app.namespace }}\DependencyInjection\DIContainer;
 
 
 // we need to fetch the output and return it for the admin page. Dont ask why
