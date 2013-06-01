@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import argparse
 import os
+from sys import exit
 from os.path import dirname, join, realpath
 
 from owncloud_scaffolding import TEMPLATE_DIRECTORY
@@ -45,6 +46,13 @@ def main():
         scaffolder.addParserTo(parsers)
 
     args = parser.parse_args()
+
+    # make sure there's an argument
+    try:
+        args.which
+    except AttributeError:
+        print("Missing arguments\nType owncloud.py --help for usage.")
+        exit(1)
 
     # get the scaffolder which can handle the input
     for scaffolder in scaffolders:
