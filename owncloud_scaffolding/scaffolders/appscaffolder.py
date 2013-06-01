@@ -58,9 +58,9 @@ class AppScaffolder(Scaffolder):
         moreAuthors = True
         while moreAuthors:
             authors.append({
-                'name': self.ask('Please enter the author of the app: ', '.+', 
+                'name': self.ask('Please enter the author of the app: ', '.+',
                     'Please enter a name'),
-                'email': self.ask('Please enter the author\'s e-mail: ', '.+', 
+                'email': self.ask('Please enter the author\'s e-mail: ', '.+',
                     'Please enter a mail address')
             })
             moreAuthors = self.ask('Do you wish to add another author? [y/N]: ') == 'y'
@@ -95,9 +95,9 @@ class AppScaffolder(Scaffolder):
             print("Error:", appFolder, "already exists!")
             exit(1)
         self.buildDirectory(
-            templateDirectory, 
+            templateDirectory,
             self._scaffoldingDirectories[args.type],
-            appFolder, 
+            appFolder,
             params
         )
 

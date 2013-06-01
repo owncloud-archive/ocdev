@@ -28,17 +28,17 @@ from jinja2 import Environment, FileSystemLoader
 
 class RegexValidator:
 
-    def __init__(self, regex, errorMsg=None): 
-        self.regex = re.compile(regex) 
-        self.errorMsg = errorMsg 
-        if not self.errorMsg: 
-            self.errorMsg = "must match regex %s" % regex 
+    def __init__(self, regex, errorMsg=None):
+        self.regex = re.compile(regex)
+        self.errorMsg = errorMsg
+        if not self.errorMsg:
+            self.errorMsg = "must match regex %s" % regex
 
-    def __call__(self, string): 
+    def __call__(self, string):
         match = re.match(self.regex, string)
         if not match:
             raise ArgumentError(None, self.errorMsg)
-        return string 
+        return string
 
 
 class Scaffolder:
@@ -47,7 +47,7 @@ class Scaffolder:
         self._cmd = cmd
         self._ignoredPatterns = ignoredPatterns
 
-    
+
     def canHandle(self, args):
         if args.which == self._cmd:
             return True
@@ -67,7 +67,7 @@ class Scaffolder:
     def _bindCustomContext(self, params):
         params['now'] = datetime.utcnow()
         return params
-        
+
 
     def buildDirectory(self, templateDirectory, scaffolderDirectory, outDirectory, params={}):
         params = self._bindCustomContext(params)
@@ -79,7 +79,7 @@ class Scaffolder:
         scaffoldDirectory = os.path.join(templateDirectory, scaffolderDirectory)
 
         for root, dirs, files in os.walk(scaffoldDirectory):
-            
+
             # first create all the directories on that level
             for folder in dirs:
                 # construct the paths for reading and writing
@@ -128,7 +128,7 @@ class Scaffolder:
         rendered = env.get_template(fileIn).render(params)
 
         with open(fileOut, 'a') as target:
-            target.write(rendered)            
+            target.write(rendered)
 
 
     def findAppDirectory(self, currentPath):

@@ -3,7 +3,7 @@
 
 OCP\App::registerAdmin('{{ app.id }}', 'settings');
 
-OCP\App::addNavigationEntry( array( 
+OCP\App::addNavigationEntry( array(
 	'id' => '{{ app.id }}',
 	'order' => 74,
 	'href' => OCP\Util::linkTo( '{{ app.id }}', 'index.php' ),

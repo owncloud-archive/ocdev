@@ -2,7 +2,7 @@
 
 angular.module('{{ app.namespace }}', ['OC']).
 	config(
-		['$routeProvider', '$interpolateProvider', 
+		['$routeProvider', '$interpolateProvider',
 		function ($routeProvider, $interpolateProvider) {
 
 	$routeProvider.when('/', {

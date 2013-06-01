@@ -41,7 +41,7 @@ class ResourceScaffolder(Scaffolder):
 
 
     def scaffold(self, args, templateDirectory, currentDirectory):
-        # get directory 
+        # get directory
         try:
             directory = self.findAppDirectory(currentDirectory)
         except OSError:
