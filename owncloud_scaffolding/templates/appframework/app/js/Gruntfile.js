@@ -76,6 +76,19 @@ module.exports = function(grunt) {
 					'config/*.js'
 				],
 				tasks: ['build']
+			},
+			phpunit: {
+				files: '../**/*.php',
+				tasks: ['phpunit']
+			}
+		},
+
+		phpunit: {
+			classes: {
+				dir: '../tests/unit'
+			},
+			options: {
+				colors: true
 			}
 		},
 
@@ -101,5 +114,6 @@ module.exports = function(grunt) {
 	grunt.registerTask('watchjs', ['watch:concat']);
 	grunt.registerTask('ci', ['karma:continuous']);
 	grunt.registerTask('testjs', ['karma:unit']);
+	grunt.registerTask('testphp', ['watch:phpunit']);
 
 };
