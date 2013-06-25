@@ -1,9 +1,10 @@
 {% if app.license.headers %}
 /**
  * ownCloud - {{ app.fullName }} app
- *
-{% for author in app.authors %} * @author {{ author.name }}{% endfor %}
-{% for author in app.authors %} * @copyright {{ now.strftime("%Y") }} {{ author.name }} <{{author.email}}>{% endfor %}
+ *{% for author in app.authors %}
+ * @author {{ author.name }}{% endfor %}
+ *{% for author in app.authors %}
+ * @copyright {{ now.strftime("%Y") }} {{ author.name }} <{{author.email}}>{% endfor %}
  *
 {% if app.license.type == 'AGPLv3' %} * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
