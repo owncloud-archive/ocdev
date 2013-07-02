@@ -4,7 +4,7 @@ You will need node.js version >= 0.8
 
 ## Build JavaScript file
 
-To build the JavaScript file run::
+To build the JavaScript file run:
 
     make
 
