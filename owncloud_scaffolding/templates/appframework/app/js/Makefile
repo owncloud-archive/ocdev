@@ -25,7 +25,7 @@ test: deps
 	$(grunt) --config $(CURDIR)/Gruntfile.js ci
 
 phpunit: deps
-	$(grunt) --config $(CURDIR)/Gruntfile.coffee testphp
+	$(grunt) --config $(CURDIR)/Gruntfile.js testphp
 
 clean:
 	rm -rf $(CURDIR)/node_modules/
