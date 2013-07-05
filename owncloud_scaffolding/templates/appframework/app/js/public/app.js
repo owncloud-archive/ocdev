@@ -4,7 +4,7 @@
 
 'use strict';
 
-angular.module('Test', ['OC']).
+angular.module('{{ app.namespace }}', ['OC']).
 	config(
 		['$routeProvider', '$interpolateProvider',
 		function ($routeProvider, $interpolateProvider) {
@@ -23,7 +23,7 @@ angular.module('Test', ['OC']).
 	$interpolateProvider.startSymbol('[[');
 	$interpolateProvider.endSymbol(']]');
 }]);
-angular.module('Test').controller('MainController',
+angular.module('{{ app.namespace }}').controller('MainController',
 	['$scope', '$routeParams', function ($scope, $routeParams) {
 
 	$scope.id = $routeParams.id;

@@ -26,7 +26,8 @@ class SettingsController extends Controller {
 	 * @CSRFExemption
 	 */
 	public function index(){
-		return $this->render('admin/settings');
+		$params = array();
+		return $this->render('admin/settings', $params, 'blank');
 	}
 
 }
