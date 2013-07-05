@@ -63,11 +63,18 @@ class ResourceScaffolder(Scaffolder):
                         'email': search.group(2)
                     })
 
+        # get namespace from app.php
+        namespace = ''
+        with open(os.path.join(directory, 'appinfo/app.php'), 'r') as f:
+            regex = re.compile(r'^namespace OCA\\([a-zA-Z]+)')
+            for line in f:
+                search = re.search(regex, line)
+                if search:
+                    namespace = search.group(1)
+                    break
+
         # build the namespace and name from the app id
-        words = appName.split('_')
-        upperCaseWords = map(lambda word: word.title(), words)
-        fullName = ' '.join(upperCaseWords)
-        namespace = fullName.replace(' ', '')
+        fullName = ' '.join(re.findall('[A-Z][a-z]*', namespace))
 
         params = {
             'app': {

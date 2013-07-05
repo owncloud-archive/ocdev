@@ -72,10 +72,11 @@ class AppScaffolder(Scaffolder):
         upperCaseWords = map(lambda word: word.title(), words)
         fullName = ' '.join(upperCaseWords)
         namespace = fullName.replace(' ', '')
+        appName = namespace.lower()
 
         params = {
             'app': {
-                'id': args.app_name,
+                'id': appName,
                 'authors': authors,
                 'fullName': fullName,
                 'namespace': namespace,
@@ -87,7 +88,7 @@ class AppScaffolder(Scaffolder):
             }
         }
 
-        appFolder = os.path.join(outDirectory, args.app_name)
+        appFolder = os.path.join(outDirectory, appName)
 
         try:
             os.mkdir(appFolder)
