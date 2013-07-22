@@ -4,8 +4,8 @@ describe('MainController', function() {
 
 	var controller;
 
-	// use the news container
-	beforeEach(module('News'));
+	// use the {{ app.namespace }} container
+	beforeEach(module('{{ app.namespace }}'));
 
 	beforeEach(inject(function ($controller, $rootScope) {
 		controller = $controller('MainController', {
