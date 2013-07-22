@@ -25,8 +25,8 @@ appstore_dir=$(build_dir)/appstore
 package_name=$(app_name)
 
 # binary directories for running the CI tests
-firefox_bin=$FIREFOX_BIN || /usr/bin/firefox
-chrome_bin=$CHROME_BIN || /usr/bin/chromium
+firefox_bin=/usr/bin/firefox
+chrome_bin=/usr/bin/chromium
 phantomjs_bin=$(CURDIR)/node_modules/phantomjs/bin/phantomjs
 
 # common directories
