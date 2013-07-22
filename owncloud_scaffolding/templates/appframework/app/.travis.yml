@@ -7,4 +7,4 @@ script:
   - sudo add-apt-repository -y ppa:chris-lea/node.js
   - sudo apt-get update
   - sudo apt-get -y install nodejs
-  - make unit-tests && make javascript-tests
+  - cd build && make unit-tests

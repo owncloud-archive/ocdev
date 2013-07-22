@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 		meta: {
 			pkg: grunt.file.readJSON('package.json'),
 			version: '<%= meta.pkg.version %>',
-			production: 'public/'
+			production: '../js/public/'
 		},
 
 		concat: {
@@ -26,11 +26,8 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				src: [
-					'config/app.js',
-					'app/controllers/**/*.js',
-					'app/directives/**/*.js',
-					'app/filters/**/*.js',
-					'app/services/**/*.js'
+					'../js/config/app.js',
+					'../js/app/**/*.js'
 				],
 				dest: '<%= meta.production %>app.js'
 			}
@@ -50,12 +47,10 @@ module.exports = function(grunt) {
 		jshint: {
 			files: [
 				'Gruntfile.js',
-				'app/controllers/**/*.js',
-				'app/directives/**/*.js',
-				'app/filters/**/*.js',
-				'app/services/**/*.js',
-				'app/tests/**/*.js',
-				'config/*.js'],
+				'../js/app/**/*.js',
+				'../js/config/*.js',
+				'../tests/js/unit/**/*.js'
+			],
 			options: {
 				// options here to override JSHint defaults
 				globals: {
@@ -69,11 +64,8 @@ module.exports = function(grunt) {
 			// and wrap tasks if something changed
 			concat: {
 				files: [
-					'app/controllers/**/*.js',
-					'app/directives/**/*.js',
-					'app/filters/**/*.js',
-					'app/services/**/*.js',
-					'config/*.js'
+					'../js/app/**/*.js',
+					'../js/config/*.js'
 				],
 				tasks: ['build']
 			},
@@ -85,7 +77,7 @@ module.exports = function(grunt) {
 
 		phpunit: {
 			classes: {
-				dir: '../tests/unit'
+				dir: '../tests/php/unit'
 			},
 			options: {
 				colors: true
@@ -94,15 +86,15 @@ module.exports = function(grunt) {
 
 		karma: {
 			unit: {
-				configFile: 'config/karma.js'
+				configFile: '../tests/js/config/karma.js'
 			},
 			continuous: {
-				configFile: 'config/karma.js',
+				configFile: '../tests/js/config/karma.js',
 				singleRun: true,
 				browsers: ['PhantomJS'],
 				reporters: ['progress', 'junit'],
 				junitReporter: {
-					outputFile: 'test-results.xml'
+					outputFile: '../tests/js/test-results.xml'
 				}
 			}
 		}
@@ -111,9 +103,5 @@ module.exports = function(grunt) {
 
 	// make tasks available under simpler commands
 	grunt.registerTask('build', ['jshint', 'concat', 'wrap']);
-	grunt.registerTask('watchjs', ['watch:concat']);
-	grunt.registerTask('ci', ['karma:continuous']);
-	grunt.registerTask('testjs', ['karma:unit']);
-	grunt.registerTask('testphp', ['watch:phpunit']);
 
 };

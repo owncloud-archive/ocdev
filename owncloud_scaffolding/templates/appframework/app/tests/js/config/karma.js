@@ -5,29 +5,25 @@
 
 
 // base path, that will be used to resolve files and exclude
-basePath = '../';
+basePath = '../../../';
 
 
 // list of files / patterns to load in the browser
 files = [
 	JASMINE,
 	JASMINE_ADAPTER,
-	'tests/vendor/jquery/jquery.js',
-	'tests/vendor/angular/angular.js',
-	'tests/vendor/angular/angular-mocks.js',
-	'tests/stubs/app.js',
-	'app/directives/*.js',
-	'app/filters/*.js',
-	'app/services/**/*.js',
-	'app/controllers/**/*.js',
-	'tests/**/*Spec.js'
+	'tests/js/vendor/jquery/jquery.js',
+	'tests/js/vendor/angular/angular.js',
+	'tests/js/vendor/angular/angular-mocks.js',
+	'tests/js/stubs/app.js',
+	'js/app/**/*.js',
+	'tests/js/unit/**/*Spec.js'
 ];
 
 
 // list of files to exclude
 exclude = [
-	'config/app.js',
-	'config/karma.js'
+	'js/config/app.js'
 ];
 
 

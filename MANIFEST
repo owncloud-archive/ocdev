@@ -18,6 +18,7 @@ owncloud_scaffolding/templates/app/app/js/admin.js
 owncloud_scaffolding/templates/app/app/templates/main.php
 owncloud_scaffolding/templates/app/app/templates/settings.php
 owncloud_scaffolding/templates/appframework/app/.gitignore
+owncloud_scaffolding/templates/appframework/app/.travis.yml
 owncloud_scaffolding/templates/appframework/app/AUTHORS
 owncloud_scaffolding/templates/appframework/app/CHANGELOG
 owncloud_scaffolding/templates/appframework/app/Makefile
