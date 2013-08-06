@@ -27,7 +27,7 @@ package_name=$(app_name)
 # binary directories for running the CI tests
 firefox_bin=/usr/bin/firefox
 chrome_bin=/usr/bin/chromium
-phantomjs_bin=$(CURDIR)/node_modules/phantomjs/bin/phantomjs
+phantomjs_bin=/usr/bin/phantomjs
 
 # common directories
 grunt_dir=$(CURDIR)/node_modules/grunt-cli/bin/grunt
