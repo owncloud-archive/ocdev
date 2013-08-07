@@ -95,6 +95,8 @@ dist: appstore
 appstore: clean
 	mkdir -p $(appstore_dir)
 	tar cvzf $(appstore_dir)/$(package_name).tar.gz $(project_dir) \
-	--exclude-vcs --exclude=$(project_dir)/build/artifacts #\
+	--exclude-vcs \
+	--exclude=$(project_dir)/build/artifacts \
+	--exclude=$(project_dir)/build/node_modules #\
 	# --exclude=$(project_dir)/tests \
 	#--exclude=$(project_dir)/.travis.yml
