@@ -8,9 +8,6 @@ use \OCA\AppFramework\Http\JSONResponse;
 use \OCA\AppFramework\Utility\ControllerTestUtility;
 
 
-require_once(__DIR__ . "/../../classloader.php");
-
-
 class {{ resource.name.title() }}ControllerTest extends ControllerTestUtility {
 
 	private $api;

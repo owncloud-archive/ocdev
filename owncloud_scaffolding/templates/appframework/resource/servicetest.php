@@ -1,8 +1,6 @@
 <?php
 {% include 'licenses/licenses.php' %}
 
-require_once(__DIR__ . "/../../classloader.php");
-
 namespace OCA\{{ app.namespace }}\Service;
 
 
