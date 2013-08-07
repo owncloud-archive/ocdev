@@ -38,8 +38,8 @@ module.exports = function(grunt) {
 				src: ['<%= meta.production %>app.js'],
 				dest: '',
 				wrapper: [
-					'(function(angular, $, undefined){\n\n\'use strict\';\n\n',
-					'\n})(angular, jQuery);'
+					'(function(angular, $, oc_requesttoken, undefined){\n\n\'use strict\';\n\n',
+					'\n})(angular, jQuery, oc_requesttoken);'
 				]
 			}
 		},
@@ -92,10 +92,7 @@ module.exports = function(grunt) {
 				configFile: '../tests/js/config/karma.js',
 				singleRun: true,
 				browsers: ['PhantomJS'],
-				reporters: ['progress', 'junit'],
-				junitReporter: {
-					outputFile: '../tests/js/test-results.xml'
-				}
+				reporters: ['progress']
 			}
 		}
 
