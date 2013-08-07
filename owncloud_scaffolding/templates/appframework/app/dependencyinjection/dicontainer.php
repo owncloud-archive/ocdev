@@ -11,7 +11,7 @@ class DIContainer extends BaseContainer {
 
 	public function __construct(){
 		parent::__construct('{{ app.id }}');
-		require_once __DIR__ . '/diconfig.php';
+		require __DIR__ . '/diconfig.php';
 	}
 
 

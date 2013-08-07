@@ -3,22 +3,25 @@
 
 namespace OCA\{{ app.namespace }}\Service;
 
+use \OCA\{{ app.namespace }}\DependencyInjection\DIContainer;
+
 
 class {{ resource.name.title() }}ServiceTest extends \OCA\AppFramework\Utility\TestUtility {
 
-	private $service;
-	private $api;
-	private $mapper;
+	private $container;
 
-	protected function setUp(){
-		$this->api = $this->getMockBuilder('\OCA\AppFramework\Core\API')
+	/**
+	 * Gets run before each test
+	 */
+	public function setUp(){
+		$this->container = new DIContainer();
+		$this->container['API'] = $this->getMockBuilder(
+			'\OCA\AppFramework\Core\API')
 			->disableOriginalConstructor()
 			->getMock();
-		$this->mapper = $this->getMockBuilder('\OCA\{{ app.namespace }}\Db\{{ resource.name.title() }}Mapper')
+		$this->container['{{ resource.name.title() }}Mapper'] = $this->getMockBuilder('\OCA\{{ app.namespace }}\Db\{{ resource.name.title() }}Mapper')
 			->disableOriginalConstructor()
 			->getMock();
-
-		$this->service = new {{ resource.name.title() }}Service($this->api, $this->mapper);
 	}
 
 

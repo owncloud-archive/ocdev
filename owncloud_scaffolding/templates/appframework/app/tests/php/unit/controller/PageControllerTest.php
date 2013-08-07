@@ -7,31 +7,36 @@ use \OCA\AppFramework\Http\Request;
 use \OCA\AppFramework\Http\TemplateResponse;
 use \OCA\AppFramework\Utility\ControllerTestUtility;
 
+use \OCA\{{ app.namespace }}\DependencyInjection\DIContainer;
+
 
 class PageControllerTest extends ControllerTestUtility {
 
-	private $api;
-	private $request;
-	private $controller;
+	private $container;
 
 	/**
 	 * Gets run before each test
 	 */
 	public function setUp(){
-		$this->api = $this->getAPIMock();
-		$this->request = new Request();
-		$this->controller = new PageController($this->api, $this->request);
+		$this->container = new DIContainer();
+		$this->container['Request'] = new Request();
+		$this->container['API'] = $this->getMockBuilder(
+			'\OCA\AppFramework\Core\API')
+			->disableOriginalConstructor()
+			->getMock();
 	}
 
 
 	public function testIndexAnnotations(){
 		$annotations = array('IsAdminExemption', 'IsSubAdminExemption',
 			'CSRFExemption');
-		$this->assertAnnotations($this->controller, 'index', $annotations);
+		$this->assertAnnotations($this->container['PageController'], 'index', 
+			$annotations);
 	}
 
+
 	public function testIndex(){
-		$response = $this->controller->index();
+		$response = $this->container['PageController']->index();
 		$this->assertEquals('main', $response->getTemplateName());
 		$this->assertTrue($response instanceof TemplateResponse);
 	}

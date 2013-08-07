@@ -7,62 +7,69 @@ use \OCA\AppFramework\Http\Request;
 use \OCA\AppFramework\Http\JSONResponse;
 use \OCA\AppFramework\Utility\ControllerTestUtility;
 
+use \OCA\{{ app.namespace }}\DependencyInjection\DIContainer;
+
 
 class {{ resource.name.title() }}ControllerTest extends ControllerTestUtility {
 
-	private $api;
-	private $request;
-	private $controller;
+	private $container;
 
 	/**
 	 * Gets run before each test
 	 */
 	public function setUp(){
-		$this->api = $this->getAPIMock();
-		$this->request = new Request();
-		$this->controller = new {{ resource.name.title() }}Controller($this->api, $this->request);
+		$this->container = new DIContainer();
+		$this->container['Request'] = new Request();
+		$this->container['API'] = $this->getMockBuilder(
+			'\OCA\AppFramework\Core\API')
+			->disableOriginalConstructor()
+			->getMock();
 	}
 
 
 	public function testGetAllAnnotations(){
 		$annotations = array('IsAdminExemption', 'IsSubAdminExemption', 'Ajax');
-		$this->assertAnnotations($this->controller, 'getAll', $annotations);
+		$this->assertAnnotations($this->container['{{ resource.name.title() }}Controller'], 
+			'getAll', $annotations);
 	}
 
 	public function testGetAll(){
-		$response = $this->controller->getAll();
+		$response = $this->container['{{ resource.name.title() }}Controller']->getAll();
 		$this->assertTrue($response instanceof JSONResponse);
 	}
 
 
 	public function testGetAnnotations(){
 		$annotations = array('IsAdminExemption', 'IsSubAdminExemption', 'Ajax');
-		$this->assertAnnotations($this->controller, 'get', $annotations);
+		$this->assertAnnotations($this->container['{{ resource.name.title() }}Controller'], 
+			'get', $annotations);
 	}
 
 	public function testGet(){
-		$response = $this->controller->get();
+		$response = $this->container['{{ resource.name.title() }}Controller']->get();
 		$this->assertTrue($response instanceof JSONResponse);
 	}
 
 	public function testGETAnnotations(){
 		$annotations = array('IsAdminExemption', 'IsSubAdminExemption', 'Ajax');
-		$this->assertAnnotations($this->controller, 'get', $annotations);
+		$this->assertAnnotations($this->container['{{ resource.name.title() }}Controller'], 
+			'get', $annotations);
 	}
 
 	public function testGET(){
-		$response = $this->controller->get();
+		$response = $this->container['{{ resource.name.title() }}Controller']->get();
 		$this->assertTrue($response instanceof JSONResponse);
 	}
 
 
 	public function testCreateAnnotations(){
 		$annotations = array('IsAdminExemption', 'IsSubAdminExemption', 'Ajax');
-		$this->assertAnnotations($this->controller, 'create', $annotations);
+		$this->assertAnnotations($this->container['{{ resource.name.title() }}Controller'], 
+			'create', $annotations);
 	}
 
 	public function testCreate(){
-		$response = $this->controller->create();
+		$response = $this->container['{{ resource.name.title() }}Controller']->create();
 		$this->assertTrue($response instanceof JSONResponse);
 	}
 
@@ -70,22 +77,24 @@ class {{ resource.name.title() }}ControllerTest extends ControllerTestUtility {
 
 	public function testUpdateAnnotations(){
 		$annotations = array('IsAdminExemption', 'IsSubAdminExemption', 'Ajax');
-		$this->assertAnnotations($this->controller, 'update', $annotations);
+		$this->assertAnnotations($this->container['{{ resource.name.title() }}Controller'], 
+			'update', $annotations);
 	}
 
 	public function testUpdate(){
-		$response = $this->controller->update();
+		$response = $this->container['{{ resource.name.title() }}Controller']->update();
 		$this->assertTrue($response instanceof JSONResponse);
 	}
 
 
 	public function testDeleteAnnotations(){
 		$annotations = array('IsAdminExemption', 'IsSubAdminExemption', 'Ajax');
-		$this->assertAnnotations($this->controller, 'delete', $annotations);
+		$this->assertAnnotations($this->container['{{ resource.name.title() }}Controller'], 
+			'delete', $annotations);
 	}
 
 	public function testDelete(){
-		$response = $this->controller->delete();
+		$response = $this->container['{{ resource.name.title() }}Controller']->delete();
 		$this->assertTrue($response instanceof JSONResponse);
 	}
 }

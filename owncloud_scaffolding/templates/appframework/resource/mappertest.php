@@ -3,19 +3,22 @@
 
 namespace OCA\{{ app.namespace }}\Db;
 
+use \OCA\{{ app.namespace }}\DependencyInjection\DIContainer;
+
 
 class {{ resource.name.title() }}MapperTest extends \OCA\AppFramework\Utility\MapperTestUtility {
 
-	private $mapper;
-	private $api;
+	private $container;
 
-
-	protected function setUp(){
-		$this->api = $this->getMockBuilder('\OCA\AppFramework\Core\API')
+	/**
+	 * Gets run before each test
+	 */
+	public function setUp(){
+		$this->container = new DIContainer();
+		$this->container['API'] = $this->getMockBuilder(
+			'\OCA\AppFramework\Core\API')
 			->disableOriginalConstructor()
 			->getMock();
-
-		$this->mapper = new {{ resource.name.title() }}Mapper($this->api);
 	}
 
 
