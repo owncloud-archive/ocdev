@@ -1,6 +1,7 @@
 {% raw %}
-{{ script('vendor/angular/angular', 'appframework') }}
-{{ script('public/app', 'appframework') }}
+{{ script('vendor/angular/angular') }}
+{{ script('vendor/underscore/underscore') }}
+{{ script('vendor/restangular/restangular') }}
 {{ script('public/app') }}
 {{ style('style') }}
 {% endraw %}

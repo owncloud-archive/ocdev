@@ -7,8 +7,14 @@ module.exports = function(config) {
 		basePath: '../../../',
 		// list of files / patterns to load in the browser
 		files: [
-			'tests/js/**/*.js',
-			'js/app/**/*.js'
+			'tests/js/vendor/jquery/jquery.js',
+			'js/app/vendor/angular/angular.js',
+			'js/app/vendor/underscore/underscore.js',
+			'js/app/vendor/restangular/restangular.js',
+			'tests/js/vendor/angular/angular-mocks.js',
+			'tests/js/config/*.js',
+			'js/app/**/*.js',
+			'tests/js/unit/**/*.js'
 		],
 
 		// list of files to exclude
