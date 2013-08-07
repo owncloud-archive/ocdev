@@ -8,11 +8,11 @@ module.exports = function(config) {
 		// list of files / patterns to load in the browser
 		files: [
 			'tests/js/vendor/jquery/jquery.js',
-			'js/app/vendor/angular/angular.js',
-			'js/app/vendor/underscore/underscore.js',
-			'js/app/vendor/restangular/restangular.js',
+			'js/vendor/angular/angular.js',
+			'js/vendor/underscore/underscore.js',
+			'js/vendor/restangular/restangular.js',
 			'tests/js/vendor/angular/angular-mocks.js',
-			'tests/js/config/*.js',
+			'tests/js/stubs/**/*.js',
 			'js/app/**/*.js',
 			'tests/js/unit/**/*.js'
 		],
