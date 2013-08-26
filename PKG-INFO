@@ -2,9 +2,9 @@ Metadata-Version: 1.1
 Name: owncloud_scaffolding
 Version: 0.2.0
 Author: Bernhard Posselt
-Author-email: nukeawhale@gmail.com
+Author-email: dev@bernhard-posselt.com
 Maintainer: Bernhard Posselt
-Maintainer-email: nukeawhale@gmail.com
+Maintainer-email: dev@bernhard-posselt.com
 Home-page: https://github.com/Raydiation/owncloud_scaffolding
 Summary: Scaffolding tool for creating apps easily
 License: GPLv3
