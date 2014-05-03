@@ -26,3 +26,22 @@ For a more verbose output run:
 
     ocdev startapp -h
 
+## Interfacing with the generator
+To use the generator in your python app use
+
+```python
+from ocdev.plugins.startapp import StartApp, Author, Arguments
+
+author = Author(name='Bernhard Posselt', email='dev@bernhard-posselt.com', 
+                homepage='http://bernhard-posselt.com')
+arguments = Arguments(name='MyApp', 
+                      description='My App Yeah!',    # defaults to ''
+                      owncloud='6.0.3',              # defaults to '6.0.3'
+                      version='0.0.1',               # defaults to '0.0.1'
+                      authors=[author],              # defaults to []
+                      license='mit',                 # defaults to agpl
+            )
+write_directory = '/srv/http/owncloud/apps/'
+app = StartApp()
+app.run(arguments, write_directory)
+```

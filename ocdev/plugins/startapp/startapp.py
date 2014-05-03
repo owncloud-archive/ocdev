@@ -9,6 +9,26 @@ from ocdev.plugins.validators import RegexValidator
 from ocdev.plugins.plugin import Plugin
 
 
+class Author:
+    
+    def __init__(self, name, email, homepage=''):
+        self.name = name
+        self.email = email
+        self.homepage = homepage
+
+
+class Arguments:
+
+    def __init__(self, name, description='', license='agpl', owncloud='6.0.3',
+                 authors=[], version='0.0.1'):
+        self.authors = authors
+        self.name = name
+        self.description = description
+        self.license = license
+        self.owncloud = owncloud
+        self.version = version
+
+
 class StartApp(Plugin):
 
     def __init__(self):
