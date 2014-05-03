@@ -1,0 +1,99 @@
+import datetime
+import re
+from os import walk, mkdir
+from os.path import join, dirname, realpath, relpath
+
+from jinja2 import Environment, FileSystemLoader
+
+from plugins.validators import RegexValidator
+from plugins.plugin import Plugin
+
+
+class StartApp(Plugin):
+
+    def __init__(self):
+        super().__init__('startapp')
+        
+
+    def add_sub_parser(self, main_parser):
+        parser = main_parser.add_parser('startapp', help='Create an app')
+        parser.set_defaults(which='startapp')
+
+        parser.add_argument('--author', help='Author\'s name', required=True)
+        parser.add_argument('--mail', help='Author\'s E-Mail', required=True)
+        parser.add_argument('--description', help='Whether license headers \
+                            should be included in every file', default='')
+        parser.add_argument('--homepage', help='Author\'s homepage', default='')
+        parser.add_argument('--license', help='The app license', default='agpl', 
+                            choices=['agpl', 'mit'])
+        parser.add_argument('--owncloud', help='Required ownCloud version', 
+                            default='6.0.3')
+        parser.add_argument('--version', help='App version', default='0.0.1')
+        parser.add_argument('name', help='Name of the app in camel case \
+                            e.g. MyApp', type=RegexValidator('^([A-Z][a-z]+)+$',
+                            'Must be camel case e.g. MyApp'))
+
+
+    def run(self, arguments, directory):
+        current_dir = dirname(realpath(__file__))
+        template_dir = join(current_dir, 'templates')
+        app_template_dir = join(template_dir, 'app')
+
+        # if author is given its being run from commandline and the list has to
+        # be assembled first
+        if 'author' in arguments:
+            authors = [{
+                'name': arguments.author,
+                'email': arguments.mail,
+                'homepage': arguments.homepage
+            }]
+
+        # get licenses
+        small_license_header = 'includes/licenses/%s.header.php' % arguments.license
+        full_license = 'includes/licenses/%s.txt' % arguments.license
+
+        params = {
+            'app': {
+                'id': arguments.name.lower(),
+                'name': ' '.join(re.findall(r'[A-Z][^A-Z]*', arguments.name)),
+                'description': arguments.description,
+                'license': arguments.license,
+                'owncloud_version': arguments.owncloud,
+                'version': arguments.version,
+                'namespace': arguments.name,
+                'small_license_header': small_license_header,
+                'full_license': full_license,
+                'authors': authors
+            },
+            'date': {
+                'year': datetime.date.today().year
+            }
+        }
+       
+        env = Environment(loader=FileSystemLoader(template_dir))
+
+        # create app directory
+        app_dir = join(directory, params['app']['id'])
+        mkdir(app_dir)
+
+        # create folders and files in that directory
+        for root, dirs, files in walk(app_template_dir):
+
+            # folders first
+            for folder in dirs:
+                abs_path = join(root, folder)
+                destination = join(app_dir, relpath(abs_path, app_template_dir))
+                print('create %s' % destination)
+                mkdir(destination)
+
+            # then read the templates and create the parsed files
+            for file in files:
+                abs_path = join(root, file)
+                jinja_path = relpath(abs_path, template_dir)
+                destination = join(app_dir, relpath(abs_path, app_template_dir))
+
+                rendered = env.get_template(jinja_path).render(params)
+
+                print('write %s' % destination)
+                with open(destination, 'w+') as f:
+                    f.write(rendered)

@@ -1,25 +1,4 @@
-#!/usr/bin/env python3
-"""
-ownCloud scaffolder tool
-
-Copyright (C) 2013 Bernhard Posselt, <nukewhale@gmail.com>
-
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-"""
 import os
-
 from distutils.core import setup
 
 # Taken from django
@@ -53,7 +32,7 @@ packages, package_data = [], {}
 root_dir = os.path.dirname(__file__)
 if root_dir != '':
     os.chdir(root_dir)
-owncloud_dir = 'owncloud_scaffolding'
+owncloud_dir = 'ocdev'
 
 for dirpath, dirnames, filenames in os.walk(owncloud_dir):
     # Ignore PEP 3147 cache dirs and those whose names start with '.'
@@ -73,17 +52,17 @@ for dirpath, dirnames, filenames in os.walk(owncloud_dir):
 
 
 setup (
-    name='owncloud_scaffolding',
-    version='0.2.0',
-    description='ownCloud development scaffolding tool',
+    name='ocdev',
+    version='0.0.1',
+    description='ownCloud development tool',
     author='Bernhard Posselt',
-    author_email='nukewhale@gmail.com',
-    url='https://github.com/Raydiation/owncloud-scaffolding',
+    author_email='dev@bernhard-posselt.com',
+    url='https://github.com/Raydiation/ocdev',
     packages=packages,
     package_data=package_data,
     license='GPLv3',
     install_requires=[
         'jinja2'
     ],
-    scripts=['owncloud.py']
+    scripts=['ocdev/ocdev']
 )
