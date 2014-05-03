@@ -64,5 +64,6 @@ setup (
     install_requires=[
         'jinja2'
     ],
-    scripts=['ocdev/ocdev']
+    keywords = ['owncloud', 'app', 'scaffolding'],
+    scripts=['bin/ocdev']
 )
