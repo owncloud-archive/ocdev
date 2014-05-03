@@ -27,7 +27,7 @@ For a more verbose output run:
     ocdev startapp -h
 
 ## Interfacing with the generator
-To use the generator in your python app use
+To use the app generator in your python app use:
 
 ```python
 from ocdev.plugins.startapp.startapp import StartApp, Author, Arguments
