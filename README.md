@@ -1,16 +1,16 @@
-ownCloud developer tools
-========================
-To install it run::
+# ownCloud developer tools
+
+To install it run:
 
 	sudo python3 setup.py install
 
-You can also install it from pypi by running::
+You can also install it from pypi by running:
 
 	sudo pip install ocdev
 
-Creating apps
--------------
-To create an app in the current directory::
+## Creating apps
+
+To create an app in the current directory:
 
 	ocdev startapp --author Bernhard Posselt --mail dev@bernhard-posselt.com MyApp
 
