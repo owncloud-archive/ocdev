@@ -30,7 +30,7 @@ For a more verbose output run:
 To use the generator in your python app use
 
 ```python
-from ocdev.plugins.startapp import StartApp, Author, Arguments
+from ocdev.plugins.startapp.startapp import StartApp, Author, Arguments
 
 author = Author(name='Bernhard Posselt', email='dev@bernhard-posselt.com', 
                 homepage='http://bernhard-posselt.com')

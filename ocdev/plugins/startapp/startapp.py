@@ -27,6 +27,14 @@ class Arguments:
         self.license = license
         self.owncloud = owncloud
         self.version = version
+        self.attrs = ['authors', 'name', 'description', 'license', 'owncloud', 
+                      'version']
+
+    def __contains__(self, item):
+        if item in self.attrs:
+            return True
+        else:
+            return False
 
 
 class StartApp(Plugin):
@@ -67,6 +75,8 @@ class StartApp(Plugin):
                 'email': arguments.mail,
                 'homepage': arguments.homepage
             }]
+        else:
+            authors = arguments.authors
 
         # get licenses
         small_license_header = 'includes/licenses/%s.header.php' % arguments.license
@@ -103,7 +113,6 @@ class StartApp(Plugin):
             for folder in dirs:
                 abs_path = join(root, folder)
                 destination = join(app_dir, relpath(abs_path, app_template_dir))
-                print('create %s' % destination)
                 mkdir(destination)
 
             # then read the templates and create the parsed files
@@ -114,6 +123,5 @@ class StartApp(Plugin):
 
                 rendered = env.get_template(jinja_path).render(params)
 
-                print('write %s' % destination)
                 with open(destination, 'w+') as f:
                     f.write(rendered)
