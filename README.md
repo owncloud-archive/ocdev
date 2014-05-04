@@ -1,9 +1,13 @@
 # ownCloud developer tools
+This is a Python 3 library. Every pip and python command in the following code
+samples should be, if needed, replaced by the appropriate command on your system (e.g. python3, pip3)
+
+## Installation
 
 To install it run:
 
     sudo pip install -r requirements.txt
-    sudo python3 setup.py install
+    sudo python setup.py install
 
 You can also install it from pypi by running:
 
