@@ -2,6 +2,7 @@
 
 To install it run:
 
+  sudo pip install -r requirements.txt
 	sudo python3 setup.py install
 
 You can also install it from pypi by running:
