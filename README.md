@@ -31,7 +31,7 @@ For a more verbose output run:
 
     ocdev startapp -h
 
-## Interfacing with the generator
+## Interfacing with the app generator
 To use the app generator in your python app use:
 
 ```python
