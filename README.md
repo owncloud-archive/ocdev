@@ -2,18 +2,19 @@
 
 To install it run:
 
-  sudo pip install -r requirements.txt
-	sudo python3 setup.py install
+    sudo pip install -r requirements.txt
+
+    sudo python3 setup.py install
 
 You can also install it from pypi by running:
 
-	sudo pip install ocdev
+    sudo pip install ocdev
 
 ## Creating apps
 
 To create an app in the current directory:
 
-	ocdev startapp --author Bernhard Posselt --mail dev@bernhard-posselt.com MyApp
+    ocdev startapp --author Bernhard Posselt --mail dev@bernhard-posselt.com MyApp
 
 The following optional commandline options are available:
 
