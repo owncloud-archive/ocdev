@@ -1,25 +1,29 @@
-# ownCloud developer tools
+========================
+ownCloud developer tools
+========================
 This is a Python 3 library. Every pip and python command in the following code
 samples should be, if needed, replaced by the appropriate command on your system (e.g. python3, pip3)
 
-## Installation
+Installation
+============
 
-To install it run:
+To install it run::
 
     sudo pip install -r requirements.txt
     sudo python setup.py install
 
-You can also install it from pypi by running:
+You can also install it from pypi by running::
 
     sudo pip install ocdev
 
 
-## Setting up a development environment
-To set up your development environment run:
+Setting up a development environment
+====================================
+To set up your development environment run::
 
     ocdev setup core
 
-or: 
+or::
   
     ocdev setup base
 
@@ -40,14 +44,14 @@ The following optional commandline options are available:
 * **--branch**: sets the branch which should be cloned, defaults to master
 * **--type**: sets the type that should be cloned, ssh or https. Defaults to https since you need access to the repository to use ssh
 
-For a more verbose output run:
+For a more verbose output run::
 
     ocdev setup -h
 
+Creating apps
+=============
 
-## Creating apps
-
-To create an app in the current directory:
+To create an app in the current directory::
 
     ocdev startapp --author Bernhard Posselt --mail dev@bernhard-posselt.com MyApp
 
@@ -59,14 +63,17 @@ The following optional commandline options are available:
 * **--license**: agpl or mit, defaults to agpl
 * **--owncloud**: the minimum ownCloud version, defaults to 6.0.3
 
-For a more verbose output run:
+For a more verbose output run::
 
     ocdev startapp -h
 
-## Interfacing with the app generator
-To use the app generator in your python app use:
+Interfacing with the app generator
+==================================
+To use the app generator in your python app use::
 
-### Setting up development environment
+Setting up development environment
+----------------------------------
+
 ```python
 from ocdev.plugins.setup.setup import SetUp, Arguments
 
@@ -82,7 +89,8 @@ app = SetUp()
 app.run(arguments, write_directory)
 ```
 
-### Creating apps
+Creating apps
+-------------
 
 ```python
 from ocdev.plugins.startapp.startapp import StartApp, Author, Arguments

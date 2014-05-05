@@ -3,9 +3,13 @@ all: install
 install: clean
 	sudo python setup.py install
 
+uninstall: clean
+	sudo rm -rf /usr/lib/python3.4/site-packages/ocdev*
+	sudo rm -rf /usr/bin/ocdev
+
 clean:
-	rm -rf dist
-	rm -rf MANIFEST
+	sudo rm -rf dist
+	sudo rm -rf MANIFEST
 	sudo rm -rf build
 
 pypi: clean
