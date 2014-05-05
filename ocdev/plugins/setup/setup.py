@@ -31,8 +31,8 @@ class SetUp(Plugin):
         parser.add_argument('level', help='core or base. core only sets up \
                             a working core setup, base also installs apps like \
                             news, notes, calendar, gallery, music, documents \
-                            and contacts',
-                            choices=['core', 'base'])
+                            and contacts', choices=['core', 'base'], 
+                            default='core')
 
 
     def run(self, arguments, directory):
@@ -71,7 +71,7 @@ class SetUp(Plugin):
 
         # check if directory is writeable
         if os.access(directory, os.W_OK):
-            call(['git' 'clone ', '-b', arguments.branch, chosen_urls['core']])
+            call(['git', 'clone', '-b', arguments.branch, chosen_urls['core']])
 
             os.chdir('core')
             call(['git', 'submodule', 'init'])
@@ -88,9 +88,9 @@ class SetUp(Plugin):
                 for app_url in chosen_urls['apps']:
                     # repository might not have that specific branch, in that 
                     # case just take master
-                    code = call(['git' 'clone ', '-b', arguments.branch, app_url])
+                    code = call(['git', 'clone', '-b', arguments.branch, app_url])
                     if code != 0:
-                        code = call(['git' 'clone ', '-b', 'master', app_url])
+                        code = call(['git', 'clone', '-b', 'master', app_url])
 
         else:
             print('Can not write to directory %s. Aborted' % directory)
