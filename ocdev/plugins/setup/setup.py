@@ -44,31 +44,31 @@ class SetUp(Plugin):
         urls = {
             'ssh': {
                 'core': 'git@github.com:owncloud/core.git',
-                'apps': {
-                    'news': 'git@github.com:owncloud/news.git',
-                    'gallery': 'git@github.com:owncloud/gallery.git',
-                    'music': 'git@github.com:owncloud/music.git',
-                    'notes': 'git@github.com:owncloud/notes.git',
-                    'calendar': 'git@github.com:owncloud/calendar.git',
-                    'contacts': 'git@github.com:owncloud/contacts.git',
-                    'documents': 'git@github.com:owncloud/documents.git',
-                    'chat': 'git@github.com:owncloud/chat.git',
-                    'bookmarks': 'git@github.com:owncloud/bookmarks.git'
-                }
+                'apps': [
+                    'git@github.com:owncloud/news.git',
+                    'git@github.com:owncloud/gallery.git',
+                    'git@github.com:owncloud/music.git',
+                    'git@github.com:owncloud/notes.git',
+                    'git@github.com:owncloud/calendar.git',
+                    'git@github.com:owncloud/contacts.git',
+                    'git@github.com:owncloud/documents.git',
+                    'git@github.com:owncloud/chat.git',
+                    'git@github.com:owncloud/bookmarks.git'
+                ]
             },
             'https': {
                 'core': 'https://github.com/owncloud/core.git',
-                'apps': {
-                    'news': 'https://github.com/owncloud/news.git',
-                    'gallery': 'https://github.com/owncloud/gallery.git',
-                    'music': 'https://github.com/owncloud/music.git',
-                    'notes': 'https://github.com/owncloud/notes.git',
-                    'calendar': 'https://github.com/owncloud/calendar.git',
-                    'contacts': 'https://github.com/owncloud/contacts.git',
-                    'documents': 'https://github.com/owncloud/documents.git',
-                    'chat': 'https://github.com/owncloud/chat.git',
-                    'bookmarks': 'https://github.com/owncloud/bookmarks.git'
-                }
+                'apps': [
+                    'https://github.com/owncloud/news.git',
+                    'https://github.com/owncloud/gallery.git',
+                    'https://github.com/owncloud/music.git',
+                    'https://github.com/owncloud/notes.git',
+                    'https://github.com/owncloud/calendar.git',
+                    'https://github.com/owncloud/contacts.git',
+                    'https://github.com/owncloud/documents.git',
+                    'https://github.com/owncloud/chat.git',
+                    'https://github.com/owncloud/bookmarks.git'
+                ]
             }
         }
 

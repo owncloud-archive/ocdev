@@ -53,7 +53,7 @@ for dirpath, dirnames, filenames in os.walk(owncloud_dir):
 
 setup (
     name='ocdev',
-    version='0.0.2',
+    version='0.0.3',
     description='ownCloud development tool',
     author='Bernhard Posselt',
     author_email='dev@bernhard-posselt.com',
