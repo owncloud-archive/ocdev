@@ -4,3 +4,4 @@ PKG-INFO
 __pycache__
 build
 dist
+ocdev.egg-info
