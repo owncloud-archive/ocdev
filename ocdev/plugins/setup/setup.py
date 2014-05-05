@@ -1,6 +1,8 @@
 import os
 from subprocess import call
 
+from plugins.plugin import Plugin
+
 
 class Arguments:
 
@@ -30,14 +32,14 @@ class SetUp(Plugin):
                             a working core setup, base also installs apps like \
                             news, notes, calendar, gallery, music, documents \
                             and contacts',
-                            choices=['core', 'base']))
+                            choices=['core', 'base'])
 
 
     def run(self, arguments, directory):
         urls = {
             'ssh': {
                 'core': 'git@github.com:owncloud/core.git',
-                'apps': [
+                'apps': {
                     'news': 'git@github.com:owncloud/news.git',
                     'gallery': 'git@github.com:owncloud/gallery.git',
                     'music': 'git@github.com:owncloud/music.git',
@@ -47,11 +49,11 @@ class SetUp(Plugin):
                     'documents': 'git@github.com:owncloud/documents.git',
                     'chat': 'git@github.com:owncloud/chat.git',
                     'bookmarks': 'git@github.com:owncloud/bookmarks.git'
-                ]
+                }
             },
             'https': {
                 'core': 'https://github.com/owncloud/core.git',
-                'apps': [
+                'apps': {
                     'news': 'https://github.com/owncloud/news.git',
                     'gallery': 'https://github.com/owncloud/gallery.git',
                     'music': 'https://github.com/owncloud/music.git',
@@ -61,7 +63,7 @@ class SetUp(Plugin):
                     'documents': 'https://github.com/owncloud/documents.git',
                     'chat': 'https://github.com/owncloud/chat.git',
                     'bookmarks': 'https://github.com/owncloud/bookmarks.git'
-                ]
+                }
             }
         }
 

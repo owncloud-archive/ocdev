@@ -14,7 +14,7 @@ import argparse
 import sys
 import os
 
-from ocdev.plugins import PLUGINS
+from plugins import PLUGINS
 
 
 def main():

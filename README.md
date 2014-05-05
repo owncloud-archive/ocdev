@@ -65,6 +65,23 @@ For a more verbose output run:
 ## Interfacing with the app generator
 To use the app generator in your python app use:
 
+### Setting up development environment
+```python
+from ocdev.plugins.setup.setup import SetUp, Arguments
+
+arguments = Arguments(level='base',      # defaults to 'core'
+                      branch='stable6',  # defaults to 'master'
+                      type='ssh'         # defaults to 'https'
+)
+
+write_directory = '/srv/http/owncloud/apps/'
+
+app = SetUp()
+app.run(arguments, write_directory)
+```
+
+### Creating apps
+
 ```python
 from ocdev.plugins.startapp.startapp import StartApp, Author, Arguments
 
@@ -73,10 +90,10 @@ author = Author(name='Bernhard Posselt', email='dev@bernhard-posselt.com',
 
 arguments = Arguments(name='MyApp', 
                       description='My App Yeah!',    # defaults to ''
+                      license='mit',                 # defaults to 'agpl'
                       owncloud='6.0.3',              # defaults to '6.0.3'
                       version='0.0.1',               # defaults to '0.0.1'
                       authors=[author],              # defaults to []
-                      license='mit',                 # defaults to agpl
             )
 
 write_directory = '/srv/http/owncloud/apps/'

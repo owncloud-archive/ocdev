@@ -5,8 +5,8 @@ from os.path import join, dirname, realpath, relpath
 
 from jinja2 import Environment, FileSystemLoader
 
-from ocdev.plugins.validators import RegexValidator
-from ocdev.plugins.plugin import Plugin
+from plugins.validators import RegexValidator
+from plugins.plugin import Plugin
 
 
 class Author:

@@ -1,7 +1,4 @@
-from ocdev.plugins.startapp.startapp import StartApp
-from ocdev.plugins.setup.setup import SetUp
+from plugins.startapp.startapp import StartApp
+from plugins.setup.setup import SetUp
 
-PLUGINS = [
-    StartApp(),
-    SetUp()
-]
+PLUGINS = [SetUp(), StartApp()]
