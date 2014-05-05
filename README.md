@@ -13,6 +13,37 @@ You can also install it from pypi by running:
 
     sudo pip install ocdev
 
+
+## Setting up a development environment
+To set up your development environment run:
+
+    ocdev setup core
+
+or: 
+  
+    ocdev setup base
+
+If you use **base** the following additional apps will be installed:
+* calendar
+* contacts
+* gallery
+* music
+* notes
+* news
+* chat
+* bookmarks
+* documents
+
+The following optional commandline options are available:
+
+* **--branch**: sets the branch which should be cloned, defaults to master
+* **--type**: sets the type that should be cloned, ssh or https. Defaults to https since you need access to the repository to use ssh
+
+For a more verbose output run:
+
+    ocdev setup -h
+
+
 ## Creating apps
 
 To create an app in the current directory:
