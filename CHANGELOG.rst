@@ -1,3 +1,9 @@
+ocdev (0.0.4)
+
+* Move to setuptools for distributing
+* Fail more gracefully if app directory exists already
+* Transition to reST documentation files
+
 ocdev (0.0.3)
 
 * Fix bug that breaks calling ocdev setup base

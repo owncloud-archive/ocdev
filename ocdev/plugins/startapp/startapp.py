@@ -1,7 +1,8 @@
+import sys
 import datetime
 import re
 from os import walk, mkdir
-from os.path import join, dirname, realpath, relpath
+from os.path import join, dirname, realpath, relpath, exists
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -108,6 +109,10 @@ class StartApp(Plugin):
 
         # create app directory
         app_dir = join(directory, params['app']['id'])
+        if exists(app_dir):
+            print('Can not create app, directory %s exists already' % app_dir)
+            sys.exit(1)
+
         mkdir(app_dir)
 
         # create folders and files in that directory

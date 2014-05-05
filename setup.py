@@ -2,9 +2,9 @@ from setuptools import setup, find_packages
 
 setup (
     name = 'ocdev',
-    version = '0.0.3',
+    version = '0.0.4',
     description = 'ownCloud development tool',
-    long_description=open('README.rst').read()
+    long_description = open('README.rst').read(),
     author = 'Bernhard Posselt',
     author_email = 'dev@bernhard-posselt.com',
     url = 'https://github.com/Raydiation/ocdev',
