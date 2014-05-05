@@ -76,8 +76,12 @@ class SetUp(Plugin):
 
         # check if directory is writeable
         if os.access(directory, os.W_OK):
-            call(['git', 'clone', '-b', arguments.branch, chosen_urls['core'],
-                  arguments.dir])
+            code = call(['git', 'clone', '-b', arguments.branch, 
+                        chosen_urls['core'], arguments.dir])
+            
+            if code != 0:  # default to master if branch fails
+                call(['git', 'clone', '-b', 'master', chosen_urls['core'], 
+                     arguments.dir])
 
             os.chdir(arguments.dir)
             call(['git', 'submodule', 'init'])
