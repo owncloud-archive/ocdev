@@ -11,6 +11,7 @@ clean:
 	sudo rm -rf dist
 	sudo rm -rf MANIFEST
 	sudo rm -rf build
+	sudo rm -rf ocdev.egg-info
 
 pypi: clean
 	python setup.py sdist upload

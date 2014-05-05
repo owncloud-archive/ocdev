@@ -1,6 +1,5 @@
 MANIFEST.in
-README.md
-setup.cfg
+README.rst
 setup.py
 ocdev/__init__.py
 ocdev/__main__.py
