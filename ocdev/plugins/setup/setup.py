@@ -4,9 +4,10 @@ from subprocess import call
 
 class Arguments:
 
-    def __construct__(self, level='core', branch="master"):
+    def __construct__(self, level='core', branch='master', type='https'):
         self.level = level
         self.branch = branch
+        self.type = type
 
 
 class SetUp(Plugin):

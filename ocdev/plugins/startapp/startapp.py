@@ -20,7 +20,7 @@ class Author:
 class Arguments:
 
     def __init__(self, name, description='', license='agpl', owncloud='6.0.3',
-                 authors=[], version='0.0.1'):
+                 version='0.0.1', authors=[]):
         self.authors = authors
         self.name = name
         self.description = description
