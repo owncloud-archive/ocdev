@@ -1,6 +1,7 @@
-CHANGELOG.rst
+LICENSE.txt
 MANIFEST.in
 README.rst
+requirements.txt
 setup.py
 ocdev/__init__.py
 ocdev/__main__.py

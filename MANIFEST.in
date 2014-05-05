@@ -1,2 +1,2 @@
-include *.rst
 recursive-include ocdev/plugins/startapp/templates *
+include README.rst requirements.txt LICENSE.txt CHANGELOG.txt
