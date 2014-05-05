@@ -4,6 +4,7 @@ setup (
     name = 'ocdev',
     version = '0.0.3',
     description = 'ownCloud development tool',
+    long_description=open('README.rst').read()
     author = 'Bernhard Posselt',
     author_email = 'dev@bernhard-posselt.com',
     url = 'https://github.com/Raydiation/ocdev',
