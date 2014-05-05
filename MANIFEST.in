@@ -1,2 +1,2 @@
-include README.md
+include *.rst
 recursive-include ocdev/plugins/startapp/templates *
