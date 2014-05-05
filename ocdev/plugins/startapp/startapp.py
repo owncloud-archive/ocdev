@@ -65,7 +65,11 @@ class StartApp(Plugin):
     def run(self, arguments, directory):
         current_dir = dirname(realpath(__file__))
         template_dir = join(current_dir, 'templates')
-        app_template_dir = join(template_dir, 'app')
+        
+        # choose the appropriate version for the app templates that is determined
+        # by the owncloud minimum version
+        app_dir = '%s/app' % arguments.owncloud.split('.')[0]
+        app_template_dir = join(template_dir, app_dir)
 
         # if author is given its being run from commandline and the list has to
         # be assembled first
