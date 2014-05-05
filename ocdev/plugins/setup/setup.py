@@ -1,15 +1,18 @@
 import os
+import stat
 from subprocess import call
 
-from plugins.plugin import Plugin
+from ocdev.plugins.plugin import Plugin
 
 
 class Arguments:
 
-    def __construct__(self, level='core', branch='master', type='https'):
+    def __construct__(self, level='core', branch='master', type='https',
+                      directory='core'):
         self.level = level
         self.branch = branch
         self.type = type
+        self.dir = directory
 
 
 class SetUp(Plugin):
@@ -28,6 +31,8 @@ class SetUp(Plugin):
                             choices=['https', 'ssh'])
         parser.add_argument('--branch', help='The branch which should be \
                             checked out', default='master')
+        parser.add_argument('--dir', help='The directory name, defaults to core',
+                            default='core')
         parser.add_argument('level', help='core or base. core only sets up \
                             a working core setup, base also installs apps like \
                             news, notes, calendar, gallery, music, documents \
@@ -71,9 +76,10 @@ class SetUp(Plugin):
 
         # check if directory is writeable
         if os.access(directory, os.W_OK):
-            call(['git', 'clone', '-b', arguments.branch, chosen_urls['core']])
+            call(['git', 'clone', '-b', arguments.branch, chosen_urls['core'],
+                  arguments.dir])
 
-            os.chdir('core')
+            os.chdir(arguments.dir)
             call(['git', 'submodule', 'init'])
             call(['git', 'submodule', 'update'])
             
@@ -83,6 +89,15 @@ class SetUp(Plugin):
 
             os.mkdir('data')
 
+            # make config/ read and writeable to run the setup
+            os.chmod('config', os.stat('config').st_mode
+                     | stat.S_IXOTH   # a+x
+                     | stat.S_IROTH   # a+r
+                     | stat.S_IWOTH)  # a+w
+
+            os.chmod('apps', os.stat('apps').st_mode
+                     | stat.S_IWOTH)  # a+w
+
             if arguments.level == 'base':
                 os.chdir('apps')
                 for app_url in chosen_urls['apps']:
@@ -91,6 +106,12 @@ class SetUp(Plugin):
                     code = call(['git', 'clone', '-b', arguments.branch, app_url])
                     if code != 0:
                         code = call(['git', 'clone', '-b', 'master', app_url])
+
+            print('\nSuccessfully set up development environment!')
+            print('To run the setup you will need to change the group and owner')
+            print('of the data directory to be owned by your webserver user and')
+            print('group (http in this case, otherwise apache, www-data or httpd):')
+            print('\n    sudo chown -R http:http %s/data\n' % arguments.dir)
 
         else:
             print('Can not write to directory %s. Aborted' % directory)

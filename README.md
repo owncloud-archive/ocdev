@@ -36,6 +36,7 @@ If you use **base** the following additional apps will be installed:
 
 The following optional commandline options are available:
 
+* **--dir**: sets the name of the owncloud directory, defaults to core/
 * **--branch**: sets the branch which should be cloned, defaults to master
 * **--type**: sets the type that should be cloned, ssh or https. Defaults to https since you need access to the repository to use ssh
 
@@ -69,10 +70,11 @@ To use the app generator in your python app use:
 ```python
 from ocdev.plugins.setup.setup import SetUp, Arguments
 
-arguments = Arguments(level='base',      # defaults to 'core'
-                      branch='stable6',  # defaults to 'master'
-                      type='ssh'         # defaults to 'https'
-)
+arguments = Arguments(level='base',          # defaults to 'core'
+                      branch='stable6',      # defaults to 'master'
+                      type='ssh',            # defaults to 'https'
+                      directory='owncloud'   # defaults to 'core'
+            )
 
 write_directory = '/srv/http/owncloud/apps/'
 
