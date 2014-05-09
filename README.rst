@@ -54,7 +54,7 @@ Creating apps
 
 To create an app in the current directory::
 
-    ocdev startapp --author Bernhard Posselt --mail dev@bernhard-posselt.com MyApp
+    ocdev startapp --author "Bernhard Posselt" --mail dev@bernhard-posselt.com MyApp
 
 The following optional commandline options are available:
 
