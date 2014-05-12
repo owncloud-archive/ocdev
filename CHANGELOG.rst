@@ -1,3 +1,7 @@
+ocdev (0.0.5)
+
+* Add templates for ownCloud 7
+
 ocdev (0.0.4)
 
 * Move to setuptools for distributing

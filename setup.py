@@ -8,7 +8,7 @@ with open('README.rst', 'r') as infile:
 
 setup (
     name = 'ocdev',
-    version = '0.0.4',
+    version = '0.0.5',
     description = 'ownCloud development tool',
     long_description = long_description,
     author = 'Bernhard Posselt',
