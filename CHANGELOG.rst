@@ -1,3 +1,7 @@
+ocdev (0.0.6)
+
+* Add generator for ci setups that generates configs for core and setups an install for tests
+
 ocdev (0.0.5)
 
 * Add templates for ownCloud 7

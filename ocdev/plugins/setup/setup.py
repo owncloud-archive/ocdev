@@ -22,7 +22,7 @@ class SetUp(Plugin):
         
 
     def add_sub_parser(self, main_parser):
-        parser = main_parser.add_parser('setup', help='Setup ')
+        parser = main_parser.add_parser('setup', help='Setup')
         parser.set_defaults(which='setup')
 
         parser.add_argument('--type', help='If SSH or HTTPS should be used to \

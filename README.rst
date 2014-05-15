@@ -68,6 +68,23 @@ For a more verbose output run::
 
     ocdev startapp -h
 
+
+Setting up a test instance for continous integration
+====================================================
+To set up a test instance for continous integration (e.g. on Travis-CI) run:
+
+    ocdev setup core
+    cd core
+    ocdev ci mysql
+
+The following databases can be chosen:
+
+* **mysql**
+* **sqlite**
+* **postgresql**
+
+The script requires php to be available from commandline.
+
 Interfacing with the app generator
 ==================================
 To use the app generator in your python app use::
@@ -114,3 +131,22 @@ Creating apps
   app = StartApp()
   app.run(arguments, write_directory)
 
+
+Setting up a test instance for continous integration
+----------------------------------------------------
+
+
+.. code:: python
+
+  from ocdev.plugins.ci.ci import ContinousIntegration, Arguments
+
+  author = Author(name='Bernhard Posselt', email='dev@bernhard-posselt.com', 
+                  homepage='http://bernhard-posselt.com')
+
+  arguments = Arguments(db='sqlite')  # 'mysql', 'postgresql', 'sqlite'
+              
+
+  write_directory = '/srv/http/owncloud/apps/'
+
+  app = ContinousIntegration()
+  app.run(arguments, write_directory)
