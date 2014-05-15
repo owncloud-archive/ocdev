@@ -71,7 +71,7 @@ For a more verbose output run::
 
 Setting up a test instance for continous integration
 ====================================================
-To set up a test instance for continous integration (e.g. on Travis-CI) run:
+To set up a test instance for continous integration (e.g. on Travis-CI) run::
 
     ocdev setup core
     cd core
