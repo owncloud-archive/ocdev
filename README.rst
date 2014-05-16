@@ -13,12 +13,18 @@ Installation
 
 To install it run::
 
-    sudo pip install -r requirements.txt
-    sudo python setup.py install
+    sudo pip3 install -r requirements.txt
+    sudo python3 setup.py install
 
 You can also install it from pypi by running::
 
-    sudo pip install ocdev
+    sudo pip3 install ocdev
+
+Updating
+========
+To update the library run::
+
+    sudo pip3 --upgrade install ocdev
 
 
 Setting up a development environment
