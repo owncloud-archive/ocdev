@@ -12,4 +12,3 @@ $AUTOCONFIG = array (
     'dbpass' => '{{ database.password }}',
 );
 
-DEFINE('DEBUG', true);

@@ -1,3 +1,7 @@
+ocdev (0.0.9)
+
+* Fix setup problems on mysql & postgresql
+
 ocdev (0.0.8)
 
 * Add **DEFINE('DEBUG', true);** to autoconfigs

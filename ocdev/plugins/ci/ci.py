@@ -41,7 +41,7 @@ class ContinousIntegration(Plugin):
             'database': {
                 'user': 'oc_autotest',
                 'password': '',
-                'database': 'oc_autotest',
+                'name': 'oc_autotest',
                 'host': 'localhost',
             }
         }
@@ -53,9 +53,9 @@ class ContinousIntegration(Plugin):
 
         with open('tests/preseed-config.php', 'r') as preseed:
             with open('config/config.php', 'w') as config:
-                config.write(preseed.read())
+                config.write('%s\nDEFINE("DEBUG", true);' % preseed.read())
 
         with open('config/autoconfig.php', 'w') as f:
             f.write(rendered)
 
-        call(['php', '-f', 'index.php'])
+        #call(['php', '-f', 'index.php'])

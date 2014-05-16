@@ -8,4 +8,3 @@ $AUTOCONFIG = array (
     'directory' => '{{ data }}',
 );
 
-DEFINE('DEBUG', true);
