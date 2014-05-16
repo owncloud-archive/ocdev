@@ -11,3 +11,5 @@ $AUTOCONFIG = array (
     'dbhost' => '{{ database.host }}',
     'dbpass' => '{{ database.password }}',
 );
+
+DEFINE('DEBUG', true);

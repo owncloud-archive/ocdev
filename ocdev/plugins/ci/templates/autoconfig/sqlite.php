@@ -7,3 +7,5 @@ $AUTOCONFIG = array (
     'adminpass' => '{{ admin.password }}',
     'directory' => '{{ data }}',
 );
+
+DEFINE('DEBUG', true);
