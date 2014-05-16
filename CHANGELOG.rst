@@ -1,3 +1,7 @@
+ocdev (0.0.7)
+
+* Disable enabling of files_sharing, files_encryption, files_external, user_ldap and files_versions apps since they might not be needed and can be activated by php -f console.php app:enable files_versions for instance
+
 ocdev (0.0.6)
 
 * Add generator for ci setups that generates configs for core and setups an install for tests
