@@ -58,4 +58,4 @@ class ContinousIntegration(Plugin):
         with open('config/autoconfig.php', 'w') as f:
             f.write(rendered)
 
-        #call(['php', '-f', 'index.php'])
+        call(['php', '-f', 'index.php'])
