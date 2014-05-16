@@ -140,9 +140,6 @@ Setting up a test instance for continous integration
 
   from ocdev.plugins.ci.ci import ContinousIntegration, Arguments
 
-  author = Author(name='Bernhard Posselt', email='dev@bernhard-posselt.com', 
-                  homepage='http://bernhard-posselt.com')
-
   arguments = Arguments(db='sqlite')  # 'mysql', 'postgresql', 'sqlite'
               
 
