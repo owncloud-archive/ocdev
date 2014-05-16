@@ -4,7 +4,7 @@ ownCloud developer tools
 This is a Python 3 library. Every pip and python command in the following code
 samples should be, if needed, replaced by the appropriate command on your system (e.g. python3, pip3)
 
-You will need Python 3.3 because jinja2 depends on that version. If you run Ubuntu 12.04 you can circumvent that by install jinja2 before installing the tool::
+You will need **Python >=3.3** because jinja2 depends on that version. If you run Ubuntu 12.04 you can circumvent that by install jinja2 before installing the tool::
     
     sudo apt-get install python3-jinja2
 
