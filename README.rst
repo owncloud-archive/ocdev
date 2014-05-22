@@ -13,11 +13,6 @@ Installation
 
 To install it run::
 
-    sudo pip3 install -r requirements.txt
-    sudo python3 setup.py install
-
-You can also install it from pypi by running::
-
     sudo pip3 install ocdev
 
 Updating
