@@ -7,6 +7,8 @@ samples should be, if needed, replaced by the appropriate command on your system
 You will need **Python >=3.3** because jinja2 depends on that version. If you run Ubuntu 12.04 you can circumvent that by install jinja2 before installing the tool::
     
     sudo apt-get install python3-jinja2
+    
+For the **setup** command, **git** is required.
 
 Installation
 ============
