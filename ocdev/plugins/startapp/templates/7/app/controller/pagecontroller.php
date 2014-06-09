@@ -30,7 +30,7 @@ class PageController extends Controller {
      */
     public function index() {
         $params = array('user' => $this->userId);
-        return new TemplateResponse('main', $params);  // templates/main.php
+        return new TemplateResponse('{{ app.id }}', 'main', $params);  // templates/main.php
     }
 
 
