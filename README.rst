@@ -5,10 +5,19 @@ This is a Python 3 library. Every pip and python command in the following code
 samples should be, if needed, replaced by the appropriate command on your system (e.g. python3, pip3)
 
 You will need **Python >=3.3** because jinja2 depends on that version. If you run Ubuntu 12.04 you can circumvent that by install jinja2 before installing the tool::
-    
+
     sudo apt-get install python3-jinja2
-    
+
 For the **setup** command, **git** is required.
+
+**Developer Info**:
+To test your changes locally without globally installing the tool on your machine run:
+
+    python3 -m ocdev COMMAND
+
+inside the cloned folder.
+
+The **-m** option tells python to run the **ocdev/__main__.py** file. This is needed to have working imports in both installed and local versions.
 
 Installation
 ============
@@ -31,7 +40,7 @@ To set up your development environment run::
     ocdev setup core
 
 or::
-  
+
     ocdev setup base
 
 If you use **base** the following additional apps will be installed:
@@ -122,10 +131,10 @@ Creating apps
 
   from ocdev.plugins.startapp.startapp import StartApp, Author, Arguments
 
-  author = Author(name='Bernhard Posselt', email='dev@bernhard-posselt.com', 
+  author = Author(name='Bernhard Posselt', email='dev@bernhard-posselt.com',
                   homepage='http://bernhard-posselt.com')
 
-  arguments = Arguments(name='MyApp', 
+  arguments = Arguments(name='MyApp',
                         description='My App Yeah!',    # defaults to ''
                         license='mit',                 # defaults to 'agpl'
                         owncloud='6.0.3',              # defaults to '6.0.3'
@@ -148,7 +157,7 @@ Setting up a test instance for continous integration
   from ocdev.plugins.ci.ci import ContinousIntegration, Arguments
 
   arguments = Arguments(db='sqlite')  # 'mysql', 'postgresql', 'sqlite'
-              
+
 
   write_directory = '/srv/http/owncloud/apps/'
 

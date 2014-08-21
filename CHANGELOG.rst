@@ -1,3 +1,12 @@
+ocdev (0.0.12)
+
+* Capitalize License Acronym in info.xml
+* Fail nicely if Git is not installed when running the setup command
+
+ocdev (0.0.11)
+
+* Several minor fixes
+
 ocdev (0.0.10)
 
 * Fix ci

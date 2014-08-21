@@ -1,13 +1,22 @@
 import os
 import stat
-from subprocess import call
+from subprocess import check_call
 
 from ocdev.plugins.plugin import Plugin
 
 
+class DependencyError(Exception):
+
+    def __init__(self, msg):
+        self.msg = msg
+
+    def __str__(self):
+        return self.msg
+
+
 class Arguments:
 
-    def __construct__(self, level='core', branch='master', type='https',
+    def __init__(self, level='core', branch='master', type='https',
                       directory='core'):
         self.level = level
         self.branch = branch
@@ -19,7 +28,7 @@ class SetUp(Plugin):
 
     def __init__(self):
         super().__init__('setup')
-        
+
 
     def add_sub_parser(self, main_parser):
         parser = main_parser.add_parser('setup', help='Setup')
@@ -36,11 +45,22 @@ class SetUp(Plugin):
         parser.add_argument('level', help='core or base. core only sets up \
                             a working core setup, base also installs apps like \
                             news, notes, calendar, gallery, music, documents \
-                            and contacts', choices=['core', 'base'], 
+                            and contacts', choices=['core', 'base'],
                             default='core')
 
 
     def run(self, arguments, directory):
+        """
+        throws a DependencyError if git is not installed
+        """
+        try:
+            self.git_clone(arguments, directory)
+        except FileNotFoundError as e:
+            raise DependencyError('Failed to clone repository because Git ' +
+                                  'is not installed')
+
+
+    def git_clone(self, arguments, directory):
         urls = {
             'ssh': {
                 'core': 'git@github.com:owncloud/core.git',
@@ -76,19 +96,19 @@ class SetUp(Plugin):
 
         # check if directory is writeable
         if os.access(directory, os.W_OK):
-            code = call(['git', 'clone', '-b', arguments.branch, 
+            code = check_call(['git', 'clone', '-b', arguments.branch,
                         chosen_urls['core'], arguments.dir])
-            
+
             if code != 0:  # default to master if branch fails
-                call(['git', 'clone', '-b', 'master', chosen_urls['core'], 
+                check_call(['git', 'clone', '-b', 'master', chosen_urls['core'],
                      arguments.dir])
 
             os.chdir(arguments.dir)
-            call(['git', 'submodule', 'init'])
-            call(['git', 'submodule', 'update'])
-            
+            check_call(['git', 'submodule', 'init'])
+            check_call(['git', 'submodule', 'update'])
+
             os.chdir('3rdparty')
-            call(['git', 'checkout', arguments.branch])
+            check_call(['git', 'checkout', arguments.branch])
             os.chdir('..')
 
             os.mkdir('data')
@@ -105,11 +125,11 @@ class SetUp(Plugin):
             if arguments.level == 'base':
                 os.chdir('apps')
                 for app_url in chosen_urls['apps']:
-                    # repository might not have that specific branch, in that 
+                    # repository might not have that specific branch, in that
                     # case just take master
-                    code = call(['git', 'clone', '-b', arguments.branch, app_url])
+                    code = check_call(['git', 'clone', '-b', arguments.branch, app_url])
                     if code != 0:
-                        code = call(['git', 'clone', '-b', 'master', app_url])
+                        code = check_call(['git', 'clone', '-b', 'master', app_url])
 
             print('\nSuccessfully set up development environment!')
             print('To run the setup you will need to change the group and owner')
