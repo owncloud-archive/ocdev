@@ -10,7 +10,9 @@ You will need **Python >=3.3** because jinja2 depends on that version. If you ru
 
 For the **setup** command, **git** is required.
 
-**Developer Info**:
+Developer Info
+--------------
+
 To test your changes locally without globally installing the tool on your machine run::
 
     python3 -m ocdev COMMAND
@@ -18,6 +20,8 @@ To test your changes locally without globally installing the tool on your machin
 inside the cloned folder.
 
 The **-m** option tells python to run the **ocdev/__main__.py** file. This is needed to have working imports in both installed and local versions.
+
+.. note:: If the library is also installed the installed version imports will be used and local changes will be ignored. Make sure to uninstall the global version first before making local changes!
 
 Installation
 ============
