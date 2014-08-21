@@ -11,7 +11,7 @@ You will need **Python >=3.3** because jinja2 depends on that version. If you ru
 For the **setup** command, **git** is required.
 
 **Developer Info**:
-To test your changes locally without globally installing the tool on your machine run:
+To test your changes locally without globally installing the tool on your machine run::
 
     python3 -m ocdev COMMAND
 
