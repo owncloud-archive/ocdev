@@ -21,7 +21,7 @@ inside the cloned folder.
 
 The **-m** option tells python to run the **ocdev/__main__.py** file. This is needed to have working imports in both installed and local versions.
 
-.. note:: If the library is also installed the installed version imports will be used and local changes will be ignored. Make sure to uninstall the global version first before making local changes!
+.. note:: If the library is also installed the installed version imports will be used and local changes will be ignored. **Make sure to uninstall the global version first before running the local version**!
 
 Installation
 ============
