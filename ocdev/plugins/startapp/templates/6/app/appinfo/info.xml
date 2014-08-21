@@ -3,7 +3,7 @@
     <id>{{ app.id }}</id>
     <name>{{ app.name }}</name>
     <description>{{ app.description }}</description>
-    <licence>{{ app.license }}</licence>
+    <licence>{{ app.license | capitalize }}</licence>
     <author>{% for author in app.authors %}{{ author.name }}{% if not loop.last %},{% endif %}{% endfor %}</author>
     <version>{{ app.version }}</version>
     <require>{{ app.owncloud_version }}</require>
