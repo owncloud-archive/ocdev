@@ -81,7 +81,8 @@ The following optional commandline options are available:
 * **--description**: sets the app description in the appinfo/info.xml
 * **--homepage**: sets the author's homepage in the AUTHORS.md file
 * **--license**: agpl or mit, defaults to agpl
-* **--owncloud**: the minimum ownCloud version, defaults to 6.0.3
+* **--owncloud**: the minimum ownCloud version, defaults to the currently active version
+* **--output**: The directory where the generated files should be written to. Defaults to the current directory
 
 For a more verbose output run::
 

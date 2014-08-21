@@ -21,13 +21,14 @@ class Author:
 class Arguments:
 
     def __init__(self, name, description='', license='agpl', owncloud='6.0.3',
-                 version='0.0.1', authors=[]):
+                 version='0.0.1', authors=[], output=''):
         self.authors = authors
         self.name = name
         self.description = description
         self.license = license
         self.owncloud = owncloud
         self.version = version
+        self.output = output
         self.attrs = ['authors', 'name', 'description', 'license', 'owncloud',
                       'version']
 
@@ -58,12 +59,19 @@ class StartApp(Plugin):
         parser.add_argument('--owncloud', help='Required ownCloud version',
                             default='7.0.0')
         parser.add_argument('--version', help='App version', default='0.0.1')
+        parser.add_argument('--output', help='Output generated files into \
+                            this directory instead of the current one if given',
+                            default='')
         parser.add_argument('name', help='Name of the app in camel case \
                             e.g. MyApp', type=RegexValidator('^([A-Z][a-z]+)+$',
                             'Must be camel case e.g. MyApp'))
 
 
     def run(self, arguments, directory):
+        # overwrite default path if argument given
+        if arguments.output != '':
+            directory = arguments.output
+
         current_dir = dirname(realpath(__file__))
         template_dir = join(current_dir, 'templates')
 

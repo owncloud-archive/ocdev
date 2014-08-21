@@ -2,6 +2,7 @@ ocdev (0.0.12)
 
 * Capitalize License Acronym in info.xml
 * Fail nicely if Git is not installed when running the setup command
+* Provide optional output parameter for startapp command
 
 ocdev (0.0.11)
 
