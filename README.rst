@@ -18,7 +18,7 @@ The **-m** option tells python to run the **ocdev/__main__.py** file. This is ne
 
 Installation
 ============
-If Python 3 and **pip** are not yet installed on the system, install it from your package manager, e.g.::
+If **Python 3** and **pip** are not yet installed on the system, install it from your package manager, e.g.::
 
     sudo apt-get install python3 python3-pip
 
