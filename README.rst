@@ -4,12 +4,6 @@ ownCloud developer tools
 This is a Python 3 library. Every pip and python command in the following code
 samples should be, if needed, replaced by the appropriate command on your system (e.g. python3, pip3)
 
-You will need **Python >=3.3** because jinja2 depends on that version. **If you run Ubuntu 12.04** you can circumvent that by install jinja2 before installing the tool::
-
-    sudo apt-get install python3-jinja2
-
-For the **setup** command, **git** is required.
-
 **Developer Info:**
 
 To test your changes locally without globally installing the tool on your machine run::
@@ -24,10 +18,23 @@ The **-m** option tells python to run the **ocdev/__main__.py** file. This is ne
 
 Installation
 ============
+If Python 3 and **pip** are not yet installed on the system, install it from your package manager, e.g.::
 
-To install it run::
+    sudo apt-get install python3 python3-pip
+
+Verify the Python version using::
+
+    python --version
+    
+If it outputs **Python 3.2** or lower (e.g. on **Ubuntu 12.04**) you will **need to install jinja from your package manager first**, e.g.:: 
+
+    sudo apt-get install python3-jinja2
+
+Then install the tool::
 
     sudo pip3 install ocdev
+
+For the **setup** command, **git** has to be installed.
 
 Updating
 ========
