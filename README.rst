@@ -26,7 +26,7 @@ Verify the Python version using::
 
     python --version
     
-If it outputs **Python 3.2** or lower (e.g. on **Ubuntu 12.04**) you will **need to install jinja from your package manager first**, e.g.:: 
+If it outputs **Python 3.2 or lower** (e.g. on **Ubuntu 12.04**) you will **need to install jinja from your package manager first**, e.g.:: 
 
     sudo apt-get install python3-jinja2
 
