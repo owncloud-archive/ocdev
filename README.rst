@@ -40,7 +40,7 @@ Updating
 ========
 To update the library run::
 
-    sudo pip3 --upgrade install ocdev
+    sudo pip3 install --upgrade ocdev
 
 
 Setting up a development environment
