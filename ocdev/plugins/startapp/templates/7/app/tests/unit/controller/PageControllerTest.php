@@ -17,9 +17,10 @@ class PageControllerTest extends \PHPUnit_Framework_TestCase {
 
 	public function setUp () {
 		$app = new Application();
+		$phpunit = $this;
 		$this->container = $app->getContainer();
-		$this->container->registerService('Request', function($c) {
-			return $this->getMockBuilder('\OCP\IRequest')->getMock();
+		$this->container->registerService('Request', function($c) use ($phpunit) {
+			return $phpunit->getMockBuilder('\OCP\IRequest')->getMock();
 		});
 		$this->container->registerParameter('UserId', 'john');
 	}

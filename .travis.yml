@@ -8,8 +8,6 @@ env:
   - APP_VERSION=7
 
 install:
-  - python --version
-  - echo $APP_VERSION
   # install the lib
   - pip install setuptools
   - python setup.py install
