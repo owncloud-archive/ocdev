@@ -9,9 +9,9 @@ env:
 
 install:
   # install the lib
-  - sudo pip3 install setuptools
+  - sudo pip install setuptools
   - sudo make install
-  - sudo pip3 install -r requirements.txt
+  - sudo pip install -r requirements.txt
   # install phpunit and php
   - sudo apt-get install php5
   - wget https://phar.phpunit.de/phpunit.phar
