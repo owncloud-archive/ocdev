@@ -1,6 +1,10 @@
 ========================
 ownCloud developer tools
 ========================
+
+.. image:: https://travis-ci.org/Raydiation/ocdev.svg
+    :target: https://travis-ci.org/Raydiation/ocdev
+
 This is a Python 3 library. Every pip and python command in the following code
 samples should be, if needed, replaced by the appropriate command on your system (e.g. python3, pip3)
 
@@ -25,8 +29,8 @@ If **Python 3** and **pip** are not yet installed on the system, install it from
 Verify the Python version using::
 
     python --version
-    
-If it outputs **Python 3.2 or lower** (e.g. on **Ubuntu 12.04**) you will **need to install jinja from your package manager first**, e.g.:: 
+
+If it outputs **Python 3.2 or lower** (e.g. on **Ubuntu 12.04**) you will **need to install jinja from your package manager first**, e.g.::
 
     sudo apt-get install python3-jinja2
 
