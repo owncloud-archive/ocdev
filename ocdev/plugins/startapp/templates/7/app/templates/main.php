@@ -1,17 +1,18 @@
 <?php
 \OCP\Util::addScript('{{ app.id }}', 'script');
-
 \OCP\Util::addStyle('{{ app.id }}', 'style');
-
 ?>
 
-<p>Hello World <?php p($_['user']) ?></p>
+<div id="app">
+	<div id="app-navigation">
+		<?php print_unescaped($this->inc('part.navigation')); ?>
+		<?php print_unescaped($this->inc('part.settings')); ?>
+	</div>
 
-<p><button id="hello">click me</button></p>
+	<div id="app-content">
+		<div id="app-content-wrapper">
+			<?php print_unescaped($this->inc('part.content')); ?>
+		</div>
+	</div>
+</div>
 
-<p><textarea id="echo-content">
-	Send this as ajax
-</textarea></p>
-<p><button id="echo">Send ajax request</button></p>
-
-Ajax response: <div id="echo-result"></div>

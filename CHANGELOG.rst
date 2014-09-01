@@ -1,3 +1,8 @@
+ocdev (0.0.13)
+
+* Fix broken unit test
+* Add navigation, settings and content html basic structure
+
 ocdev (0.0.12)
 
 * Uppercase License Acronym in info.xml
