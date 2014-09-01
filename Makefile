@@ -1,7 +1,7 @@
 all: install
 
 install: clean
-	sudo python setup.py install
+	sudo python3 setup.py install
 
 uninstall: clean
 	sudo rm -rf /usr/lib/python3.4/site-packages/ocdev*
