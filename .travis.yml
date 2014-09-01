@@ -8,10 +8,12 @@ env:
   - APP_VERSION=7
 
 install:
+  - python --version
+  - echo $APP_VERSION
   # install the lib
-  - sudo pip install setuptools
-  - sudo make install
-  - sudo pip install -r requirements.txt
+  - pip install setuptools
+  - python setup.py install
+  - pip install -r requirements.txt
   # install phpunit and php
   - sudo apt-get install php5
   - wget https://phar.phpunit.de/phpunit.phar
