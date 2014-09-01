@@ -1,3 +1,7 @@
+ocdev (0.0.14)
+
+* Fix unit tests on PHP 5.3
+
 ocdev (0.0.13)
 
 * Fix broken unit test
