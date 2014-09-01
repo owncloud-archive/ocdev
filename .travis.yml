@@ -3,10 +3,14 @@ python:
   - "3.3"
   - "3.4"
 
+env:
+  - APP_VERSION=6
+  - APP_VERSION=7
+
 install:
   # install the lib
   - sudo make install
-  - pip3 install requirements.txt
+  - pip3 install -r requirements.txt
   # install phpunit and php
   - sudo apt-get install php5
   - wget https://phar.phpunit.de/phpunit.phar
@@ -18,7 +22,7 @@ before_script:
   - cd ../
   - ocdev setup core
   - cd core/apps
-  - ocdev startapp --mail test --author test MyApp
+  - ocdev startapp --mail test --author test --version $APP_VERSION MyApp
   - cd myapp
 
 script:
