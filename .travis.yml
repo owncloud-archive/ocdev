@@ -1,17 +1,23 @@
 language: python
 python:
+  - "3.2"
   - "3.3"
   - "3.4"
 
 env:
-  - APP_VERSION=6
-  - APP_VERSION=7
+  - APP_VERSION=6 JINJA_FROM_PIP=0
+  - APP_VERSION=6 JINJA_FROM_PIP=1
+  - APP_VERSION=7 JINJA_FROM_PIP=0
+  - APP_VERSION=7 JINJA_FROM_PIP=1
 
 install:
   # install the lib
   - pip install setuptools
   - python setup.py install
-  - pip install -r requirements.txt
+  - if [[ "0" == "$JINJA_FROM_PIP" || $(python --version) == *3.2.* ]]
+  -   then echo sudo apt-get install python3-jinja2
+  -   else pip install -r requirements.txt
+  - fi
   # install phpunit and php
   - sudo apt-get install php5
   - wget https://phar.phpunit.de/phpunit.phar
