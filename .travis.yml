@@ -18,9 +18,11 @@ matrix:
     - python "3.2"
     - APP_VERSION=7 JINJA_FROM_PIP=1
 
-install:
+before_install:
   # if not from pip, use the repo version
   - if [[ "0" == "$JINJA_FROM_PIP" ]]; then sudo apt-get install python3-jinja2; fi
+
+install:
   # install the lib
   - pip install setuptools
   - python setup.py install
