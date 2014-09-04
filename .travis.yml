@@ -10,7 +10,7 @@ env:
 
 install:
   # use older pip version if on python 3.2 to prevent breakage
-  - bash ci/python3.2
+  - if [[ $TRAVIS_PYTHON_VERSION == '3.2' ]]; then pip install jinja2==2.6; fi
   # install the lib
   - pip install setuptools
   - python setup.py install
