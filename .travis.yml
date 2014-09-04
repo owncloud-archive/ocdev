@@ -17,7 +17,7 @@ matrix:
 
 install:
   # if not from pip, use the repo version
-  - [[ "0" == "$JINJA_FROM_PIP" ]] && sudo apt-get install python3-jinja2
+  - if [[ "0" == "$JINJA_FROM_PIP" ]]; then sudo apt-get install python3-jinja2; fi
   # install the lib
   - pip install setuptools
   - python setup.py install
