@@ -13,7 +13,10 @@ env:
 matrix:
   - exclude:
     - python "3.2"
-    - JINJA_FROM_PIP=1
+    - APP_VERSION=6 JINJA_FROM_PIP=1
+  - exclude:
+    - python "3.2"
+    - APP_VERSION=7 JINJA_FROM_PIP=1
 
 install:
   # if not from pip, use the repo version
