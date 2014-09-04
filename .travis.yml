@@ -1,8 +1,8 @@
 language: python
 python:
-  - "3.2"
-  - "3.3"
-  - "3.4"
+  - 3.2
+  - 3.3
+  - 3.4
 
 env:
   - APP_VERSION=6 JINJA_FROM_PIP=0
@@ -12,11 +12,8 @@ env:
 
 matrix:
   - exclude:
-    - python "3.2"
-    - APP_VERSION=6 JINJA_FROM_PIP=1
-  - exclude:
-    - python "3.2"
-    - APP_VERSION=7 JINJA_FROM_PIP=1
+    - python: 3.2
+      env: JINJA_FROM_PIP=1
 
 before_install:
   # if not from pip, use the repo version
