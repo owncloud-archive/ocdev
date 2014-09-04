@@ -5,24 +5,12 @@ python:
   - 3.4
 
 env:
-  - APP_VERSION=6 JINJA_FROM_PIP=0
-  - APP_VERSION=6 JINJA_FROM_PIP=1
-  - APP_VERSION=7 JINJA_FROM_PIP=0
-  - APP_VERSION=7 JINJA_FROM_PIP=1
-
-matrix:
-  # pip jinja2 does not work on 3.2
-  exclude:
-    - python: 3.2
-      env: JINJA_FROM_PIP=1
-  # uncomment if testing and one build fail should abort whole build
-  fast_finish: true
-
-before_install:
-  # if not from pip, use the repo version
-  - if [[ "0" == "$JINJA_FROM_PIP" ]]; then sudo apt-get install python3-jinja2; fi
+  - APP_VERSION=6
+  - APP_VERSION=7
 
 install:
+  # use older pip version if on python 3.2 to prevent breakage
+  - if [[ $(python --version) == *3.2.* ]]; pip install -q jinja==2.6; fi
   # install the lib
   - pip install setuptools
   - python setup.py install
