@@ -39,15 +39,18 @@ class SetUp(Plugin):
                             push access in order to use SSH', default='https',
                             choices=['https', 'ssh'])
         parser.add_argument('--branch', help='The branch which should be \
-                            checked out', default='master')
+                            checked out, defaults to master', default='master')
         parser.add_argument('--dir', help='The directory name, defaults to core',
                             default='core')
-        parser.add_argument('level', help='core or base. core only sets up \
+        parser.add_argument('level', help='core, base or a specific repository \
+                            in ownCloud organization on GitHub. core only sets up \
                             a working core setup, base also installs apps like \
                             news, notes, calendar, gallery, music, documents \
-                            and contacts', choices=['core', 'base'],
+                            and contacts. To clone a specific repository, you \
+                            can type the repository name in lowercase, e.g. \
+                            ocdev setup music. For this, it needs at least\
+                            the core environment setup.',
                             default='core')
-
 
     def run(self, arguments, directory):
         """
@@ -74,7 +77,8 @@ class SetUp(Plugin):
                     'git@github.com:owncloud/documents.git',
                     'git@github.com:owncloud/chat.git',
                     'git@github.com:owncloud/bookmarks.git'
-                ]
+                ],
+                arguments.level: 'git@github.com:owncloud/' + arguments.level + '.git',
             },
             'https': {
                 'core': 'https://github.com/owncloud/core.git',
@@ -88,7 +92,8 @@ class SetUp(Plugin):
                     'https://github.com/owncloud/documents.git',
                     'https://github.com/owncloud/chat.git',
                     'https://github.com/owncloud/bookmarks.git'
-                ]
+                ],
+                arguments.level: 'https://github.com/owncloud/' + arguments.level + '.git',
             }
         }
 
@@ -96,31 +101,31 @@ class SetUp(Plugin):
 
         # check if directory is writeable
         if os.access(directory, os.W_OK):
-            code = check_call(['git', 'clone', '-b', arguments.branch,
-                        chosen_urls['core'], arguments.dir])
+            if (arguments.level == 'core' or arguments.level == 'base'):
+                code = check_call(['git', 'clone', '-b', arguments.branch,
+                            chosen_urls['core'], arguments.dir])
+                if code != 0:  # default to master if branch fails
+                    check_call(['git', 'clone', '-b', 'master', chosen_urls['core'],
+                        arguments.dir])
 
-            if code != 0:  # default to master if branch fails
-                check_call(['git', 'clone', '-b', 'master', chosen_urls['core'],
-                     arguments.dir])
+                os.chdir(arguments.dir)
+                check_call(['git', 'submodule', 'init'])
+                check_call(['git', 'submodule', 'update'])
 
-            os.chdir(arguments.dir)
-            check_call(['git', 'submodule', 'init'])
-            check_call(['git', 'submodule', 'update'])
+                os.chdir('3rdparty')
+                check_call(['git', 'checkout', arguments.branch])
+                os.chdir('..')
 
-            os.chdir('3rdparty')
-            check_call(['git', 'checkout', arguments.branch])
-            os.chdir('..')
+                os.mkdir('data')
 
-            os.mkdir('data')
+                # make config/ read and writeable to run the setup
+                os.chmod('config', os.stat('config').st_mode
+                        | stat.S_IXOTH   # a+x
+                        | stat.S_IROTH   # a+r
+                        | stat.S_IWOTH)  # a+w
 
-            # make config/ read and writeable to run the setup
-            os.chmod('config', os.stat('config').st_mode
-                     | stat.S_IXOTH   # a+x
-                     | stat.S_IROTH   # a+r
-                     | stat.S_IWOTH)  # a+w
-
-            os.chmod('apps', os.stat('apps').st_mode
-                     | stat.S_IWOTH)  # a+w
+                os.chmod('apps', os.stat('apps').st_mode
+                        | stat.S_IWOTH)  # a+w
 
             if arguments.level == 'base':
                 os.chdir('apps')
@@ -130,6 +135,20 @@ class SetUp(Plugin):
                     code = check_call(['git', 'clone', '-b', arguments.branch, app_url])
                     if code != 0:
                         code = check_call(['git', 'clone', '-b', 'master', app_url])
+            else:
+                print('\nSelected setup type is neither core nor base. Trying to')
+                print('clone repository named ' + arguments.level + '.')
+                try:
+                  os.chdir(arguments.dir)
+                except FileNotFoundError:
+                    raise DependencyError("\nYou need at least the core environment ready" \
+                                          "\nto be able to clone a specific repository!")
+                os.chdir('apps')
+                # repository might not have that specific branch, in that
+                # case just take master
+                code = check_call(['git', 'clone', '-b', arguments.branch, chosen_urls[arguments.level]])
+                if code != 0:
+                    code = check_call(['git', 'clone', '-b', 'master', chosen_urls[arguments.level]])
 
             print('\nSuccessfully set up development environment!')
             print('To run the setup you will need to change the group and owner')
