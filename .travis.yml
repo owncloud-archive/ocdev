@@ -15,6 +15,7 @@ matrix:
   - exclude:
     - python: 3.2
       env: APP_VERSION=6 JINJA_FROM_PIP=1
+  - exclude:
     - python: 3.2
       env: APP_VERSION=7 JINJA_FROM_PIP=1
   # uncomment if testing and one build fail should abort whole build
