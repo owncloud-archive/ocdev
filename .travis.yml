@@ -14,10 +14,8 @@ install:
   # install the lib
   - pip install setuptools
   - python setup.py install
-  - if [[ "0" == "$JINJA_FROM_PIP" || $(python --version) == *3.2.* ]]
-  -   then echo sudo apt-get install python3-jinja2
-  -   else pip install -r requirements.txt
-  - fi
+  # PIP and Repository matrix, python 3.2 only works with the repo version
+  - if [[ "0" == "$JINJA_FROM_PIP" || $(python --version) == *3.2.* ]]; then echo sudo apt-get install python3-jinja2; else pip install -r requirements.txt; fi
   # install phpunit and php
   - sudo apt-get install php5
   - wget https://phar.phpunit.de/phpunit.phar
