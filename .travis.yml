@@ -10,7 +10,7 @@ env:
 
 install:
   # use older pip version if on python 3.2 to prevent breakage
-  - if [[ $(python --version) == *3.2.* ]]; then pip install -q jinja==2.6; echo "3.2!!!!"; fi
+  - ci/python3.2
   # install the lib
   - pip install setuptools
   - python setup.py install

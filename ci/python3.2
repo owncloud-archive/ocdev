@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# abort on exit failure
+set -ev
+
+if [[ $(python --version) == *3.2.* ]]; then
+	pip install -q jinja==2.6
+	echo "3.2!!!!"
+fi
