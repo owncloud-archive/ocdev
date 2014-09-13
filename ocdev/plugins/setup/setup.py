@@ -139,10 +139,6 @@ class SetUp(Plugin):
             elif arguments.level != 'core':
                 print('\nSelected setup type is neither core nor base. Trying to')
                 print('clone repository named ' + arguments.level + '.')
-                try:
-                  os.chdir(arguments.dir)
-                except FileNotFoundError:
-                    raise DependencyError("\nOutput directory not found!")
                 # repository might not have that specific branch, in that
                 # case just take master
                 code = check_call(['git', 'clone', '-b', arguments.branch, chosen_urls[arguments.level]])
