@@ -5,7 +5,7 @@ namespace OCA\{{ app.namespace }}\AppInfo;
 
 
 use \OCP\AppFramework\App;
-use OCP\IContainer;
+use \OCP\IContainer;
 
 use \OCA\{{ app.namespace }}\Controller\PageController;
 

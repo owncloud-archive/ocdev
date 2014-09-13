@@ -48,8 +48,7 @@ class SetUp(Plugin):
                             news, notes, calendar, gallery, music, documents \
                             and contacts. To clone a specific repository, you \
                             can type the repository name in lowercase, e.g. \
-                            ocdev setup music. For this, it needs at least\
-                            the core environment setup.',
+                            ocdev setup music.',
                             default='core')
 
     def run(self, arguments, directory):
@@ -137,15 +136,13 @@ class SetUp(Plugin):
                     code = check_call(['git', 'clone', '-b', arguments.branch, app_url])
                     if code != 0:
                         code = check_call(['git', 'clone', '-b', 'master', app_url])
-            else:
+            elif arguments.level != 'core':
                 print('\nSelected setup type is neither core nor base. Trying to')
                 print('clone repository named ' + arguments.level + '.')
                 try:
                   os.chdir(arguments.dir)
                 except FileNotFoundError:
-                    raise DependencyError("\nYou need at least the core environment ready" \
-                                          "\nto be able to clone a specific repository!")
-                os.chdir('apps')
+                    raise DependencyError("\nOutput directory not found!")
                 # repository might not have that specific branch, in that
                 # case just take master
                 code = check_call(['git', 'clone', '-b', arguments.branch, chosen_urls[arguments.level]])
