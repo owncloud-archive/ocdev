@@ -8,12 +8,12 @@ with open('README.rst', 'r') as infile:
 
 setup (
     name = 'ocdev',
-    version = '0.0.14',
+    version = '0.0.15',
     description = 'ownCloud development tool',
     long_description = long_description,
     author = 'Bernhard Posselt',
     author_email = 'dev@bernhard-posselt.com',
-    url = 'https://github.com/Raydiation/ocdev',
+    url = 'https://github.com/owncloud/ocdev',
     packages = find_packages(),
     include_package_data = True,
     license = 'GPL',
