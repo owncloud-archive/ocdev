@@ -1,3 +1,8 @@
+ocdev (0.0.15)
+
+* Add support to clone specific repositories from ownCloud organization on GitHub
+* Activity app is also now part of base environment
+
 ocdev (0.0.14)
 
 * Fix unit tests on PHP 5.3
