@@ -69,6 +69,7 @@ class SetUp(Plugin):
                 'core': 'git@github.com:owncloud/core.git',
                 'apps': [
                     'git@github.com:owncloud/news.git',
+                    'git@github.com:owncloud/activity.git',
                     'git@github.com:owncloud/gallery.git',
                     'git@github.com:owncloud/music.git',
                     'git@github.com:owncloud/notes.git',
@@ -84,6 +85,7 @@ class SetUp(Plugin):
                 'core': 'https://github.com/owncloud/core.git',
                 'apps': [
                     'https://github.com/owncloud/news.git',
+                    'https://github.com/owncloud/activity.git',
                     'https://github.com/owncloud/gallery.git',
                     'https://github.com/owncloud/music.git',
                     'https://github.com/owncloud/notes.git',
