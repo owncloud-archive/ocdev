@@ -15,6 +15,7 @@ install:
   - pip install setuptools
   - python setup.py install
   # install phpunit and php
+  - sudo apt-get update
   - sudo apt-get install php5
   - wget https://phar.phpunit.de/phpunit.phar
   - chmod +x phpunit.phar
