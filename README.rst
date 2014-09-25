@@ -59,15 +59,16 @@ or::
 
 If you use **base** the following additional apps will be installed:
 
+* activity
+* bookmarks
 * calendar
+* chat
 * contacts
+* documents
 * gallery
 * music
 * notes
 * news
-* chat
-* bookmarks
-* documents
 
 If at least **core** is set up, you can use::
 
