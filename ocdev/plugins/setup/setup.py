@@ -55,7 +55,7 @@ class SetUp(Plugin):
         """
         throws a DependencyError if git is not installed
         """
-        directory = directory.rstrip('//')
+        directory = os.path.normpath(directory)
         try:
             self.git_clone(arguments, directory)
         except FileNotFoundError as e:
