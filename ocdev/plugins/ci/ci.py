@@ -20,7 +20,7 @@ class ContinousIntegration(Plugin):
 
     def add_sub_parser(self, main_parser):
         parser = main_parser.add_parser('ci', help='Sets up ownCloud install \
-                                        for running the continious integration \
+                                        for running the continuous integration \
                                         tests')
         parser.set_defaults(which='ci')
 
