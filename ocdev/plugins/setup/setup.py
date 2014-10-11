@@ -145,16 +145,16 @@ class SetUp(Plugin):
                 code = check_call(['git', 'clone', '-b', arguments.branch, chosen_urls[arguments.level]])
                 if code != 0:
                     code = check_call(['git', 'clone', '-b', 'master', chosen_urls[arguments.level]])
-
-            print('\nSuccessfully set up development environment!')
-            print('To run the setup you will need to change the group and owner')
-            print('of the data directory to be owned by your webserver user and')
-            print('group (http in this case, otherwise apache, www-data or httpd):\n')
-            print('    sudo chown -R http:http %s/data' % directory)
-            print('or')
-            print('    sudo chown -R httpd:httpd %s/data' % directory)
-            print('or')
-            print('    sudo chown -R www-data:www-data %s/data\n' % directory)
+            if arguments.level == 'base' or arguments.level == 'core':
+                print('\nSuccessfully set up development environment!')
+                print('To run the setup you will need to change the group and owner')
+                print('of the data directory to be owned by your webserver user and')
+                print('group (http in this case, otherwise apache, www-data or httpd):\n')
+                print('    sudo chown -R http:http %s/data' % directory)
+                print('or')
+                print('    sudo chown -R httpd:httpd %s/data' % directory)
+                print('or')
+                print('    sudo chown -R www-data:www-data %s/data\n' % directory)
 
         else:
             print('Can not write to directory %s. Aborted' % directory)
