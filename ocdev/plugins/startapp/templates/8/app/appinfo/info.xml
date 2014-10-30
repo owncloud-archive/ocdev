@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<info>
+    <id>{{ app.id }}</id>
+    <name>{{ app.name }}</name>
+    <description>{{ app.description }}</description>
+    <licence>{{ app.license | upper }}</licence>
+    <author>{% for author in app.authors %}{{ author.name }}{% if not loop.last %},{% endif %}{% endfor %}</author>
+    <version>{{ app.version }}</version>
+    <requiremin>{{ app.owncloud_version }}</requiremin>
+</info>

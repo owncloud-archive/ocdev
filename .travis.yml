@@ -7,6 +7,7 @@ python:
 env:
   - APP_VERSION=6
   - APP_VERSION=7
+  - APP_VERSION=8
 
 install:
   # use older pip version if on python 3.2 to prevent breakage
