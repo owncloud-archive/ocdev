@@ -1,3 +1,7 @@
+ocdev (0.0.16)
+
+* use absolute path for datadirectory when running the ocdev ci command
+
 ocdev (0.0.15)
 
 * Add support to clone specific repositories from ownCloud organization on GitHub

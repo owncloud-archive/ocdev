@@ -37,7 +37,7 @@ class ContinousIntegration(Plugin):
                 'user': 'admin',
                 'password': 'admin'
             },
-            'data': 'data',
+            'data': join(directory, 'data'),
             'database': {
                 'user': 'oc_autotest',
                 'password': '',
