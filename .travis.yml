@@ -5,8 +5,8 @@ python:
   - 3.4
 
 env:
-  - APP_VERSION=7 BRANCH=stable7
-  - APP_VERSION=8 BRANCH=master
+  - OWNCLOUD=7 BRANCH=stable7
+  - OWNCLOUD=8 BRANCH=master
 
 install:
   # use older pip version if on python 3.2 to prevent breakage
@@ -26,7 +26,7 @@ before_script:
   - cd ../
   - ocdev setup core --branch $BRANCH
   - cd core/apps
-  - ocdev startapp --mail test --author test --version $APP_VERSION MyApp
+  - ocdev startapp --mail test --author test --owncloud $OWNCLOUD MyApp
   - cd myapp
 
 script:
