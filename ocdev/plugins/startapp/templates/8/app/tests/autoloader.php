@@ -42,3 +42,6 @@ spl_autoload_register(function ($className){
         }
     }
 });
+
+// create a new server instance
+OC::$server = new \OC\Server();
