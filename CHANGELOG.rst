@@ -1,3 +1,8 @@
+ocdev (0.0.17)
+
+* Remove app creation for ownCloud 6 since there are no dev docs, 7 is recommended
+* Bump default required ownCloud version to 7.0.3 since the package built with the makefile relies on bugfixes in core
+
 ocdev (0.0.16)
 
 * use absolute path for datadirectory when running the ocdev ci command

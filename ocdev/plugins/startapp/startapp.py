@@ -20,7 +20,7 @@ class Author:
 
 class Arguments:
 
-    def __init__(self, name, description='', license='agpl', owncloud='6.0.3',
+    def __init__(self, name, description='', license='agpl', owncloud='7.0.3',
                  version='0.0.1', authors=[], output=''):
         self.authors = authors
         self.name = name
@@ -57,7 +57,7 @@ class StartApp(Plugin):
         parser.add_argument('--license', help='The app license', default='agpl',
                             choices=['agpl', 'mit'])
         parser.add_argument('--owncloud', help='Required ownCloud version',
-                            default='7.0.0')
+                            default='7.0.3')
         parser.add_argument('--version', help='App version', default='0.0.1')
         parser.add_argument('--output', help='Output generated files into \
                             this directory instead of the current one if given',

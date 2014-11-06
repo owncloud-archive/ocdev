@@ -5,7 +5,6 @@ python:
   - 3.4
 
 env:
-  - APP_VERSION=6 BRANCH=stable6
   - APP_VERSION=7 BRANCH=stable7
   - APP_VERSION=8 BRANCH=master
 
