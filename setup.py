@@ -6,9 +6,12 @@ with open('requirements.txt', 'r') as infile:
 with open('README.rst', 'r') as infile:
     long_description = infile.read()
 
+with open("ocdev/version.txt", 'r') as infile:
+    version = ''.join(infile.read().split())
+
 setup (
     name = 'ocdev',
-    version = '0.0.17',
+    version = version,
     description = 'ownCloud development tool',
     long_description = long_description,
     author = 'Bernhard Posselt',

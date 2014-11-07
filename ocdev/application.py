@@ -9,6 +9,9 @@ __license__ = 'AGPL3+'
 __maintainer__ = 'Bernhard Posselt'
 __email__ = 'dev@bernhard-posselt.com'
 
+# parse version from version.txt file
+from ocdev.version import get_version
+__version__ = get_version()
 
 import argparse
 import sys
