@@ -5,12 +5,12 @@ Baseclass for creating plugins
 class Plugin:
 
 
-    def __init__(self, command):
-        self._command = command
+    def __init__(self, *commands):
+        self._commands = commands
 
 
     def can_handle(self, command):
-        if command == self._command:
+        if command in self._commands:
             return True
         else:
             return False

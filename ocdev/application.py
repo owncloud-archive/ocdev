@@ -22,6 +22,8 @@ from ocdev.plugins import PLUGINS
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument('--version', action='version', version=__version__,
+                        help='Print out the ocdev version')
     parsers = parser.add_subparsers(help='commands')
 
     for plugin in PLUGINS:

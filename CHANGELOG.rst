@@ -1,3 +1,7 @@
+ocdev (0.0.19)
+
+* Switch version to shorter ocdev --version
+
 ocdev (0.0.18)
 
 * Keep version in ocdev/version.txt and provide an ocdev version command to get the current version

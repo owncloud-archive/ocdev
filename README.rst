@@ -52,7 +52,7 @@ Get the currently installed version
 
 To get the currently active version run::
 
-    ocdev version
+    ocdev --version
 
 Setting up a development environment
 ====================================
