@@ -1,6 +1,6 @@
 <?php
-\OCP\Util::addScript('{{ app.id }}', 'script');
-\OCP\Util::addStyle('{{ app.id }}', 'style');
+script('{{ app.id }}', 'script');
+style('{{ app.id }}', 'style');
 ?>
 
 <div id="app">
