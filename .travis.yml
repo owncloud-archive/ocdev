@@ -30,7 +30,7 @@ before_script:
   - cd ../
   - ocdev setup core --branch $BRANCH
   - cd core/apps
-  - ocdev startapp --mail test --author test --owncloud $OWNCLOUD MyApp
+  - ocdev startapp --email test --author test --owncloud $OWNCLOUD MyApp
   - cd myapp
 
 script:

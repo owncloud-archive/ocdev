@@ -21,7 +21,7 @@ class Author:
 class Arguments:
 
     def __init__(self, name, description='', license='agpl', owncloud='7.0.3',
-                 version='0.0.1', authors=[], output=''):
+                 version='0.0.1', authors=[], output='', category='multimedia'):
         self.authors = authors
         self.name = name
         self.description = description
@@ -30,7 +30,7 @@ class Arguments:
         self.version = version
         self.output = output
         self.attrs = ['authors', 'name', 'description', 'license', 'owncloud',
-                      'version']
+                      'version', 'category']
 
     def __contains__(self, item):
         if item in self.attrs:
@@ -49,13 +49,18 @@ class StartApp(Plugin):
         parser = main_parser.add_parser('startapp', help='Create an app')
         parser.set_defaults(which='startapp')
 
-        parser.add_argument('--author', help='Author\'s name', required=True)
-        parser.add_argument('--mail', help='Author\'s E-Mail', required=True)
+        parser.add_argument('--author', help='Author\'s name')
+        parser.add_argument('--email', help='Author\'s E-Mail')
         parser.add_argument('--description', help='Whether license headers \
-                            should be included in every file', default='')
+                            should be included in every file',
+                            default='My first ownCloud app')
         parser.add_argument('--homepage', help='Author\'s homepage', default='')
         parser.add_argument('--license', help='The app license', default='agpl',
                             choices=['agpl', 'mit'])
+        parser.add_argument('--category', help='The app category',
+                            default='other',
+                            choices=['multimedia', 'tool', 'pim', 'other',
+                                     'game', 'productivity'])
         parser.add_argument('--owncloud', help='Required ownCloud version',
                             default='7.0.3')
         parser.add_argument('--version', help='App version', default='0.0.1')
@@ -67,7 +72,7 @@ class StartApp(Plugin):
                             'Must be camel case e.g. MyApp'))
 
 
-    def run(self, arguments, directory):
+    def run(self, arguments, directory, settings):
         # overwrite default path if argument given
         if arguments.output != '':
             directory = arguments.output
@@ -82,14 +87,17 @@ class StartApp(Plugin):
 
         # if author is given its being run from commandline and the list has to
         # be assembled first
-        if 'author' in arguments:
-            authors = [{
-                'name': arguments.author,
-                'email': arguments.mail,
-                'homepage': arguments.homepage
-            }]
-        else:
+        if 'authors' in arguments:
             authors = arguments.authors
+        else:
+            authors = []
+            author =  {}
+            for key, tmpl_name in zip(['author', 'email'], ['name', 'email']):
+                if key in arguments and getattr(arguments, key):
+                    author[tmpl_name] = getattr(arguments, key)
+                else:
+                    author[tmpl_name] = settings.get_value('startapp', key)
+            authors.append(author)
 
         # get licenses
         small_license_header = 'includes/licenses/%s.header.php' % arguments.license
@@ -106,7 +114,8 @@ class StartApp(Plugin):
                 'namespace': arguments.name,
                 'small_license_header': small_license_header,
                 'full_license': full_license,
-                'authors': authors
+                'authors': authors,
+                'category': arguments.category
             },
             'date': {
                 'year': datetime.date.today().year

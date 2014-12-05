@@ -18,9 +18,14 @@ import sys
 import os
 
 from ocdev.plugins import PLUGINS
-
+from ocdev.config import UserSettings
 
 def main():
+    # read file in home directory
+    user_config_path = os.path.join(os.path.expanduser('~'), '.ocdevrc')
+    settings = UserSettings(user_config_path)
+    settings.read()
+
     parser = argparse.ArgumentParser()
     parser.add_argument('--version', action='version', version=__version__,
                         help='Print out the ocdev version')
@@ -35,9 +40,10 @@ def main():
     try:
         for plugin in PLUGINS:
             if plugin.can_handle(arguments.which):
-                plugin.run(arguments, os.getcwd())
+                plugin.run(arguments, os.getcwd(), settings)
 
     except AttributeError as e:
+        print(e)
         parser.print_help()
         exit(1)
 

@@ -8,4 +8,5 @@
     <version>{{ app.version }}</version>
     <namespace>{{ app.namespace }}</namespace>
     <requiremin>{{ app.owncloud_version }}</requiremin>
+    <category>{{ app.category }}</category>
 </info>

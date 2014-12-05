@@ -2,16 +2,8 @@ import os
 import stat
 from subprocess import check_call
 
+from ocdev.plugins.errors import DependencyError
 from ocdev.plugins.plugin import Plugin
-
-
-class DependencyError(Exception):
-
-    def __init__(self, msg):
-        self.msg = msg
-
-    def __str__(self):
-        return self.msg
 
 
 class Arguments:
@@ -51,7 +43,7 @@ class SetUp(Plugin):
                             ocdev setup music.',
                             default='core')
 
-    def run(self, arguments, directory):
+    def run(self, arguments, directory, settings):
         """
         throws a DependencyError if git is not installed
         """

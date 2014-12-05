@@ -1,3 +1,11 @@
+ocdev (0.1.0)
+
+* Add the possibility to release and update an app on the app store
+* Add Makefile for ownCloud 8 to build an app package and upload the app to the app store
+* Add a configuration file ~/.ocdevrc where often used settings are saved
+* Rename the --mail paramter to --email for the startapp command
+* Add a --category parameter to the startapp command
+
 ocdev (0.0.19)
 
 * Switch version to shorter ocdev --version

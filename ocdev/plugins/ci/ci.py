@@ -28,7 +28,7 @@ class ContinousIntegration(Plugin):
                             choices=['mysql', 'sqlite', 'postgresql'])
 
 
-    def run(self, arguments, directory):
+    def run(self, arguments, directory, settings):
         current_dir = dirname(realpath(__file__))
         template_dir = join(current_dir, 'templates')
 
