@@ -16,7 +16,7 @@
 			$.post(url, data).success(function (response) {
 				$('#echo-result').text(response.echo);
 			});
-			
+
 		});
 	});
 
