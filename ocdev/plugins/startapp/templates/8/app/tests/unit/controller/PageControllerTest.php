@@ -36,7 +36,7 @@ class PageControllerTest extends \PHPUnit_Framework_TestCase {
 
 
 	public function testEcho() {
-		$result = $this->pageController->doEcho();
+		$result = $this->pageController->doEcho('hi');
 		$this->assertEquals(['echo' => 'hi'], $result->getData());
 	}
 
