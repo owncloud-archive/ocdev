@@ -25,16 +25,20 @@ class PageControllerTest extends \PHPUnit_Framework_TestCase {
 		$this->pageController = $this->container->query('PageController');
 	}
 
+
 	public function testIndex() {
 		$result = $this->pageController->index();
 
-		$this->assertEquals(array('user' => 'john'), $result->getParams());
+		$this->assertEquals(['user' => 'john'], $result->getParams());
 		$this->assertEquals('main', $result->getTemplateName());
 		$this->assertTrue($result instanceof TemplateResponse);
 	}
 
+
 	public function testEcho() {
-		$result = $this->pageController->ajax();
-		$this->assertEquals(array('echo' => 'hi'), $result->getData());
+		$result = $this->pageController->doEcho('hi');
+		$this->assertEquals(['echo' => 'hi'], $result->getData());
 	}
+
+
 }

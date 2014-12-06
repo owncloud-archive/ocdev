@@ -8,6 +8,11 @@ env:
   - OWNCLOUD=7 BRANCH=stable7
   - OWNCLOUD=8 BRANCH=master
 
+before_install:
+  - sudo add-apt-repository ppa:ondrej/php5-oldstable -y
+  - sudo apt-get update
+  - sudo apt-get -o DPkg::Options::="--force-confold" -y upgrade
+
 install:
   # use older pip version if on python 3.2 to prevent breakage
   - if [[ $TRAVIS_PYTHON_VERSION == '3.2' ]]; then pip install jinja2==2.6; fi

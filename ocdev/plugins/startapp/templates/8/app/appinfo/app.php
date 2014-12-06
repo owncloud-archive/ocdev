@@ -3,7 +3,7 @@
 
 namespace OCA\{{ app.namespace }}\AppInfo;
 
-\OCP\App::addNavigationEntry(array(
+\OCP\App::addNavigationEntry([
 	// the string under which your app will be referenced in owncloud
 	'id' => '{{ app.id }}',
 
@@ -21,4 +21,4 @@ namespace OCA\{{ app.namespace }}\AppInfo;
 	// the title of your application. This will be used in the
 	// navigation or on the settings page of your app
 	'name' => \OC_L10N::get('{{ app.id }}')->t('{{ app.name }}')
-));
+]);
