@@ -13,7 +13,7 @@ namespace OCA\{{ app.namespace }}\AppInfo;
  */
 $application = new Application();
 
-$application->registerRoutes($this, array('routes' => array(
-	array('name' => 'page#index', 'url' => '/', 'verb' => 'GET'),
-	array('name' => 'page#do_echo', 'url' => '/echo', 'verb' => 'POST'),
-)));
+$application->registerRoutes($this, ['routes' => [
+	['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
+	['name' => 'page#do_echo', 'url' => '/echo', 'verb' => 'POST'],
+]]);

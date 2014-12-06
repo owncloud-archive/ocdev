@@ -10,7 +10,8 @@ use \OCA\{{ app.namespace }}\Controller\PageController;
 
 class Application extends App {
 
-	public function __construct (array $urlParams=array()) {
+
+	public function __construct (array $urlParams=[]) {
 		parent::__construct('{{ app.id }}', $urlParams);
 
 		$container = $this->getContainer();
@@ -20,7 +21,7 @@ class Application extends App {
 		 */
 		$container->registerService('PageController', function(IContainer $c) {
 			return new PageController(
-				$c->query('AppName'), 
+				$c->query('AppName'),
 				$c->query('Request'),
 				$c->query('UserId')
 			);
@@ -33,6 +34,7 @@ class Application extends App {
 		$container->registerService('UserId', function(IContainer $c) {
 			return \OCP\User::getUser();
 		});
-
 	}
+
+
 }

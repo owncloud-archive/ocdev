@@ -10,6 +10,7 @@ use \OCP\AppFramework\Controller;
 
 class PageController extends Controller {
 
+
 	private $userId;
 
 	public function __construct($appName, IRequest $request, $userId){
@@ -28,7 +29,7 @@ class PageController extends Controller {
 	 * @NoCSRFRequired
 	 */
 	public function index() {
-		$params = array('user' => $this->userId);
+		$params = ['user' => $this->userId];
 		return new TemplateResponse('{{ app.id }}', 'main', $params);  // templates/main.php
 	}
 
@@ -37,6 +38,8 @@ class PageController extends Controller {
 	 * @NoAdminRequired
 	 */
 	public function doEcho($echo) {
-		return new DataResponse(array('echo' => $echo));
+		return new DataResponse(['echo' => $echo]);
 	}
+
+
 }
