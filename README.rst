@@ -36,7 +36,7 @@ If it outputs **Python 3.2 or lower** (e.g. on **Ubuntu 12.04**) you will **need
 
 Then install the tool::
 
-    sudo pip3 install ocdev
+    sudo pip-3.2 install ocdev
 
 For the **setup** command, **git** has to be installed.
 
@@ -44,7 +44,7 @@ Updating
 ========
 To update the library run::
 
-    sudo pip3 install --upgrade ocdev
+    sudo pip-3.2 install --upgrade ocdev
 
 
 Get the currently installed version
