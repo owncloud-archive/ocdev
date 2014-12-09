@@ -22,7 +22,7 @@ dist: clean
 
 appstore: appstore_package
 	phpunit -c phpunit.xml  # run tests before release
-	ocdev appstore release --archive build/artifacts/appstore/$(package_name).tar.gz
+	ocdev appstore release build/artifacts/appstore/$(package_name).tar.gz
 
 appstore_package: clean
 	mkdir -p $(appstore_dir)

@@ -36,18 +36,14 @@ class AppStore(Plugin):
     def add_sub_parser(self, main_parser):
         default_path = getcwd()
         default_app_name = basename(default_path)
-        default_archive_dir = join(default_path,
-                                   'build/artifacts/appstore/%s.tar.gz'
-                                    % default_app_name)
         parser = main_parser.add_parser('appstore', help='Lets you release and \
                                         update apps on the appstore. Settings \
                                         are read from ~/.ocdevrc')
         parser.set_defaults(which='appstore')
 
         parser.add_argument('action', choices=['release'])
-        parser.add_argument('--archive', help='Full path to the release \
-                            arcchive. Defaults to %s' % default_archive_dir,
-                            default=default_archive_dir)
+        parser.add_argument('archive', help='Full path to the release \
+                            arcchive.')
 
 
     def run(self, arguments, directory, settings):
