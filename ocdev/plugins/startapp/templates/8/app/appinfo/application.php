@@ -4,7 +4,7 @@
 namespace OCA\{{ app.namespace }}\AppInfo;
 
 use \OCP\AppFramework\App;
-use \OCP\IContainer;
+use \OCP\AppFramework\IAppContainer;
 
 use \OCA\{{ app.namespace }}\Controller\PageController;
 
@@ -19,7 +19,7 @@ class Application extends App {
 		/**
 		 * Controllers
 		 */
-		$container->registerService('PageController', function(IContainer $c) {
+		$container->registerService('PageController', function(IAppContainer $c) {
 			return new PageController(
 				$c->query('AppName'),
 				$c->query('Request'),
@@ -31,7 +31,7 @@ class Application extends App {
 		/**
 		 * Core
 		 */
-		$container->registerService('UserId', function(IContainer $c) {
+		$container->registerService('UserId', function(IAppContainer $c) {
 			return \OCP\User::getUser();
 		});
 	}
