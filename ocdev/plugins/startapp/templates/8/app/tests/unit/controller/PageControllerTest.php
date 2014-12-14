@@ -22,7 +22,9 @@ class PageControllerTest extends \PHPUnit_Framework_TestCase {
 			return $phpunit->getMockBuilder('\OCP\IRequest')->getMock();
 		});
 		$this->container->registerParameter('UserId', 'john');
-		$this->pageController = $this->container->query('PageController');
+		$this->pageController = $this->container->query(
+			'OCA\{{ app.namespace }}\Controller\PageController'
+		);
 	}
 
 
