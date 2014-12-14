@@ -74,8 +74,6 @@ class AppStore(Plugin):
 
         name = root.findtext('./name', '').strip()
         category = root.findtext('./category', '').strip()
-        requiremin = root.findtext('./requiremin | ./require', '').strip()
-        requiremax = root.findtext('./requiremax', '').strip()
         description = root.findtext('./description', '').strip()
         author = root.findtext('./author', '').strip()
         license = root.findtext('./licence', '').strip()
@@ -84,8 +82,14 @@ class AppStore(Plugin):
         bugs = root.findtext('./bugs', '').strip()
         ocsid = root.findtext('./ocsid', '').strip()
         version = root.findtext('./version', '').strip()
+        owncloud = root.findall('./dependencies/owncloud')
+        requiremin = ''
+        if len(owncloud) == 1:
+            requiremin = owncloud[0].get('min-version', '')
+            requiremax = owncloud[0].get('max-version', '')
 
         # required attributes
+        self.require_not_empty(requiremin, 'owncloud', 'min-version')
         self.require_not_empty(name, 'name')
         self.require_not_empty(category, 'category')
         self.require_not_empty(description, 'description')
@@ -157,6 +161,10 @@ class AppStore(Plugin):
         return tree.findtext('.//meta/statuscode')
 
 
-    def require_not_empty(self, value, name):
+    def require_not_empty(self, value, name, tag=None):
         if value.strip() == '':
-            raise DependencyError('Error: field %s not found or empty' % name)
+            if tag:
+                msg = 'Error: tag %s of field %s not found or empty' % (tag, name)
+            else:
+                msg = 'Error: field %s not found or empty' % name
+            raise DependencyError(msg)
