@@ -79,7 +79,7 @@ class AppStore(Plugin):
         description = root.findtext('./description', '').strip()
         author = root.findtext('./author', '').strip()
         license = root.findtext('./licence', '').strip()
-        homepage = root.findtext('./homepage', '').strip()
+        homepage = root.findtext('./website', '').strip()
         repository = root.findtext('./repository', '').strip()
         bugs = root.findtext('./bugs', '').strip()
         ocsid = root.findtext('./ocsid', '').strip()
