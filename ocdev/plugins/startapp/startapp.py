@@ -95,9 +95,11 @@ class StartApp(Plugin):
         small_license_header = 'includes/licenses/%s.header.php' % arguments.license
         full_license = 'includes/licenses/%s.txt' % arguments.license
 
+        app_id = '_'.join(re.findall('[A-Z][^A-Z]*', arguments.name)).lower()
+
         params = {
             'app': {
-                'id': arguments.name.lower(),
+                'id': app_id,
                 'name': ' '.join(re.findall(r'[A-Z][^A-Z]*', arguments.name)),
                 'description': arguments.description,
                 'license': arguments.license,
