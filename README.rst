@@ -34,6 +34,10 @@ If it outputs **Python 3.2 or lower** (e.g. on **Ubuntu 12.04**) you will **need
 
     sudo apt-get install python3-jinja2
 
+On Ubuntu 14.04, python is sym-linked to python 2.x. you use **python3** to call **python 3.x**. If you want to use **python** to call **python 3.x**, you can edit the links manually in /usr/bin or::
+
+    update-alternatives --install /usr/bin/python python /usr/bin/python3 10
+    
 Then install the tool::
 
     sudo pip3 install ocdev
