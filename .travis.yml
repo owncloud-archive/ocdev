@@ -11,7 +11,6 @@ env:
 before_install:
   - sudo add-apt-repository ppa:ondrej/php5-oldstable -y
   - sudo apt-get update
-  - sudo apt-get -o DPkg::Options::="--force-confold" -y upgrade
 
 install:
   # use older pip version if on python 3.2 to prevent breakage
