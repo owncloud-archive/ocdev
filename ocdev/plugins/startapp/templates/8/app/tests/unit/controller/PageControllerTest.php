@@ -4,7 +4,7 @@
 namespace OCA\{{ app.namespace }}\Controller;
 
 use \OCP\AppFramework\Http\TemplateResponse;
-use \OCA\{{ app.namespace }}\AppInfo\Application;
+use \OCP\AppFramework\App;
 
 class PageControllerTest extends \PHPUnit_Framework_TestCase {
 	/** @var \OCP\AppFramework\IAppContainer */
@@ -15,14 +15,16 @@ class PageControllerTest extends \PHPUnit_Framework_TestCase {
 
 	public function setUp() {
 		parent::setUp();
-		$app = new Application();
+		$app = new App('{{ app.id }}');
 		$phpunit = $this;
 		$this->container = $app->getContainer();
 		$this->container->registerService('Request', function($c) use ($phpunit) {
 			return $phpunit->getMockBuilder('\OCP\IRequest')->getMock();
 		});
 		$this->container->registerParameter('UserId', 'john');
-		$this->pageController = $this->container->query('PageController');
+		$this->pageController = $this->container->query(
+			'OCA\{{ app.namespace }}\Controller\PageController'
+		);
 	}
 
 
