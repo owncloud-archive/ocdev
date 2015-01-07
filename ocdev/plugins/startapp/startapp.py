@@ -62,7 +62,7 @@ class StartApp(Plugin):
                             choices=['multimedia', 'tool', 'pim', 'other',
                                      'game', 'productivity'])
         parser.add_argument('--owncloud', help='Required ownCloud version',
-                            default='7.0.3')
+                            default='8')
         parser.add_argument('--version', help='App version', default='0.0.1')
         parser.add_argument('--output', help='Output generated files into \
                             this directory instead of the current one if given',

@@ -21,7 +21,6 @@ dist: clean
 	--exclude=$(project_dir)/js/coverage
 
 appstore: appstore_package
-	phpunit -c phpunit.xml  # run tests before release
 	ocdev appstore release build/artifacts/appstore/$(package_name).tar.gz
 
 appstore_package: clean
