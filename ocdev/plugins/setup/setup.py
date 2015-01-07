@@ -104,30 +104,17 @@ class SetUp(Plugin):
         # check if directory is writeable
         if os.access(directory, os.W_OK):
             if (arguments.level == 'core' or arguments.level == 'base'):
-                code = check_call(['git', 'clone', '-b', arguments.branch,
-                            chosen_urls['core'], arguments.dir])
+                code = check_call(['git', 'clone', '--recursive', '-b',
+                        arguments.branch, chosen_urls['core'], arguments.dir])
                 if code != 0:  # default to master if branch fails
-                    check_call(['git', 'clone', '-b', 'master', chosen_urls['core'],
-                        arguments.dir])
+                    check_call(['git', 'clone', '--recursive', '-b', 'master',
+                        chosen_urls['core'], arguments.dir])
 
                 os.chdir(arguments.dir)
-                check_call(['git', 'submodule', 'init'])
-                check_call(['git', 'submodule', 'update'])
 
                 os.chdir('3rdparty')
                 check_call(['git', 'checkout', arguments.branch])
                 os.chdir('..')
-
-                os.mkdir('data')
-
-                # make config/ read and writeable to run the setup
-                os.chmod('config', os.stat('config').st_mode
-                        | stat.S_IXOTH   # a+x
-                        | stat.S_IROTH   # a+r
-                        | stat.S_IWOTH)  # a+w
-
-                os.chmod('apps', os.stat('apps').st_mode
-                        | stat.S_IWOTH)  # a+w
 
             if arguments.level == 'base':
                 os.chdir('apps')
@@ -145,16 +132,11 @@ class SetUp(Plugin):
                 code = check_call(['git', 'clone', '-b', arguments.branch, chosen_urls[arguments.level]])
                 if code != 0:
                     code = check_call(['git', 'clone', '-b', 'master', chosen_urls[arguments.level]])
-            if arguments.level == 'base' or arguments.level == 'core':
-                print('\nSuccessfully set up development environment!')
-                print('To run the setup you will need to change the group and owner')
-                print('of the data directory to be owned by your webserver user and')
-                print('group (http in this case, otherwise apache, www-data or httpd):\n')
-                print('    sudo chown -R http:http %s/data' % directory)
-                print('or')
-                print('    sudo chown -R httpd:httpd %s/data' % directory)
-                print('or')
-                print('    sudo chown -R www-data:www-data %s/data\n' % directory)
 
+            if arguments.level == 'base' or arguments.level == 'core':
+                print('\nSuccessfully set up development environment!\n\n')
+                print('Setup ownCloud by changing into the cloned directory and run\n')
+                print('    php -S localhost:8080\n')
+                print('and setup your isntallation at http://localhost:8080\n\n')
         else:
             print('Can not write to directory %s. Aborted' % directory)
