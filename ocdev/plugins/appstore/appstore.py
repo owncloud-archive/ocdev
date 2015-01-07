@@ -83,7 +83,12 @@ class AppStore(Plugin):
         ocsid = root.findtext('./ocsid', '').strip()
         version = root.findtext('./version', '').strip()
         owncloud = root.findall('./dependencies/owncloud')
-        requiremin = ''
+        requiremax = root.findall('./requiremax')
+
+        # test possible minimum require syntax
+        requiremin = root.findall('./requiremin')
+        if len(requiremin) != 1:
+            requiremin = root.findall('./require')
         if len(owncloud) == 1:
             requiremin = owncloud[0].get('min-version', '')
             requiremax = owncloud[0].get('max-version', '')
