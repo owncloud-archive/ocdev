@@ -15,3 +15,5 @@ clean:
 
 pypi: clean
 	python setup.py sdist upload
+
+update: uninstall install

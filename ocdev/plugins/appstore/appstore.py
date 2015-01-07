@@ -117,7 +117,7 @@ class AppStore(Plugin):
             params['homepage3'] = bugs
             params['homepagetype3'] = 'Issue Tracker'
         if requiremax != '':
-            pass
+            params['depend2'] = requiremax
 
         from pprint import pprint
         pprint(params)
