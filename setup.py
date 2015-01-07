@@ -17,7 +17,7 @@ setup (
     author = 'Bernhard Posselt',
     author_email = 'dev@bernhard-posselt.com',
     url = 'https://github.com/owncloud/ocdev',
-    packages = find_packages(),
+    packages = find_packages(exclude=('tests',)),
     include_package_data = True,
     license = 'GPL',
     install_requires = install_requires,
