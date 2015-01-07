@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<info>
+    <name>My Test App</name>
+    <description>simple</description>
+    <licence>AGPL</licence>
+    <author>a</author>
+    <version>0.0.1</version>
+    <dependencies>
+        <owncloud min-version="8" max-version="9" />
+    </dependencies>
+    <category>other</category>
+</info>

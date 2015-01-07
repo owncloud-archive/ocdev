@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<info>
+    <name>My Test App</name>
+    <description>simple</description>
+    <author>a</author>
+    <version>0.0.1</version>
+    <requiremin>8</requiremin>
+    <requiremax>9</requiremax>
+    <category>other</category>
+</info>

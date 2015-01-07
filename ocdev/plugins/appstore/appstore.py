@@ -7,6 +7,7 @@ from xml.etree import ElementTree
 import requests
 
 from ocdev.plugins.errors import DependencyError
+from ocdev.plugins.appstore.infoparser import InfoParser
 
 
 class Arguments:
@@ -20,17 +21,6 @@ class AppStore(Plugin):
 
     def __init__(self):
         super().__init__('appstore')
-        self.categories = {
-            'multimedia': 920,
-            'pim': 921,
-            'productivity': 922,
-            'game': 923,
-            'tool': 924,
-            'other': 925
-        }
-        self.licenses = {
-            'AGPL': 16
-        }
 
 
     def add_sub_parser(self, main_parser):
@@ -69,65 +59,34 @@ class AppStore(Plugin):
             ))['%s/appinfo/info.xml' % app_name]
         )
 
-        tree = ElementTree.parse(info_xml)
-        root = tree.getroot()
-
-        name = root.findtext('./name', '').strip()
-        category = root.findtext('./category', '').strip()
-        description = root.findtext('./description', '').strip()
-        author = root.findtext('./author', '').strip()
-        license = root.findtext('./licence', '').strip()
-        homepage = root.findtext('./website', '').strip()
-        repository = root.findtext('./repository', '').strip()
-        bugs = root.findtext('./bugs', '').strip()
-        ocsid = root.findtext('./ocsid', '').strip()
-        version = root.findtext('./version', '').strip()
-        owncloud = root.findall('./dependencies/owncloud')
-        requiremax = root.findall('./requiremax')
-
-        # test possible minimum require syntax
-        requiremin = root.findall('./requiremin')
-        if len(requiremin) != 1:
-            requiremin = root.findall('./require')
-        if len(owncloud) == 1:
-            requiremin = owncloud[0].get('min-version', '')
-            requiremax = owncloud[0].get('max-version', '')
-
-        # required attributes
-        self.require_not_empty(requiremin, 'owncloud', 'min-version')
-        self.require_not_empty(name, 'name')
-        self.require_not_empty(category, 'category')
-        self.require_not_empty(description, 'description')
-        self.require_not_empty(author, 'author')
-        self.require_not_empty(license, 'licence')
-        self.require_not_empty(version, 'version')
+        parser = InfoParser()
+        result = {}
+        with open(info_xml, 'r') as f:
+            result = parser.parse(f.read())
 
         # no ocsid present means not yet in the appstore so let's upload it
         params = {
-            'name': name,
-            'type': self.categories[category],
-            'depend': requiremin,
+            'name': result['name'],
+            'type': result['category'],
+            'depend': result['requiremin'],
             'downloadtype1': 0,
-            'licensetype': self.licenses.get(license, 6),  # default to BSD
-            'version': version
+            'licensetype': result['licence'],
+            'version': result['version']
         }
 
-        if homepage != '':
-            params['homepage'] = homepage
+        if result['homepage'] != '':
+            params['homepage'] = result['homepage']
             params['homepagetype'] = 'Homepage'
-        if repository != '':
-            params['homepage2'] = repository
+        if result['repository'] != '':
+            params['homepage2'] = result['repository']
             params['homepagetype2'] = 'Version Control'
-        if bugs != '':
-            params['homepage3'] = bugs
+        if result['bugs'] != '':
+            params['homepage3'] = result['bugs']
             params['homepagetype3'] = 'Issue Tracker'
-        if requiremax != '':
-            params['depend2'] = requiremax
+        if result['requiremax'] != '':
+            params['depend2'] = result['requiremax']
 
-        from pprint import pprint
-        pprint(params)
-
-        if ocsid == '':
+        if result['ocsid'] == '':
             create_url = '%s/content/add ' % url
             response = requests.post(create_url, params=params, auth=(user, password))
             code = self.get_status_code(response)
@@ -142,14 +101,14 @@ class AppStore(Plugin):
             print('Please add <ocsid>%s</ocsid> to your appinfo/info.xml to ' +
                   'be able to update the uploaded app' % ocsid)
         else:
-            update_url = '%s/content/edit/%s' % (url, ocsid)
+            update_url = '%s/content/edit/%s' % (url, result['ocsid'])
             response = requests.post(update_url, params=params, auth=(user, password))
             code = self.get_status_code(response)
 
             if code == '102':
                 raise Exception('Not authorized! Check your credentials.')
 
-        upload_file_url = '%s/content/uploaddownload/%s' % (url, ocsid)
+        upload_file_url = '%s/content/uploaddownload/%s' % (url, result['ocsid'])
         file = {'localfile': open(archive_dir, 'rb')}
         response = requests.post(files=file)
         code = self.get_status_code(response)
@@ -164,12 +123,3 @@ class AppStore(Plugin):
     def get_status_code(self, response):
         tree = ElementTree.fromstring(response.text)
         return tree.findtext('.//meta/statuscode')
-
-
-    def require_not_empty(self, value, name, tag=None):
-        if value.strip() == '':
-            if tag:
-                msg = 'Error: tag %s of field %s not found or empty' % (tag, name)
-            else:
-                msg = 'Error: field %s not found or empty' % name
-            raise DependencyError(msg)

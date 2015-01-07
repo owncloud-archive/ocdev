@@ -22,6 +22,7 @@ setup (
     license = 'GPL',
     install_requires = install_requires,
     keywords = ['owncloud', 'app', 'scaffolding', 'setup', 'development'],
+    test_suite = 'tests',
     entry_points = {
         'console_scripts': [
             'ocdev = ocdev.application:main'

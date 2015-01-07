@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<info>
+    <name>My Test App</name>
+    <description>simple</description>
+    <licence>AGPL</licence>
+    <author>a</author>
+    <version>0.0.1</version>
+    <require>8</require>
+    <category>other</category>
+    <version>0.0.1</version>
+</info>

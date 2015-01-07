@@ -35,4 +35,6 @@ before_script:
 
 script:
   - phpunit tests
+  - cd ../../../
+  - python3 setup.py test
 

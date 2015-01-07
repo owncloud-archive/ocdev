@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<info>
+    <!-- metadata -->
+    <id>news</id>
+    <name>News</name>
+    <description>An RSS/Atom feed reader</description>
+    <author>Bernhard Posselt, Alessandro Cosentino, Jan-Christoph Borchardt</author>
+    <category>multimedia</category>
+    <licence>AGPL</licence>
+    <version>4.3.2</version>
+
+    <!-- resources -->
+    <documentation>
+        <user>https://github.com/owncloud/news/wiki#user-documentation</user>
+        <admin>https://github.com/owncloud/news#readme</admin>
+        <developer>https://github.com/owncloud/news/wiki#developer-documentation</developer>
+    </documentation>
+    <website>https://github.com/owncloud/news</website>
+    <bugs>https://github.com/owncloud/news/issues</bugs>
+    <repository type="git">https://github.com/owncloud/news.git</repository>
+
+    <!-- dependencies -->
+    <dependencies>
+        <owncloud min-version="7.6" />
+        <php min-version="5.4" />
+        <database>pgsql</database>
+        <database>sqlite</database>
+        <database>mysql</database>
+        <lib min-version="2.7.8">libxml</lib>
+        <lib>curl</lib>
+        <lib>SimpleXML</lib>
+    </dependencies>
+    <ocsid>168040</ocsid>
+</info>
