@@ -60,9 +60,7 @@ class AppStore(Plugin):
         )
 
         parser = InfoParser()
-        result = {}
-        with open(info_xml, 'r') as f:
-            result = parser.parse(f.read())
+        result = parser.parse(info_xml.read())
 
         # no ocsid present means not yet in the appstore so let's upload it
         params = {
