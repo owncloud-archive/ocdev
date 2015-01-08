@@ -85,5 +85,20 @@ class InfoParserTest(unittest.TestCase):
         with self.assertRaises(DependencyError):
             self.parser.parse(xml)
 
+    def test_all(self):
+        xml = self.load_file('all_info.xml')
+        result = self.parser.parse(xml)
+        self.assertEqual('News', result['name'])
+        self.assertEqual(920, result['category'])
+        self.assertEqual('An RSS/Atom feed reader', result['description'])
+        self.assertEqual('Bernhard Posselt', result['author'])
+        self.assertEqual(16, result['licence'])
+        self.assertEqual('4.3.2', result['version'])
+        self.assertEqual('7.6', result['requiremin'])
+        self.assertEqual('https://github.com/owncloud/news', result['homepage'])
+        self.assertEqual('https://github.com/owncloud/news/issues', result['bugs'])
+        self.assertEqual('https://github.com/owncloud/news.git', result['repository'])
+        self.assertEqual('168040', result['ocsid'])
+
 if __name__ == '__main__':
     unittest.main()
