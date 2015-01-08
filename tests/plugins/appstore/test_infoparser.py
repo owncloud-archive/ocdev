@@ -2,7 +2,7 @@ import unittest
 from os.path import join, dirname
 
 from ocdev.plugins.appstore.infoparser import InfoParser
-from ocdev.plugins.errors import DependencyError
+from ocdev.plugins.appstore.invalidconfigerror import InvalidConfigError
 
 
 class InfoParserTest(unittest.TestCase):
@@ -42,17 +42,17 @@ class InfoParserTest(unittest.TestCase):
 
     def test_simple_no_author(self):
         xml = self.load_file('simple_info_no_author.xml')
-        with self.assertRaises(DependencyError):
+        with self.assertRaises(InvalidConfigError):
             self.parser.parse(xml)
 
     def test_simple_no_category(self):
         xml = self.load_file('simple_info_no_category.xml')
-        with self.assertRaises(DependencyError):
+        with self.assertRaises(InvalidConfigError):
             self.parser.parse(xml)
 
     def test_simple_no_description(self):
         xml = self.load_file('simple_info_no_description.xml')
-        with self.assertRaises(DependencyError):
+        with self.assertRaises(InvalidConfigError):
             self.parser.parse(xml)
 
     def test_simple_no_licence(self):
@@ -62,27 +62,27 @@ class InfoParserTest(unittest.TestCase):
 
     def test_simple_no_name(self):
         xml = self.load_file('simple_info_no_name.xml')
-        with self.assertRaises(DependencyError):
+        with self.assertRaises(InvalidConfigError):
             self.parser.parse(xml)
 
     def test_simple_no_requiremin(self):
         xml = self.load_file('simple_info_no_requiremin.xml')
-        with self.assertRaises(DependencyError):
+        with self.assertRaises(InvalidConfigError):
             self.parser.parse(xml)
 
     def test_simple_no_version(self):
         xml = self.load_file('simple_info_no_version.xml')
-        with self.assertRaises(DependencyError):
+        with self.assertRaises(InvalidConfigError):
             self.parser.parse(xml)
 
     def test_simple_no_unknown_category(self):
         xml = self.load_file('simple_info_unknown_category.xml')
-        with self.assertRaises(DependencyError):
+        with self.assertRaises(InvalidConfigError):
             self.parser.parse(xml)
 
     def test_simple_no_unknown_licence(self):
         xml = self.load_file('simple_info_unknown_licence.xml')
-        with self.assertRaises(DependencyError):
+        with self.assertRaises(InvalidConfigError):
             self.parser.parse(xml)
 
     def test_all(self):

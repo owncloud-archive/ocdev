@@ -2,7 +2,7 @@ import os
 import stat
 from subprocess import check_call
 
-from ocdev.plugins.errors import DependencyError
+from ocdev.plugins.setup.dependencyerror import DependencyError
 from ocdev.plugins.plugin import Plugin
 
 

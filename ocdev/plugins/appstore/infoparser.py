@@ -1,6 +1,6 @@
 from xml.etree import ElementTree
 
-from ocdev.plugins.errors import DependencyError
+from ocdev.plugins.appstore.invalidconfigerror import InvalidConfigError
 
 
 class InfoParser:
@@ -65,12 +65,12 @@ class InfoParser:
         try:
             result['category'] = self.categories[result['category']]
         except KeyError:
-            raise DependencyError('Unknown category type %s' % result['category'])
+            raise InvalidConfigError('Unknown category type %s' % result['category'])
 
         try:
             result['licence'] = self.licences[result['licence']]
         except KeyError:
-            raise DependencyError('Unknown licence type %s' % result['licence'])
+            raise InvalidConfigError('Unknown licence type %s' % result['licence'])
 
 
         return result
@@ -82,4 +82,4 @@ class InfoParser:
                 msg = 'Error: tag %s of field %s not found or empty' % (tag, name)
             else:
                 msg = 'Error: field %s not found or empty' % name
-            raise DependencyError(msg)
+            raise InvalidConfigError(msg)

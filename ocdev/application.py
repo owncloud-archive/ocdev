@@ -18,6 +18,7 @@ import sys
 import os
 
 from ocdev.plugins import PLUGINS
+from ocdev.plugins.pluginerror import PluginError
 from ocdev.config import UserSettings
 
 def main():
@@ -42,12 +43,7 @@ def main():
             if plugin.can_handle(arguments.which):
                 plugin.run(arguments, os.getcwd(), settings)
 
-    except AttributeError as e:
-        print(e)
-        parser.print_help()
-        exit(1)
-
-    except Exception as e:
+    except PluginError as e:
         print(e)
         exit(1)
 

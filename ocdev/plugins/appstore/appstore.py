@@ -6,7 +6,6 @@ from xml.etree import ElementTree
 
 import requests
 
-from ocdev.plugins.errors import DependencyError
 from ocdev.plugins.appstore.infoparser import InfoParser
 
 
