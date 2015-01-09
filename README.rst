@@ -57,9 +57,9 @@ To get the currently active version run::
 
 Configuration file
 ==================
-After running ocdev for the first time a new config file called **.ocdevrc** will be created in your home directory and can contain the following values::
+After running ocdev for the first time a new config file called **.ocdevrc** will be created in your home directory and can contain the following values:
 
-.. code::
+.. code:: ini
 
     [startapp]
     email = your@mail.com
