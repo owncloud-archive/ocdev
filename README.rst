@@ -61,15 +61,15 @@ After running ocdev for the first time a new config file called **.ocdevrc** wil
 
 .. code:: ini
 
-  [startapp]
-  email = your@mail.com
-  homepage = your-website.com
-  author = John Doe
+    [startapp]
+    email = your@mail.com
+    homepage = your-website.com
+    author = John Doe
 
-  [appstore]
-  url = https://api.owncloud.com/v1
-  user = john_doe
-  password = john_does_password
+    [appstore]
+    url = https://api.owncloud.com/v1
+    user = john_doe
+    password = john_does_password
 
 
 Setting up a development environment
