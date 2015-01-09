@@ -3,10 +3,12 @@
 
 namespace OCA\{{ app.namespace }}\Controller;
 
-use \OCP\AppFramework\Http\TemplateResponse;
-use \OCP\AppFramework\App;
+use PHPUnit_Framework_TestCase;
 
-class PageControllerTest extends \PHPUnit_Framework_TestCase {
+use OCP\AppFramework\Http\TemplateResponse;
+use OCP\AppFramework\App;
+
+class PageControllerTest extends PHPUnit_Framework_TestCase {
 
 	private $request;
 	private $pageController;
