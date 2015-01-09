@@ -129,6 +129,6 @@ class SetUp(Plugin):
                 print('\nSuccessfully set up development environment!\n\n')
                 print('Setup ownCloud by changing into the cloned directory and run\n')
                 print('    php -S localhost:8080\n')
-                print('and setup your isntallation at http://localhost:8080\n\n')
+                print('and setup your installation at http://localhost:8080\n\n')
         else:
             print('Can not write to directory %s. Aborted' % directory)
