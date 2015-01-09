@@ -1,6 +1,6 @@
-========================
-ownCloud developer tools
-========================
+=========================
+ownCloud development tool
+=========================
 
 .. image:: https://travis-ci.org/owncloud/ocdev.svg
     :target: https://travis-ci.org/owncloud/ocdev
