@@ -11,7 +11,9 @@ namespace OCA\{{ app.namespace }}\AppInfo;
  * The controller class has to be registered in the application.php file since
  * it's instantiated in there
  */
-return ['routes' => [
-	['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-	['name' => 'page#do_echo', 'url' => '/echo', 'verb' => 'POST'],
-]];
+return [
+    'routes' => [
+	   ['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
+	   ['name' => 'page#do_echo', 'url' => '/echo', 'verb' => 'POST'],
+    ]
+];
