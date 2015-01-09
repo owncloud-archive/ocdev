@@ -7,7 +7,7 @@ ocdev (0.1.0)
 * Add a --category parameter to the startapp command
 * Default to owncloud 8 as minimum level when creating apps
 * Do not create a data directory since this is done automatically by ownCloud
-* Add integration test phpunit configuration
+* Add integration test phpunit configuration for ownCloud 8 and move autoloader to unit test directory
 
 ocdev (0.0.19)
 
