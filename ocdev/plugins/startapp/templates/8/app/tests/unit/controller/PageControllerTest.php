@@ -11,30 +11,30 @@ use OCP\AppFramework\App;
 class PageControllerTest extends PHPUnit_Framework_TestCase {
 
 	private $request;
-	private $pageController;
+	private $controller;
 	private $userId = 'john';
 
 	public function setUp() {
 		$app = new App('{{ app.id }}');
-		$this->container = $app->getContainer();
+		$container = $app->getContainer();
 
 		$this->request = $this->getMockBuilder('OCP\IRequest')->getMock();
-		$this->container->registerService('OCP\IRequest', function($c) {
+		$container->registerService('OCP\IRequest', function($c) {
 			return $this->request;
 		});
 
-		$this->container->registerService('UserId', function($c) {
+		$container->registerService('UserId', function($c) {
 			return $this->userId;
 		});
 
-		$this->pageController = $this->container->query(
+		$this->controller = $container->query(
 			'OCA\{{ app.namespace }}\Controller\PageController'
 		);
 	}
 
 
 	public function testIndex() {
-		$result = $this->pageController->index();
+		$result = $this->controller->index();
 
 		$this->assertEquals(['user' => 'john'], $result->getParams());
 		$this->assertEquals('main', $result->getTemplateName());
@@ -43,7 +43,7 @@ class PageControllerTest extends PHPUnit_Framework_TestCase {
 
 
 	public function testEcho() {
-		$result = $this->pageController->doEcho('hi');
+		$result = $this->controller->doEcho('hi');
 		$this->assertEquals(['echo' => 'hi'], $result->getData());
 	}
 
