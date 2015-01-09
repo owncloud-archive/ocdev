@@ -6,6 +6,7 @@ ocdev (0.1.0)
 * Rename the --mail paramter to --email for the startapp command
 * Add a --category parameter to the startapp command
 * Default to owncloud 8 as minimum level when creating apps
+* Do not create a data directory since this is done automatically by ownCloud
 
 ocdev (0.0.19)
 
