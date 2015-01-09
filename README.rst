@@ -54,6 +54,24 @@ To get the currently active version run::
 
     ocdev --version
 
+
+Configuration file
+==================
+After running ocdev for the first time a new config file called **.ocdevrc** will be created in your home directory and can contain the following values::
+
+.. code:: ini
+
+  [startapp]
+  email = your@mail.com
+  homepage = your-website.com
+  author = John Doe
+
+  [appstore]
+  url = https://api.owncloud.com/v1
+  user = john_doe
+  password = john_does_password
+
+
 Setting up a development environment
 ====================================
 To set up your development environment run::
@@ -115,6 +133,15 @@ For a more verbose output run::
     ocdev startapp -h
 
 
+Uploading an app to the App Store
+=================================
+To upload an app to the `App Store <https://apps.owncloud.com/>`_ with ocdev you first need to set up an account. Then run::
+
+    ocdev appstore release path/to/tar.gz
+
+and insert your username and password when prompted.
+
+
 Setting up a test instance for continuous integration
 ====================================================
 To set up a test instance for continuous integration (e.g. on Travis-CI) run::
@@ -130,66 +157,3 @@ The following databases can be chosen:
 * **postgresql**
 
 The script requires php to be available from commandline.
-
-Interfacing with the app generator
-==================================
-To use the app generator in your python app use::
-
-Setting up development environment
-----------------------------------
-
-.. code:: python
-
-  from ocdev.plugins.setup.setup import SetUp, Arguments
-
-  arguments = Arguments(level='base',          # defaults to 'core'
-                        branch='stable6',      # defaults to 'master'
-                        type='ssh',            # defaults to 'https'
-                        directory='owncloud'   # defaults to 'core'
-              )
-
-  write_directory = '/srv/http/owncloud/apps/'
-
-  app = SetUp()
-  app.run(arguments, write_directory)
-
-
-Creating apps
--------------
-
-.. code:: python
-
-  from ocdev.plugins.startapp.startapp import StartApp, Author, Arguments
-
-  author = Author(name='Bernhard Posselt', email='dev@bernhard-posselt.com',
-                  homepage='http://bernhard-posselt.com')
-
-  arguments = Arguments(name='MyApp',
-                        description='My App Yeah!',    # defaults to ''
-                        license='mit',                 # defaults to 'agpl'
-                        owncloud='6.0.3',              # defaults to '6.0.3'
-                        version='0.0.1',               # defaults to '0.0.1'
-                        authors=[author],              # defaults to []
-              )
-
-  write_directory = '/srv/http/owncloud/apps/'
-
-  app = StartApp()
-  app.run(arguments, write_directory)
-
-
-Setting up a test instance for continuous integration
-----------------------------------------------------
-
-
-.. code:: python
-
-  from ocdev.plugins.ci.ci import ContinousIntegration, Arguments
-
-  arguments = Arguments(db='sqlite')  # 'mysql', 'postgresql', 'sqlite'
-
-
-  write_directory = '/srv/http/owncloud/apps/'
-
-  app = ContinousIntegration()
-  app.run(arguments, write_directory)

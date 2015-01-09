@@ -11,7 +11,7 @@ from ocdev.plugins.appstore.infoparser import InfoParser
 
 class Arguments:
 
-    def __construct__(self, archivedir, action='update'):
+    def __construct__(self, archivedir, action='release'):
         self.action = action
         self.archivedir = archivedir
 
