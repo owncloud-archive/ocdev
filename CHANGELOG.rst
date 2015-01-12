@@ -1,13 +1,15 @@
 ocdev (0.1.0)
 
 * Add the possibility to release and update an app on the app store
-* Add Makefile for ownCloud 8 to build an app package and upload the app to the app store
+* Add a Makefile for ownCloud 8 apps to build an app package and upload the app to the app store
 * Add a configuration file ~/.ocdevrc where often used settings are saved
 * Rename the --mail paramter to --email for the startapp command
 * Add a --category parameter to the startapp command
 * Default to owncloud 8 as minimum level when creating apps
 * Do not create a data directory since this is done automatically by ownCloud
-* Add integration test phpunit configuration for ownCloud 8 and move autoloader to unit test directory
+* Remove the chown hints when setting up ownCloud since the PHP built in development server should be preferred
+* Add integration test phpunit configuration for ownCloud 8 apps and move autoloader to unit test directory
+* Add an integration test ready travis.yml for ownCloud 8 apps
 
 ocdev (0.0.19)
 
