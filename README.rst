@@ -133,14 +133,6 @@ For a more verbose output run::
     ocdev startapp -h
 
 
-Uploading an app to the App Store
-=================================
-To upload an app to the `App Store <https://apps.owncloud.com/>`_ with ocdev you first need to set up an account. Then run::
-
-    ocdev appstore release path/to/tar.gz
-
-and insert your username and password when prompted.
-
 
 Setting up a test instance for continuous integration
 ====================================================

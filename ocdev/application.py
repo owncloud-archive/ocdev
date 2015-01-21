@@ -38,6 +38,9 @@ def main():
     arguments = parser.parse_args()
 
     # get he plugin that can handle the input
+    if not hasattr(arguments, 'which'):
+        parser.print_help();
+        exit(1)
     try:
         for plugin in PLUGINS:
             if plugin.can_handle(arguments.which):
