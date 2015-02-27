@@ -1,4 +1,9 @@
+ocdev (0.1.2)
+
+* Add a --no-history flag to the setup command to pass depth 1 to git clone for faster cloning on ci servers
+
 ocdev (0.1.1)
+
 * Fix travis.yml for ownCloud 8 apps
 * Add an ocdev server command as a php server shortcut
 

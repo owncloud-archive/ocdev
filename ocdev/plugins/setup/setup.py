@@ -1,6 +1,6 @@
 import os
 import stat
-from subprocess import check_call
+from subprocess import check_call, CalledProcessError
 
 from ocdev.plugins.setup.dependencyerror import DependencyError
 from ocdev.plugins.plugin import Plugin
@@ -26,21 +26,26 @@ class SetUp(Plugin):
         parser = main_parser.add_parser('setup', help='Setup')
         parser.set_defaults(which='setup')
 
-        parser.add_argument('--type', help='If SSH or HTTPS should be used to \
-                            fetch the sources. Defaults to HTTPS since you need \
-                            push access in order to use SSH', default='https',
-                            choices=['https', 'ssh'])
-        parser.add_argument('--branch', help='The branch which should be \
-                            checked out, defaults to master', default='master')
-        parser.add_argument('--dir', help='The directory name, defaults to core',
-                            default='core')
-        parser.add_argument('level', help='core, base or a specific repository \
-                            in ownCloud organization on GitHub. core only sets up \
-                            a working core setup, base also installs apps like \
-                            news, notes, calendar, gallery, music, documents \
-                            and contacts. To clone a specific repository, you \
-                            can type the repository name in lowercase, e.g. \
-                            ocdev setup music.',
+        parser.add_argument('--type', help='If SSH or HTTPS should be used to '
+                            'fetch the sources. Defaults to HTTPS since you '
+                            'need push access in order to use SSH',
+                            default='https', choices=['https', 'ssh'])
+        parser.add_argument('--branch', help='The branch which should be '
+                            'checked out, defaults to master', default='master')
+        parser.add_argument('--dir', help='The directory name, defaults to '
+                            'core', default='core')
+        parser.add_argument('--no-history', help='Clones with git depth 1 and '
+                            'therefore is very fast but ommits history. This is '
+                            'great for continuous integration builds '
+                            'but should be avoided when developing normally',
+                            action='store_true')
+        parser.add_argument('level', help='core, base or a specific repository '
+                            'in ownCloud organization on GitHub. core only sets '
+                            'up a working core setup, base also installs apps '
+                            'like news, notes, calendar, gallery, music, '
+                            'documents and contacts. To clone a specific '
+                            'repository, you can type the repository name in '
+                            'lowercase, e.g. ocdev setup music.',
                             default='core')
 
     def run(self, arguments, directory, settings):
@@ -49,13 +54,20 @@ class SetUp(Plugin):
         """
         directory = os.path.normpath(directory)
         try:
-            self.git_clone(arguments, directory)
+            self.setup(arguments, directory)
         except FileNotFoundError as e:
-            raise DependencyError('Failed to clone repository because Git ' +
+            print(e)
+            raise DependencyError('Failed to clone repository because Git '
                                   'is not installed')
 
 
-    def git_clone(self, arguments, directory):
+    def setup(self, arguments, directory):
+        level = arguments.level
+        branch = arguments.branch
+        target_dir = arguments.dir
+        type = arguments.type
+        no_history = arguments.no_history
+
         urls = {
             'ssh': {
                 'core': 'git@github.com:owncloud/core.git',
@@ -71,7 +83,7 @@ class SetUp(Plugin):
                     'git@github.com:owncloud/chat.git',
                     'git@github.com:owncloud/bookmarks.git'
                 ],
-                arguments.level: 'git@github.com:owncloud/' + arguments.level + '.git',
+                'repo': 'git@github.com:owncloud/%s.git' % level,
             },
             'https': {
                 'core': 'https://github.com/owncloud/core.git',
@@ -87,20 +99,14 @@ class SetUp(Plugin):
                     'https://github.com/owncloud/chat.git',
                     'https://github.com/owncloud/bookmarks.git'
                 ],
-                arguments.level: 'https://github.com/owncloud/' + arguments.level + '.git',
+                'repo': 'https://github.com/owncloud/%s.git' % level,
             }
-        }
-
-        chosen_urls = urls[arguments.type]
+        }[type]
 
         # check if directory is writeable
         if os.access(directory, os.W_OK):
             if (arguments.level == 'core' or arguments.level == 'base'):
-                code = check_call(['git', 'clone', '--recursive', '-b',
-                        arguments.branch, chosen_urls['core'], arguments.dir])
-                if code != 0:  # default to master if branch fails
-                    check_call(['git', 'clone', '--recursive', '-b', 'master',
-                        chosen_urls['core'], arguments.dir])
+                self.clone_fallback(urls['core'], branch, target_dir, no_history)
 
                 os.chdir(arguments.dir)
 
@@ -110,25 +116,52 @@ class SetUp(Plugin):
 
             if arguments.level == 'base':
                 os.chdir('apps')
-                for app_url in chosen_urls['apps']:
-                    # repository might not have that specific branch, in that
-                    # case just take master
-                    code = check_call(['git', 'clone', '-b', arguments.branch, app_url])
-                    if code != 0:
-                        code = check_call(['git', 'clone', '-b', 'master', app_url])
+                for app_url in urls['apps']:
+                    self.clone_fallback(app_url, branch, None, no_history)
             elif arguments.level != 'core':
-                print('\nSelected setup type is neither core nor base. Trying to')
-                print('clone repository named ' + arguments.level + '.')
-                # repository might not have that specific branch, in that
-                # case just take master
-                code = check_call(['git', 'clone', '-b', arguments.branch, chosen_urls[arguments.level]])
-                if code != 0:
-                    code = check_call(['git', 'clone', '-b', 'master', chosen_urls[arguments.level]])
+                print(
+                    '\nSelected setup type is neither core nor base. Trying '
+                    'to clone repository named %s\n' % level
+                )
+
+                self.clone_fallback(urls['repo'], branch, None, no_history)
 
             if arguments.level == 'base' or arguments.level == 'core':
-                print('\nSuccessfully set up development environment!\n\n')
-                print('Setup ownCloud by changing into the cloned directory and run\n')
-                print('    php -S localhost:8080\n')
-                print('and setup your installation at http://localhost:8080\n\n')
+                print(
+                    '\nSuccessfully set up development environment!\n\n'
+                    'Setup ownCloud by changing into the cloned directory and '
+                    'run\n\n    ocdev server\n\n'
+                    'and setup your installation at http://localhost:8080\n\n'
+                )
         else:
             print('Can not write to directory %s. Aborted' % directory)
+
+
+    def clone_fallback(self, url, branch=None, directory=None, no_history=False):
+        """
+        Clone branch and fall back to master if there is no branch
+        """
+        try:
+            return self.clone_repo(url, branch, directory, no_history)
+        except CalledProcessError as e:
+            return self.clone_repo(url, 'master', directory, no_history)
+
+
+    def clone_repo(self, url, branch='master', directory=None, no_history=False):
+        """
+        Clones a branch
+        """
+        cmd = ['git', 'clone', '--recursive']
+
+        if branch:
+            cmd = cmd + ['-b', branch]
+        if no_history:
+            cmd = cmd + ['--depth', '1']
+
+        cmd.append(url);
+
+        if directory:
+            cmd.append(directory)
+
+
+        return check_call(cmd)
