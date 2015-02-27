@@ -133,9 +133,23 @@ For a more verbose output run::
     ocdev startapp -h
 
 
+Starting a PHP development server
+=================================
+To run a PHP dev server you can run::
+
+    php -S localhost:8080
+
+ocdev provides a shortcut for this common task::
+
+    ocdev server
+
+The following optional commandline options are available:
+
+* **--port**: defaults to 8080
+
 
 Setting up a test instance for continuous integration
-====================================================
+=====================================================
 To set up a test instance for continuous integration (e.g. on Travis-CI) run::
 
     ocdev setup core
