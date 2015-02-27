@@ -128,6 +128,7 @@ The following optional commandline options are available:
 * **--homepage**: sets the author's homepage in the AUTHORS.md file
 * **--license**: agpl or mit, defaults to agpl
 * **--owncloud**: the minimum ownCloud version, defaults to the currently active version
+* **--no-history**: if given, clones with depth 1 which is very fast and clones only the current status. This is not suited for development but may be desirable on your continuous integration server.
 * **--output**: The directory where the generated files should be written to. Defaults to the current directory
 
 For a more verbose output run::
