@@ -117,10 +117,12 @@ Creating apps
 
 To create an app in the current directory::
 
-    ocdev startapp --author "Bernhard Posselt" --mail dev@bernhard-posselt.com MyApp
+    ocdev startapp MyApp
 
 The following optional commandline options are available:
 
+* **--author**: If not given will be read from ~/.ocdevrc or queried on the command line
+* **--email**: If not given will be read from ~/.ocdevrc or queried on the command line
 * **--version**: defaults to 0.0.1
 * **--description**: sets the app description in the appinfo/info.xml
 * **--homepage**: sets the author's homepage in the AUTHORS.md file
