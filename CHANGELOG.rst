@@ -1,3 +1,7 @@
+ocdev (0.1.1)
+* Fix travis.yml for ownCloud 8 apps
+* Add an ocdev server command as a php server shortcut
+
 ocdev (0.1.0)
 
 * Add a Makefile for ownCloud 8 apps to build an app package and upload the app to the app store
