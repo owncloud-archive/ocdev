@@ -100,7 +100,7 @@ If at least **core** is set up, you can use::
     ocdev setup <repositoryname>
 
 to clone a repository from ownCloud organization. To see all available
-repositories, click [here](https://github.com/owncloud).
+repositories, click `here <https://github.com/owncloud/>`_
 
 The following optional commandline options are available:
 
