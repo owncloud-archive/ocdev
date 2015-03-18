@@ -89,6 +89,9 @@ class StartApp(Plugin):
         if int(owncloud_version[0]) < 8:
             owncloud_version = owncloud_version[0]
         else:
+            # in case a user enters 8 instead of 8.0
+            if len(owncloud_version) == 1:
+                owncloud_version.append('0')
             owncloud_version = '%s.%s' % (owncloud_version[0],
                                           owncloud_version[1])
 
