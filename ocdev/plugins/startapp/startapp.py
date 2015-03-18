@@ -62,7 +62,7 @@ class StartApp(Plugin):
                             choices=['multimedia', 'tool', 'pim', 'other',
                                      'game', 'productivity'])
         parser.add_argument('--owncloud', help='Required ownCloud version',
-                            default='8')
+                            default='8.1')
         parser.add_argument('--version', help='App version', default='0.0.1')
         parser.add_argument('--output', help='Output generated files into \
                             this directory instead of the current one if given',
@@ -82,7 +82,17 @@ class StartApp(Plugin):
 
         # choose the appropriate version for the app templates that is determined
         # by the owncloud minimum version
-        app_dir = '%s/app' % arguments.owncloud.split('.')[0]
+        owncloud_version = arguments.owncloud.split('.')
+
+        # owncloud 8 has a new versioning scheme where we need more than one
+        # number
+        if int(owncloud_version[0]) < 8:
+            owncloud_version = owncloud_version[0]
+        else:
+            owncloud_version = '%s.%s' % (owncloud_version[0],
+                                          owncloud_version[1])
+
+        app_dir = '%s/app' % owncloud_version
         app_template_dir = join(template_dir, app_dir)
 
         # if author is given its being run from commandline and the list has to
