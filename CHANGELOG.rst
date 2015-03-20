@@ -1,3 +1,7 @@
+ocdev (0.1.3)
+
+* Allow to set the preferred type of cloning in the .ocdevrc file
+
 ocdev (0.1.2)
 
 * Add a --no-history flag to the setup command to pass depth 1 to git clone for faster cloning on ci servers

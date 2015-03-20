@@ -61,6 +61,9 @@ After running ocdev for the first time a new config file called **.ocdevrc** wil
 
 .. code:: ini
 
+    [setup]
+    type = https
+
     [startapp]
     email = your@mail.com
     homepage = your-website.com

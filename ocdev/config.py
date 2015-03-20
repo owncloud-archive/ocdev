@@ -10,6 +10,9 @@ class UserSettings:
         self.path = path
         self.config = ConfigParser()
         self.questions = {
+            'setup': {
+                'type': 'Please enter your preferred repo type (https|ssh)'
+            },
             'startapp': {
                 'author': 'Please enter your full name',
                 'email': 'Please enter your email address',
@@ -30,6 +33,9 @@ class UserSettings:
             print('\nConfiguration not found! Empty configuration created: ' +
                   ' %s\n' % self.path)
             self.write({
+                'setup': {
+                    'type': 'https'
+                },
                 'startapp': {
                     'author': '',
                     'email': '',
@@ -54,6 +60,9 @@ class UserSettings:
 
 
     def get_value(self, section, value):
+        if not section in self.config:
+            self.write({section: {}})
+
         if value in self.config[section] and self.config[section][value].strip() != '':
             return self.config[section][value]
         else:

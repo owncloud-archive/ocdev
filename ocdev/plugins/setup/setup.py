@@ -29,7 +29,7 @@ class SetUp(Plugin):
         parser.add_argument('--type', help='If SSH or HTTPS should be used to '
                             'fetch the sources. Defaults to HTTPS since you '
                             'need push access in order to use SSH',
-                            default='https', choices=['https', 'ssh'])
+                            choices=['https', 'ssh'])
         parser.add_argument('--branch', help='The branch which should be '
                             'checked out, defaults to master', default='master')
         parser.add_argument('--dir', help='The directory name, defaults to '
@@ -54,18 +54,22 @@ class SetUp(Plugin):
         """
         directory = os.path.normpath(directory)
         try:
-            self.setup(arguments, directory)
+            self.setup(arguments, directory, settings)
         except FileNotFoundError as e:
             print(e)
             raise DependencyError('Failed to clone repository because Git '
                                   'is not installed')
 
 
-    def setup(self, arguments, directory):
+    def setup(self, arguments, directory, settings):
         level = arguments.level
         branch = arguments.branch
         target_dir = arguments.dir
-        type = arguments.type
+        if arguments.type:
+            type = arguments.type
+        else:
+            type = settings.get_value('setup', 'type')
+
         no_history = arguments.no_history
 
         urls = {
