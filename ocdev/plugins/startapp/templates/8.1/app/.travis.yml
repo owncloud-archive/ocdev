@@ -30,15 +30,15 @@ install:
   # install owncloud
   - cd ..
   - ocdev setup core --dir owncloud --branch $BRANCH --no-history
+  - mv {{ app.id }} owncloud/apps
+  - phpenv config-add owncloud/apps/{{ app.id }}/tests/travis/php.ini
   - cd owncloud
   - ocdev ci $DB
   # enable {{ app.id }}
-  - mv ../{{ app.id }} apps/
   - php -f console.php app:enable {{ app.id }}
 
 before_script:
   - cd apps/{{ app.id }}
-  - phpenv config-add tests/travis/php.ini
 
 script:
   - phpunit -c phpunit.xml
