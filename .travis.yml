@@ -6,7 +6,8 @@ python:
 
 env:
   - OWNCLOUD=7 BRANCH=stable7
-  - OWNCLOUD=8 BRANCH=master
+  - OWNCLOUD=8 BRANCH=stable8
+  - OWNCLOUD=8.1 BRANCH=master
 
 before_install:
   - sudo add-apt-repository ppa:ondrej/php5-oldstable -y
