@@ -29,7 +29,7 @@ install:
 before_script:
   # setup owncloud
   - cd ../
-  - ocdev setup core --branch $BRANCH
+  - ocdev setup core --branch $BRANCH  --no-history
   - cd core/apps
   - ocdev startapp --email test --author test --owncloud $OWNCLOUD MyApp
   - cd myapp
