@@ -183,6 +183,9 @@ e.g.:
 
 Setting up a test instance for continuous integration
 =====================================================
+
+.. note:: Deprecated in ownCloud 8.1, use the occ install command
+
 To set up a test instance for continuous integration (e.g. on Travis-CI) run::
 
     ocdev setup core
