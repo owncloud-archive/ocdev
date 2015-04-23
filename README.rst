@@ -164,12 +164,16 @@ Sometimes it tedious to keep your installation up to date. To update all the app
 
 If the path is ommited, the current directory will be chosen.
 
-Only apps defined in your ~/.ocdevrc, including core will be updated. They need to be listed in the following format::
+Only apps defined in your ~/.ocdevrc, including core will be updated. They need to be listed in the following format:
+
+.. code:: ini
 
     [devup]
     app = branch
 
-e.g.::
+e.g.:
+
+.. code:: ini
 
     [devup]
     core = master
