@@ -1,3 +1,6 @@
+ocdev (0.1.4)
+* Add ocdev devup command to easily update your install
+
 ocdev (0.1.3)
 
 * Allow to set the preferred type of cloning in the .ocdevrc file

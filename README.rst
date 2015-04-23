@@ -153,6 +153,26 @@ The following optional commandline options are available:
 
 * **--port**: defaults to 8080
 
+Updating development environments
+=================================
+Sometimes it tedious to keep your installation up to date. To update all the apps to the newest commit in a branch you can use ocdev devup::
+
+    ocdev devup /path/to/core
+
+If the path is ommited, the current directory will be chosen.
+
+Only apps defined in your ~/.ocdevrc, including core will be updated. They need to be listed in the following format::
+
+    [devup]
+    app = branch
+
+e.g.::
+
+    [devup]
+    core = master
+    news = dev
+    calendar = stable8
+
 
 Setting up a test instance for continuous integration
 =====================================================

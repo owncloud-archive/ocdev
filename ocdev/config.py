@@ -22,6 +22,9 @@ class UserSettings:
                 'url': 'Please enter the appstore api url',
                 'user': 'Please enter your appstore user',
                 'password': 'Please enter your appstore password'
+            },
+            'devup': {
+                'core': 'Please enter the preferred core branch to pull from'
             }
         }
 
@@ -45,6 +48,9 @@ class UserSettings:
                     'url': 'https://api.owncloud.com/v1',
                     'user': '',
                     'password': ''
+                },
+                'devup': {
+                    'core': 'master'
                 }
             })
 
@@ -57,6 +63,12 @@ class UserSettings:
                 self.config[section][key] = value
         with open(self.path, 'w') as f:
             self.config.write(f)
+
+
+    def get_section(self, section):
+        if not section in self.config:
+            self.write({section: {}})
+        return self.config[section]
 
 
     def get_value(self, section, value):
