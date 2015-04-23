@@ -74,6 +74,9 @@ After running ocdev for the first time a new config file called **.ocdevrc** wil
     user = john_doe
     password = john_does_password
 
+    [devup]
+    core = master
+
 
 Setting up a development environment
 ====================================
