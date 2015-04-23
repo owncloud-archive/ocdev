@@ -40,7 +40,6 @@ class DevUp(Plugin):
 
         # update apps
         for app, branch in settings.get_section('devup').items():
-            print('%s %s' %(app, branch))
             if app != 'core':
                 app_dir = 'apps/%s' % app
                 if exists(app_dir):
