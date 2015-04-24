@@ -34,8 +34,7 @@ install:
   - phpenv config-add owncloud/apps/{{ app.id }}/tests/travis/php.ini
   - cd owncloud
   - ./occ maintenance:install --database-name oc_autotest --database-user oc_autotest --admin-user admin --admin-pass admin --database $DB
-  # enable {{ app.id }}
-  - php -f console.php app:enable {{ app.id }}
+  - ./occ app:enable {{ app.id }}
 
 before_script:
   - cd apps/{{ app.id }}
