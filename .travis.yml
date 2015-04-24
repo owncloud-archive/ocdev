@@ -22,6 +22,13 @@ install:
   # install phpunit and php
   - sudo apt-get update
   - sudo apt-get install php5 php5-gd php5-curl php5-mysql php5-sqlite php5-pgsql
+  # set up postgresql
+  - createuser -U travis -s oc_autotest
+  # set up mysql
+  - mysql -e 'create database oc_autotest;'
+  - mysql -u root -e "CREATE USER 'oc_autotest'@'localhost';"
+  - mysql -u root -e "grant all on oc_autotest.* to 'oc_autotest'@'localhost';"
+  # set up php
   - echo 'default_charset = "UTF-8"' | sudo tee --append /etc/php5/cli/php.ini
   - wget https://phar.phpunit.de/phpunit.phar
   - chmod +x phpunit.phar
