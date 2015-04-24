@@ -7,7 +7,7 @@ php:
 
 env:
   - DB=sqlite BRANCH=master
-  - DB=postgresql BRANCH=master
+  - DB=pgsql BRANCH=master
   - DB=mysql BRANCH=master
 
 matrix:
@@ -33,7 +33,7 @@ install:
   - mv {{ app.id }} owncloud/apps
   - phpenv config-add owncloud/apps/{{ app.id }}/tests/travis/php.ini
   - cd owncloud
-  - ocdev ci $DB
+  - ./occ maintenance:install --database-name oc_autotest --database-user oc_autotest --admin-user admin --admin-pass admin --database $DB
   # enable {{ app.id }}
   - php -f console.php app:enable {{ app.id }}
 
