@@ -43,7 +43,7 @@ before_script:
   - cd ../
   - mkdir data
   - if [[ $OWNCLOUD == '8.1' ]]; then ./occ maintenance:install --database-name oc_autotest --database-user oc_autotest --admin-user admin --admin-pass admin --database sqlite; fi
-  - if [[ $OWNCLOUD == '8.1' ]]; then ./occ app:enable {{ app.id }} ; fi
+  - if [[ $OWNCLOUD == '8.1' ]]; then ./occ app:enable myapp ; fi
   - cd apps/myapp
 
 script:
