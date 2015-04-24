@@ -29,9 +29,12 @@ spl_autoload_register(function ($className){
 	} else if(strpos($className, 'OC_') === 0) {
 		$path = strtolower(str_replace('\\', '/', substr($className, 3)) . '.php');
 		$relPath = __DIR__ . '/../../../../lib/private/' . $path;
+		$legacyPath = __DIR__ . '/../../../../lib/private/legacy/' . $path;
 
 		if(file_exists($relPath)){
 			require_once $relPath;
+		} elseif (file_exists($legacyPath)) {
+			require_once $legacyPath;
 		}
 	} else if(strpos($className, 'Test\\') === 0) {
         $path = strtolower(str_replace('\\', '/', substr($className, 4)) . '.php');
