@@ -21,7 +21,8 @@ install:
   - python setup.py install
   # install phpunit and php
   - sudo apt-get update
-  - sudo apt-get install php5
+  - sudo apt-get install php5 php5-gd php5-curl
+  - echo 'default_charset = "UTF-8"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - wget https://phar.phpunit.de/phpunit.phar
   - chmod +x phpunit.phar
   - sudo mv phpunit.phar /usr/local/bin/phpunit
