@@ -21,7 +21,7 @@ install:
   - python setup.py install
   # install phpunit and php
   - sudo apt-get update
-  - sudo apt-get install php5 php5-gd php5-curl
+  - sudo apt-get install php5 php5-gd php5-curl php5-mysql php5-sqlite php5-pgsql
   - echo 'default_charset = "UTF-8"' | sudo tee --append /etc/php5/cli/php.ini
   - wget https://phar.phpunit.de/phpunit.phar
   - chmod +x phpunit.phar
