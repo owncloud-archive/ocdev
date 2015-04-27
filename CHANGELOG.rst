@@ -1,3 +1,7 @@
+ocdev (0.1.6)
+
+* Updates for the 8.1 templates
+
 ocdev (0.1.4)
 
 * Add ocdev devup command to easily update your install
