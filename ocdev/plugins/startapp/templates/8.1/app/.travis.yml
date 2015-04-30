@@ -6,14 +6,19 @@ php:
   - hhvm
 
 env:
-  - DB=sqlite BRANCH=master
-  - DB=pgsql BRANCH=master
-  - DB=mysql BRANCH=master
+  global:
+    - BRANCH=master
+  matrix:
+    - DB=mysql
 
 matrix:
   allow_failures:
     - php: hhvm
-
+  include:
+    - php: 5.4
+      env: DB=sqlite
+    - php: 5.4
+      env: DB=pgsql
 
 
 install:
