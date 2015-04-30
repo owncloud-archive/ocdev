@@ -1,3 +1,7 @@
+ocdev (0.1.7)
+
+* 8.1 travis ci fixes
+
 ocdev (0.1.6)
 
 * Updates for the 8.1 templates
