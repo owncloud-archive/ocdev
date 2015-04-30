@@ -186,7 +186,7 @@ Setting up a test instance for continuous integration
 
 .. note:: Deprecated in ownCloud 8.1, use the occ install command, e.g.:
 
-  ./occ maintenance:install --database-name oc_autotest --database-user oc_autotest --admin-user admin --admin-pass admin --database-pass='' --database (pgsql|mysql|sqlite)
+  ./occ maintenance:install --database-name oc_autotest --database-user oc_autotest --admin-user admin --admin-pass admin --database-pass --database (pgsql|mysql|sqlite)
 
 To set up a test instance for continuous integration (e.g. on Travis-CI) run::
 
