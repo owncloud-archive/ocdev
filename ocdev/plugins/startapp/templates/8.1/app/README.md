@@ -5,11 +5,9 @@ Place this app in **owncloud/apps/**
 
 First get an account for the [App Store](http://apps.owncloud.com/) then run:
 
-    make appstore
+    make appstore_package
 
-**ocdev** will ask for your App Store credentials and save them to ~/.ocdevrc which is created afterwards for reuse.
-
-If the <ocsid> field in **appinfo/info.xml** is not present, a new app will be created on the appstore instead of updated. You can look up the ocsid in the app page URL, e.g.: **http://apps.owncloud.com/content/show.php/News?content=168040** would use the ocsid **168040**
+The archive is located in build/artifacts/appstore and can then be uploaded to the App Store.
 
 ## Running tests
 After [Installing PHPUnit](http://phpunit.de/getting-started.html) run:
