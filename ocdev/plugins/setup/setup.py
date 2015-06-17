@@ -166,12 +166,12 @@ class SetUp(Plugin):
 
         if directory:
             cmd.append(directory)
-        assert os.getcwdu() == '/var/www', "current working directory is {0}, needs to be '/var/www'".format(os.getcwdu())
-        assert not os.path.exists('/var/www/core'), '/var/www/core already exists, cannot create test instance'
+
+        assert not os.path.exists('{0}/core'.format(os.getcwdu())), 'cannot clone, {0}/core already exists'.format(os.getcwdu())
+        assert os.access(os.getcwdu(), os.W_OK), 'Insufficient privilege to write to this directory'
         try:
             result = check_call(cmd)
         except Exception as e:
             print(e)
-            print("likely failed due to lack of privileges")
             quit()
         return result
