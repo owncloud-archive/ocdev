@@ -69,7 +69,7 @@ class StartApp(Plugin):
                             default='')
         parser.add_argument('name', help='Name of the app in camel case \
                             e.g. MyApp', type=RegexValidator('^([A-Z][a-z]+)+$',
-                            'Must be camel case e.g. MyApp'))
+                            'The app name must be camel case e.g. MyApp'))
 
 
     def run(self, arguments, directory, settings):
