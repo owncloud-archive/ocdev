@@ -51,5 +51,6 @@ class DevUp(Plugin):
 
 
     def git_pull(self, branch):
+        check_call(['git', 'fetch'])
         check_call(['git', 'checkout', branch])
         check_call(['git', 'pull', '--rebase', 'origin', branch])

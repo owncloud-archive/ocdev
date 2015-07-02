@@ -1,3 +1,8 @@
+ocdev (0.1.8)
+
+* Also run git fetch before checking out the branch to make sure that branch updates work
+* Remove non working appstore upload command from makefiles
+
 ocdev (0.1.7)
 
 * 8.1 travis ci fixes
