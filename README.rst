@@ -37,7 +37,7 @@ If it outputs **Python 3.2 or lower** (e.g. on **Ubuntu 12.04**) you will **need
 
     sudo apt-get install python3-jinja2
 
-**Install the ocdev tool**
+**Install the ocdev tool**::
 
     sudo pip3 install ocdev
 
