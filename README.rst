@@ -20,8 +20,11 @@ The **-m** option tells python to run the **ocdev/__main__.py** file. This is ne
 
 .. note:: If the library is also installed the installed version imports will be used and local changes will be ignored. **Make sure to uninstall the global version first before running the local version**!
 
-Installation
-============
+Linux Installation
+===================
+
+**Install Python**
+
 If **Python 3** and **pip** are not yet installed on the system, install it from your package manager, e.g.::
 
     sudo apt-get install python3 python3-pip
@@ -34,11 +37,26 @@ If it outputs **Python 3.2 or lower** (e.g. on **Ubuntu 12.04**) you will **need
 
     sudo apt-get install python3-jinja2
 
-Then install the tool::
+**Install the ocdev tool**
 
     sudo pip3 install ocdev
 
-For the **setup** command, **git** has to be installed.
+For the **install** command, **git** has to be installed.
+
+Windows Installation
+====================
+
+**Install Python**
+
+Download latest Python v3 for Windows from https://www.python.org/downloads/ and start installation. Select custom installation and check add PATH variables. **Do not install Python for all users**, this will cause errors when running the script because of access restrictions to windows program folders.
+
+**Install the ocdev tool**
+
+Open the windows command line (CLI) and type
+
+    pip install ocdev
+
+For the **install** command, **git** must be available on your machine. Git that can be downloaded from https://git-for-windows.github.io/
 
 Updating
 ========
