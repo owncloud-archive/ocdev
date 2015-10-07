@@ -157,7 +157,7 @@ class StartApp(Plugin):
             # then read the templates and create the parsed files
             for file in files:
                 abs_path = join(root, file)
-                jinja_path = relpath(abs_path, template_dir)
+                jinja_path = relpath(abs_path, template_dir).replace('\\', '/')
                 destination = join(app_dir, relpath(abs_path, app_template_dir))
 
                 rendered = env.get_template(jinja_path).render(params)
