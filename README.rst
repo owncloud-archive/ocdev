@@ -41,8 +41,6 @@ If it outputs **Python 3.2 or lower** (e.g. on **Ubuntu 12.04**) you will **need
 
     sudo pip3 install ocdev
 
-For the **install** command, **git** has to be installed.
-
 Windows Installation
 ====================
 
@@ -52,11 +50,9 @@ Download latest Python v3 for Windows from https://www.python.org/downloads/ and
 
 **Install the ocdev tool**
 
-Open the windows command line (CLI) and type
+Open the windows command line (CLI) and type::
 
     pip install ocdev
-
-For the **install** command, **git** must be available on your machine. Git that can be downloaded from https://git-for-windows.github.io/
 
 Updating
 ========
@@ -98,7 +94,9 @@ After running ocdev for the first time a new config file called **.ocdevrc** wil
 
 Setting up a development environment
 ====================================
-To set up your development environment run::
+To set up your development environment run
+
+(for the setup command, **git** must be available on your machine. Git can be installed with *apt-get install git* or downloaded from https://git-for-windows.github.io/ for windows)::
 
     ocdev setup core
 
