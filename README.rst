@@ -58,7 +58,7 @@ Updating
 ========
 To update the library run::
 
-    sudo pip3 install --upgrade ocdev
+    pip3 install --upgrade ocdev
 
 
 Get the currently installed version
