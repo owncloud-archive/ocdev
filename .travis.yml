@@ -30,7 +30,7 @@ install:
   - mysql -u root -e "grant all on oc_autotest.* to 'oc_autotest'@'localhost';"
   # set up php
   - echo 'default_charset = "UTF-8"' | sudo tee --append /etc/php5/cli/php.ini
-  - wget https://phar.phpunit.de/phpunit.phar
+  - wget https://phar.phpunit.de/phpunit-old.phar
   - chmod +x phpunit.phar
   - sudo mv phpunit.phar /usr/local/bin/phpunit
 
