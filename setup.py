@@ -23,6 +23,14 @@ setup (
     install_requires = install_requires,
     keywords = ['owncloud', 'app', 'scaffolding', 'setup', 'development'],
     test_suite = 'tests',
+    classifiers = [
+        'Classifier: Intended Audience :: Developers',
+        'Environment :: Console',
+        'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
+        'Operating System :: POSIX :: Linux',
+        'Programming Language :: Python :: 3 :: Only',
+        'Topic :: Software Development :: Code Generators'
+    ],
     entry_points = {
         'console_scripts': [
             'ocdev = ocdev.application:main'
