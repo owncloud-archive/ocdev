@@ -3,6 +3,7 @@ python:
   - 3.2
   - 3.3
   - 3.4
+  - 3.5
 
 env:
   - OWNCLOUD=7 BRANCH=stable7
@@ -31,8 +32,8 @@ install:
   # set up php
   - echo 'default_charset = "UTF-8"' | sudo tee --append /etc/php5/cli/php.ini
   - wget https://phar.phpunit.de/phpunit-old.phar
-  - chmod +x phpunit.phar
-  - sudo mv phpunit.phar /usr/local/bin/phpunit
+  - chmod +x phpunit-old.phar
+  - sudo mv phpunit-old.phar /usr/local/bin/phpunit
 
 before_script:
   # setup owncloud
