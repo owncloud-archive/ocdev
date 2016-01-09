@@ -1,19 +1,21 @@
 language: python
 python:
   - 3.2
-
+  - 3.3
+  - 3.4
+  - 3.5
 
 matrix:
     include:
-        - python: 3.3
-        - python: 3.4
-        - python: 3.5
-
+        - python: 3.2
+          env: OWNCLOUD=8 BRANCH=stable8
+        - python: 3.2
+          env: OWNCLOUD=8.1 BRANCH=stable8.1
+        - python: 3.2
+          env: OWNCLOUD=9.0 BRANCH=master
 env:
-  - OWNCLOUD=8.0 BRANCH=stable8.0
-  - OWNCLOUD=8.1 BRANCH=stable8.1
-  - OWNCLOUD=8.2 BRANCH=stable8.2
-  - OWNCLOUD=9.0 BRANCH=master
+    matrix:
+        - OWNCLOUD=8.2 BRANCH=stable8.2
 
 before_install:
   - sudo add-apt-repository ppa:ondrej/php5-oldstable -y
@@ -48,12 +50,12 @@ before_script:
   - ocdev startapp --email test --author test --owncloud $OWNCLOUD MyApp
   - cd ../
   - mkdir data
-  - if [[ $OWNCLOUD -ge '8.1' ]]; then ./occ maintenance:install --database-name oc_autotest --database-user oc_autotest --admin-user admin --admin-pass admin --database sqlite; fi
-  - if [[ $OWNCLOUD -ge '8.1' ]]; then ./occ app:enable myapp ; fi
+  - if [[ "$OWNCLOUD" -ge "8.1" ]]; then ./occ maintenance:install --database-name oc_autotest --database-user oc_autotest --admin-user admin --admin-pass admin --database sqlite; fi
+  - if [[ "$OWNCLOUD" -ge "8.1" ]]; then ./occ app:enable myapp ; fi
   - cd apps/myapp
 
 script:
   - phpunit tests
-  - if [[ $OWNCLOUD -ge '8.1' ]]; then phpunit -c phpunit.integration.xml; fi
+  - if [[ "$OWNCLOUD" -ge "8.1" ]]; then phpunit -c phpunit.integration.xml; fi
   - cd ../../../ocdev
   - python3 setup.py test
