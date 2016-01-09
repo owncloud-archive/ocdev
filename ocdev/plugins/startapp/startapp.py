@@ -20,7 +20,7 @@ class Author:
 
 class Arguments:
 
-    def __init__(self, name, description='', license='agpl', owncloud='8.1',
+    def __init__(self, name, description='', license='agpl', owncloud='8.2',
                  version='0.0.1', authors=[], output='', category='multimedia'):
         self.authors = authors
         self.name = name

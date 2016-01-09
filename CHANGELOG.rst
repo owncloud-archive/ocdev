@@ -1,3 +1,9 @@
+ocdev (0.2.0)
+
+* Add ownCloud 8.2 templates and set as default when generating apps
+* Check for Python 2 on install to prevent being install with the wrong pip version
+
+
 ocdev (0.1.8)
 
 * Also run git fetch before checking out the branch to make sure that branch updates work
