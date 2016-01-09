@@ -54,6 +54,6 @@ before_script:
 
 script:
   - phpunit tests
-  - if [[ $OWNCLOUD -ge '8.1' ||  ]]; then phpunit -c phpunit.integration.xml; fi
+  - if [[ $OWNCLOUD -ge '8.1' ]]; then phpunit -c phpunit.integration.xml; fi
   - cd ../../../ocdev
   - python3 setup.py test
