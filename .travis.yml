@@ -1,12 +1,16 @@
 language: python
 python:
   - 3.2
-  - 3.3
-  - 3.4
-  - 3.5
+
+
+matrix:
+    include:
+        - python: 3.3
+        - python: 3.4
+        - python: 3.5
 
 env:
-  - OWNCLOUD=8 BRANCH=stable8
+  - OWNCLOUD=8.0 BRANCH=stable8.0
   - OWNCLOUD=8.1 BRANCH=stable8.1
   - OWNCLOUD=8.2 BRANCH=stable8.2
   - OWNCLOUD=9.0 BRANCH=master
