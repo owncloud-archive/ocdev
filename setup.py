@@ -4,8 +4,10 @@ from setuptools import setup, find_packages
 
 # check for old python versions
 if sys.version_info < (3, 2):
-    sys.exit("ocdev requires Python 3.2+ but found %s" % platform.python_version())
-    
+    sys.exit("ocdev requires Python 3.2 or higher but found %s! If you are "
+             "using pip make sure its the Python 3 version (pip3)" %
+             platform.python_version())
+
 
 with open('requirements.txt', 'r') as infile:
     install_requires = infile.read().split('\n')

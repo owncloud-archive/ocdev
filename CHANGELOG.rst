@@ -1,8 +1,8 @@
 ocdev (0.2.0)
 
 * Add ownCloud 8.2 templates and set as default when generating apps
+* Add first ownCloud 9.0 templates
 * Check for Python 2 on install to prevent being install with the wrong pip version
-
 
 ocdev (0.1.8)
 
