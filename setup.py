@@ -33,7 +33,7 @@ setup (
     keywords = ['owncloud', 'app', 'scaffolding', 'setup', 'development'],
     test_suite = 'tests',
     classifiers = [
-        'Classifier: Intended Audience :: Developers',
+        'Intended Audience :: Developers',
         'Environment :: Console',
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
         'Operating System :: POSIX :: Linux',
