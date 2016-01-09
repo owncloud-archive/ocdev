@@ -6,6 +6,8 @@ python:
   - 3.5
 
 matrix:
+    allow_failures:
+        - env: OWNCLOUD=9.0 BRANCH=master
     include:
         - python: 3.2
           env: OWNCLOUD=8 BRANCH=stable8
@@ -22,7 +24,7 @@ before_install:
   - sudo apt-get update
 
 install:
-  # use older pip version if on python 3.2 to prevent breakage
+  # use older jinja version if on python 3.2 to prevent breakage
   - if [[ $TRAVIS_PYTHON_VERSION == '3.2' ]]; then pip install jinja2==2.6; fi
   # install the lib
   - pip install setuptools
