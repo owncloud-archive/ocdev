@@ -167,5 +167,11 @@ class SetUp(Plugin):
         if directory:
             cmd.append(directory)
 
-
-        return check_call(cmd)
+        assert not os.path.exists('{0}/core'.format(os.getcwd())), 'cannot clone, {0}/core already exists'.format(os.getcwd())
+        assert os.access(os.getcwd(), os.W_OK), 'Insufficient privilege to write to this directory'
+        try:
+            result = check_call(cmd)
+        except Exception as e:
+            print(e)
+            quit()
+        return result
