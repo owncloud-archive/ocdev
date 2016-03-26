@@ -31,7 +31,7 @@ before_install:
     - sudo apt-get update
     - sudo apt-get -y install python3-setuptools firefox mariadb-server
     - sudo easy_install3 requests ocdev
-    - nvm install unstable
+    - nvm install 5.9
     - npm install -g npm@latest
     - make
     # install core
