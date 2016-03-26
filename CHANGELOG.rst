@@ -1,3 +1,7 @@
+ocdev (0.2.1)
+
+* Pass directory to git clone commands to prevent race conditions in devup command
+
 ocdev (0.2.0)
 
 * Add ownCloud 8.2 templates and set as default when generating apps

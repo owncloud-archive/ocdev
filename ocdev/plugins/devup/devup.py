@@ -28,29 +28,27 @@ class DevUp(Plugin):
         if arguments.dir != '':
             directory = arguments.dir
 
+        directory = directory.rstrip('/')
+
         if not exists(join(directory, 'config/config.php')):
             raise PluginError('ownCloud core directory not found in path %s' %directory)
 
-        chdir(directory)
-
         # update core and 3rdparty
         core_branch = settings.get_value('devup', 'core')
-        self.git_pull(core_branch)
-        check_call(['git', 'submodule', 'update'])
+        self.git_pull(core_branch, directory)
+        check_call(['git', 'submodule', 'update'], cwd=directory)
 
         # update apps
         for app, branch in settings.get_section('devup').items():
             if app != 'core':
-                app_dir = 'apps/%s' % app
+                app_dir = '%s/apps/%s' % (directory, app)
                 if exists(app_dir):
-                    chdir(app_dir)
-                    self.git_pull(branch)
-                    chdir('../../')
+                    self.git_pull(branch, app_dir)
                 else:
                     print('Directory for app %s not found' % app)
 
 
-    def git_pull(self, branch):
-        check_call(['git', 'fetch'])
-        check_call(['git', 'checkout', branch])
-        check_call(['git', 'pull', '--rebase', 'origin', branch])
+    def git_pull(self, branch, working_directory):
+        check_call(['git', 'fetch'], cwd=working_directory)
+        check_call(['git', 'checkout', branch], cwd=working_directory)
+        check_call(['git', 'pull', '--rebase', 'origin', branch], cwd=working_directory)
