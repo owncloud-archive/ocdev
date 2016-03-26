@@ -14,10 +14,12 @@ matrix:
         - python: 3.2
           env: OWNCLOUD=8.1 BRANCH=stable8.1
         - python: 3.2
-          env: OWNCLOUD=9.0 BRANCH=master
+          env: OWNCLOUD=8.1 BRANCH=stable8.2
+        - python: 3.2
+          env: OWNCLOUD=9.1 BRANCH=master
 env:
     matrix:
-        - OWNCLOUD=8.2 BRANCH=stable8.2
+        - OWNCLOUD=9.0 BRANCH=stable9
 
 before_install:
   - sudo add-apt-repository ppa:ondrej/php5-oldstable -y
