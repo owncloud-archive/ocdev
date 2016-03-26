@@ -53,13 +53,13 @@ before_script:
   - ocdev startapp --email test --author test --owncloud $OWNCLOUD MyApp
   - cd ../
   - mkdir data
-  - if [[ "$OWNCLOUD" -ge "8.1" ]]; then ./occ maintenance:install --database-name oc_autotest --database-user oc_autotest --admin-user admin --admin-pass admin --database sqlite; fi
-  - if [[ "$OWNCLOUD" -ge "8.1" ]]; then ./occ app:enable myapp; fi
+  - if (( $(echo "$OWNCLOUD >= 8.1" |bc -l) )); then ./occ maintenance:install --database-name oc_autotest --database-user oc_autotest --admin-user admin --admin-pass admin --database sqlite; fi
+  - if (( $(echo "$OWNCLOUD >= 8.1" |bc -l) )); then ./occ app:enable myapp; fi
   - cd apps/myapp
-  - if [[ "$OWNCLOUD" -ge "9" ]]; then make; fi
+  - if (( $(echo "$OWNCLOUD >= 9" |bc -l) )); then make; fi
 
 script:
-  - if [[ "$OWNCLOUD" -ge "9" ]]; then phpunit -c phpunit.xml; else phpunit tests; fi
-  - if [[ "$OWNCLOUD" -ge "8.1" ]]; then phpunit -c phpunit.integration.xml; fi
+  - if (( $(echo "$OWNCLOUD >= 9" |bc -l) )); then phpunit -c phpunit.xml; else phpunit tests; fi
+  - if (( $(echo "$OWNCLOUD >= 8.1" |bc -l) )); then phpunit -c phpunit.integration.xml; fi
   - cd ../../../ocdev
   - python3 setup.py test
