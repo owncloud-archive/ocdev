@@ -59,7 +59,7 @@ before_script:
   - cd apps/myapp
 
 script:
-  - phpunit tests
+  - if [[ "$OWNCLOUD" -ge "9.0" ]]; then phpunit -c phpunit.xml; else phpunit tests; fi
   - if [[ "$OWNCLOUD" -ge "8.1" ]]; then phpunit -c phpunit.integration.xml; fi
   - cd ../../../ocdev
   - python3 setup.py test
