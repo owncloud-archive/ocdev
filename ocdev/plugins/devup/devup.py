@@ -37,6 +37,7 @@ class DevUp(Plugin):
         core_branch = settings.get_value('devup', 'core')
         self.git_pull(core_branch, directory)
         check_call(['git', 'submodule', 'update'], cwd=directory)
+        check_call(['git', 'submodule', 'update'], cwd=directory)
 
         # update apps
         for app, branch in settings.get_section('devup').items():
@@ -49,6 +50,7 @@ class DevUp(Plugin):
 
 
     def git_pull(self, branch, working_directory):
+        print('Updating app in directory %s to branch %s' % (working_directory, branch))
         check_call(['git', 'fetch'], cwd=working_directory)
         check_call(['git', 'checkout', branch], cwd=working_directory)
         check_call(['git', 'pull', '--rebase', 'origin', branch], cwd=working_directory)
