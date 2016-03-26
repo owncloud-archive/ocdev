@@ -55,10 +55,10 @@ before_script:
   - if [[ "$OWNCLOUD" -ge "8.1" ]]; then ./occ maintenance:install --database-name oc_autotest --database-user oc_autotest --admin-user admin --admin-pass admin --database sqlite; fi
   - if [[ "$OWNCLOUD" -ge "8.1" ]]; then ./occ app:enable myapp; fi
   - cd apps/myapp
-  - if [[ "$OWNCLOUD" -ge "9.0" ]]; then make; fi
+  - if [[ "$OWNCLOUD" -ge "9" ]]; then make; fi
 
 script:
-  - if [[ "$OWNCLOUD" -ge "9.0" ]]; then phpunit -c phpunit.xml; else phpunit tests; fi
+  - if [[ "$OWNCLOUD" -ge "9" ]]; then phpunit -c phpunit.xml; else phpunit tests; fi
   - if [[ "$OWNCLOUD" -ge "8.1" ]]; then phpunit -c phpunit.integration.xml; fi
   - cd ../../../ocdev
   - python3 setup.py test
