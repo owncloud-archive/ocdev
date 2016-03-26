@@ -1,3 +1,9 @@
+ocdev (0.2.2)
+
+* Clean up 9.0 templates
+* Make 9.0 the default app generated
+* Add Makefile for building the app
+
 ocdev (0.2.1)
 
 * Pass directory to git clone commands to prevent race conditions in devup command
