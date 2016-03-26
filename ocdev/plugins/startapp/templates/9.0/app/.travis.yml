@@ -35,7 +35,7 @@ before_install:
     - npm install -g npm@latest
     - make
     # install core
-    - cd ../../
+    - cd ../
     - ocdev setup core --dir owncloud --branch $CORE_BRANCH --no-history
     - mv {{ app.id }} owncloud/apps/
 
