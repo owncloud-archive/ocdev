@@ -5,6 +5,8 @@ namespace OCA\{{ app.namespace }}\AppInfo;
 
 use OCP\AppFramework\App;
 
+require_once __DIR__ . '/autoload.php';
+
 $app = new App('{{ app.id }}');
 $container = $app->getContainer();
 
@@ -31,4 +33,3 @@ $container->query('OCP\INavigationManager')->add(function () use ($container) {
 		'name' => $l10n->t('{{ app.name }}'),
 	];
 });
-
