@@ -30,7 +30,7 @@ The make command will install or update Composer dependencies if a composer.json
 
 First get an account for the [App Store](http://apps.owncloud.com/) then run:
 
-    make appstore
+    make && make appstore
 
 The archive is located in build/artifacts/appstore and can then be uploaded to the App Store.
 
