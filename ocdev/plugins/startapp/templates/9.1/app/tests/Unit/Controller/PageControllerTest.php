@@ -1,7 +1,7 @@
 <?php
 {% include app.small_license_header %}
 
-namespace OCA\{{ app.namespace }}\Controller;
+namespace OCA\{{ app.namespace }}\Tests\Unit\Controller;
 
 use PHPUnit_Framework_TestCase;
 

@@ -1,8 +1,6 @@
 <?php
 {% include app.small_license_header %}
 
-namespace OCA\{{ app.namespace }}\AppInfo;
-
 use OCP\AppFramework\App;
 
 /**

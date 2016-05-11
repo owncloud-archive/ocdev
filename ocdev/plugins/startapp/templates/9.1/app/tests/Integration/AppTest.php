@@ -1,6 +1,8 @@
 <?php
 {% include app.small_license_header %}
 
+namespace OCA\{{ app.namespace }}\Tests\Integration\Controller;
+
 use OCP\AppFramework\App;
 use Test\TestCase;
 
