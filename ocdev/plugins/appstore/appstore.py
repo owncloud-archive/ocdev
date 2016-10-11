@@ -32,7 +32,7 @@ class AppStore(Plugin):
 
         parser.add_argument('action', choices=['release'])
         parser.add_argument('archive', help='Full path to the release \
-                            arcchive.')
+                            archive.')
 
 
     def run(self, arguments, directory, settings):
